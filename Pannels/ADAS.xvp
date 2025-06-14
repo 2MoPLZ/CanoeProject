@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Panel" ControlName="ADAS">
+    <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xbfaffe93e906ee4d4be9f17eae28c3818d63" ControlName="Track Bar 1">
+      <Property Name="Name">Xbfaffe93e906ee4d4be9f17eae28c3818d63</Property>
+      <Property Name="Size">144, 24</Property>
+      <Property Name="Location">112, 66</Property>
+      <Property Name="TickStyle">None</Property>
+      <Property Name="TabIndex">0</Property>
+      <Property Name="MaximumDouble">30</Property>
+      <Property Name="MaximumSize">100000, 24</Property>
+      <Property Name="Maximum">30</Property>
+      <Property Name="SymbolConfiguration">8;16;ADAS;;;Rader;1;;;-1;;;Value;;;0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ProgressBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xb67d5c18ef522e477cebf8de7dac35c243d7" ControlName="Progress Bar 1">
+      <Property Name="Name">Xb67d5c18ef522e477cebf8de7dac35c243d7</Property>
+      <Property Name="Size">138, 51</Property>
+      <Property Name="Location">112, 16</Property>
+      <Property Name="ValuePos">Top</Property>
+      <Property Name="AlarmUpperLimit">30</Property>
+      <Property Name="Maximum">30</Property>
+      <Property Name="ValueSize">33, 12</Property>
+      <Property Name="OriginValue">0</Property>
+      <Property Name="SymbolConfiguration">8;16;ADAS;;;Rader;1;;;-1;;;Value;;;0</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">580, 270</Property>
+    <Property Name="Location">0, 0</Property>
+    <Property Name="BackColor">255, 255, 255, 255</Property>
+  </Object>
+</Panel>
