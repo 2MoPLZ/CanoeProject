@@ -1,0 +1,22 @@
+/*@!Encoding:949*/
+variables {
+  
+}
+
+void printFile(char target[]) {
+  dword file;
+  char file_buf[64];
+  
+  file=openFileRead(target, 0);
+  
+  if(file==0) {
+    write("File load failed");
+  }
+  else {
+    while(fileGetString(file_buf, elcount(file_buf), file)!=0) {
+      write(file_buf);
+    }
+  }
+  
+  fileClose(file);
+}

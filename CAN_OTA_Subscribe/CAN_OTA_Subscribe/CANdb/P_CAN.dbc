@@ -39,7 +39,7 @@ VAL_TABLE_ vtbErrorDescription 255 "ERROR" ;
 
 
 BO_ 273 msg_ieb_brake: 1 IEB
- SG_ sig_ieb_brake : 0|1@1+ (1,0) [0|1] ""  TCU
+ SG_ sig_ieb_brake : 0|1@1+ (1,0) [0|1] ""  EMS,TCU
 
 BO_ 1058 msg_fconsole_drive: 1 CCU
  SG_ sig_console_drive_mode : 0|4@1+ (1,0) [0|15] ""  EMS
@@ -69,10 +69,11 @@ BO_ 47 msg_tcu_alive: 1 TCU
 BO_ 46 msg_tcu_pdc: 4 TCU
  SG_ sig_tcu_dtc : 0|32@1+ (1,0) [0|4294967295] ""  PDC
 
-BO_ 33 msg_tcu_info: 3 TCU
- SG_ sig_output_torque : 8|16@1- (1,0) [-32768|32767] ""  PDC,CCU
- SG_ sig_gear_shift : 4|4@1+ (1,0) [0|15] ""  PDC,CCU
- SG_ sig_gear_pos : 0|4@1+ (1,0) [0|15] ""  PDC,CCU
+BO_ 33 msg_tcu_info: 4 TCU
+ SG_ sig_speed : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ sig_output_torque : 16|16@1- (1,0) [-32768|32767] ""  PDC,CCU
+ SG_ sig_gear_shift : 12|4@1+ (1,0) [0|15] ""  PDC,CCU
+ SG_ sig_gear_pos : 8|4@1+ (1,0) [0|15] ""  PDC,CCU
 
 BO_ 31 msg_ems_alive: 1 EMS
  SG_ sig_ems_alive : 0|1@1+ (1,0) [0|1] ""  PDC
@@ -84,11 +85,10 @@ BO_ 18 msg_engine_status: 1 EMS
  SG_ sig_idle_state : 1|1@1+ (1,0) [0|1] ""  PDC,CCU
  SG_ sig_engine_on : 0|1@1+ (1,0) [0|1] ""  PDC,TCU,CCU
 
-BO_ 17 msg_engine_data: 7 EMS
- SG_ sig_engine_torque : 40|16@1- (1,0) [-32768|32767] ""  PDC,TCU,CCU
- SG_ sig_throttle_pos : 32|8@1+ (1,0) [0|255] ""  PDC,TCU,CCU
- SG_ sig_drive_mode : 24|4@1+ (1,0) [0|15] ""  PDC,TCU,CCU
- SG_ sig_speed : 16|8@1+ (1,0) [0|255] ""  PDC,TCU,CCU
+BO_ 17 msg_engine_data: 6 EMS
+ SG_ sig_engine_torque : 32|16@1- (1,0) [-32768|32767] ""  PDC,TCU,CCU
+ SG_ sig_throttle_pos : 24|8@1+ (1,0) [0|255] ""  PDC,TCU,CCU
+ SG_ sig_drive_mode : 16|4@1+ (1,0) [0|15] ""  PDC,TCU,CCU
  SG_ sig_rpm : 0|16@1+ (1,0) [0|65535] ""  PDC,TCU,CCU
 
 

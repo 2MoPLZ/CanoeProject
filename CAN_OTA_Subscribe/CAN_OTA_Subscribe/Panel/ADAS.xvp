@@ -10,7 +10,7 @@
       <Property Name="MaximumDouble">30</Property>
       <Property Name="MaximumSize">100000, 24</Property>
       <Property Name="Maximum">30</Property>
-      <Property Name="SymbolConfiguration">8;16;ADAS;;;Rader;1;;;-1;;;Value;;;0</Property>
+      <Property Name="SymbolConfiguration">8;16;ADAS;;;Radar;1;;;-1;;;Value;;;0</Property>
     </Object>
     <Object Type="Vector.CANalyzer.Panels.Design.ProgressBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xb67d5c18ef522e477cebf8de7dac35c243d7" ControlName="Progress Bar 1">
       <Property Name="Name">Xb67d5c18ef522e477cebf8de7dac35c243d7</Property>
@@ -21,7 +21,7 @@
       <Property Name="Maximum">30</Property>
       <Property Name="ValueSize">33, 12</Property>
       <Property Name="OriginValue">0</Property>
-      <Property Name="SymbolConfiguration">8;16;ADAS;;;Rader;1;;;-1;;;Value;;;0</Property>
+      <Property Name="SymbolConfiguration">8;16;ADAS;;;Radar;1;;;-1;;;Value;;;0</Property>
     </Object>
     <Property Name="Name">Panel</Property>
     <Property Name="Size">580, 270</Property>

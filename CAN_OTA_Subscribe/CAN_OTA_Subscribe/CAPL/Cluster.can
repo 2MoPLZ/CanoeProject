@@ -1,0 +1,15 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  message B_CAN::msg_engine_data msg;
+}
+
+on message B_CAN::msg_engine_data {
+  
+}
+

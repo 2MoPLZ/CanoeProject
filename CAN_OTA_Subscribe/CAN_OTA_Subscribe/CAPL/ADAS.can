@@ -36,7 +36,7 @@ on timer checkTimer
   setTimer(checkTimer, 100); 
 }
 
-on sysvar ADAS::Rader
+on sysvar ADAS::Radar
 {
   radarDistance = @this;
 }
