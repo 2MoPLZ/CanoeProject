@@ -1,0 +1,132 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: CDC R_MDPS IEB CCU
+VAL_TABLE_ vtbSensorReqCause 15 "SNA" 2 "by Request 2" 1 "by Request 1" 0 "normal cycle" ;
+VAL_TABLE_ vtbErrorDescription 255 "ERROR" ;
+
+
+BO_ 2015 msg_broad_diag_request: 8 CCU
+ SG_ sig_broad_diag_request : 0|64@1+ (1,0) [0|0] ""  CDC,IEB,R_MDPS
+
+BO_ 1870 msg_cdc_diag_response: 8 CDC
+ SG_ sig_cdc_diag_response : 0|64@1+ (1,0) [0|0] ""  CCU
+
+BO_ 1862 msg_cdc_diag_request: 8 CCU
+ SG_ sig_cdc_diag_request : 0|64@1+ (1,0) [0|0] ""  CDC
+
+BO_ 1869 msg_rmdps_diag_response: 8 R_MDPS
+ SG_ sig_rmdps_diag_response : 0|64@1+ (1,0) [0|0] ""  CCU
+
+BO_ 1861 msg_rmdps_diag_request: 8 CCU
+ SG_ sig_rmdps_diag_request : 0|64@1+ (1,0) [0|0] ""  R_MDPS
+
+BO_ 1868 msg_ieb_diag_response: 8 CCU
+ SG_ sig_ieb_diag_response : 0|64@1+ (1,0) [0|0] ""  CCU
+
+BO_ 1860 msg_ieb_diag_request: 8 CCU
+ SG_ sig_ieb_diag_request : 0|64@1+ (1,0) [0|0] ""  IEB
+
+BO_ 530 msg_adas_rmdps: 2 CCU
+ SG_ sig_adas_steer_angle : 0|16@1- (1,0) [-32768|32767] ""  R_MDPS
+
+BO_ 529 msg_adas_ieb: 1 CCU
+ SG_ sig_adas_ieb_cmd : 0|1@1+ (1,0) [0|1] ""  IEB
+
+BO_ 511 msg_cdc_vdc: 8 Vector__XXX
+ SG_ sig_chunk_data : 16|48@1+ (1,0) [0|281474976710655] ""  CCU
+ SG_ sig_chunk_index : 8|8@1+ (1,0) [0|255] ""  CCU
+ SG_ sig_chunk_size : 0|8@1+ (1,0) [0|0] ""  CCU
+
+BO_ 303 msg_rmdps_alive: 1 R_MDPS
+ SG_ sig_rmdps_alive : 0|1@1+ (1,0) [0|0] ""  CDC
+
+BO_ 302 msg_rmdps_cdc: 4 R_MDPS
+ SG_ sig_rmdps_dtc : 0|32@1+ (1,0) [0|4294967295] ""  CDC
+
+BO_ 289 msg_rmdps_steer_angle: 2 R_MDPS
+ SG_ sig_steer_angle : 0|16@1- (1,0) [-32768|32767] ""  CCU,CDC
+
+BO_ 287 msg_ieb_alive: 1 IEB
+ SG_ sig_ieb_alive : 0|1@1+ (1,0) [0|1] ""  CDC
+
+BO_ 286 msg_ieb_cdc: 4 IEB
+ SG_ sig_ieb_dtc : 0|32@1+ (1,0) [0|4294967295] ""  CDC
+
+BO_ 273 msg_ieb_brake: 1 IEB
+ SG_ sig_ieb_brake : 0|1@1+ (1,0) [0|1] ""  CCU,CDC
+
+BO_TX_BU_ 1868 : CCU,IEB;
+
+
+BA_DEF_  "DatabaseVersion" STRING ;
+BA_DEF_ BO_  "DiagState" ENUM  "No","Yes";
+BA_DEF_ BO_  "DiagResponse" ENUM  "No","Yes","vector_leerstring";
+BA_DEF_ BO_  "DiagRequest" ENUM  "No","Yes","vector_leerstring";
+BA_DEF_  "Manufacturer" STRING ;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 1215752192;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType","NotUsed","NotUsed","NotUsed","NotUsed","NotUsed";
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 100000;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","NotUsed","NotUsed","NotUsed","NotUsed","Cyclic","NotUsed","IfActive","NoMsgSendType","NotUsed","vector_leerstring";
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 999999;
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 1000;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 50000;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 50000;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "No","Yes";
+BA_DEF_ BO_  "GenMsgFastOnStart" INT 0 100000;
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 100000;
+BA_DEF_DEF_  "DatabaseVersion" "";
+BA_DEF_DEF_  "DiagState" "No";
+BA_DEF_DEF_  "DiagResponse" "No";
+BA_DEF_DEF_  "DiagRequest" "No";
+BA_DEF_DEF_  "Manufacturer" "Vector";
+BA_DEF_DEF_  "NodeLayerModules" "CANoeILNLVector.dll";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 200;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 20;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgFastOnStart" 0;
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_ "DatabaseVersion" "1.1";
+BA_ "BusType" "CAN";
+

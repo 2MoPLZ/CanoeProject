@@ -1,0 +1,93 @@
+{
+  "MetaInfo": {},
+  "Signals": [
+    {
+      "name": "VehicleControl.LateralControl.TargetInformation.TargetPos[m].{signal_1}",
+      "alias": ""
+    },
+    {
+      "name": "VehicleControl.LateralControl.TargetInformation.TargetPos[m].{signal_2}",
+      "alias": ""
+    },
+    {
+      "name": "VehicleControl.LateralControl.TargetInformation.TargetPos[m].{signal_3}",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.Vel_wrt_WorldSys(VehSys)[m/s].{signal_1}",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.Vel_wrt_WorldSys(VehSys)[m/s].{signal_2}",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.Vel_wrt_WorldSys(VehSys)[m/s].{signal_3}",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.Pos(WorldSys)[m].{signal_1}",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.Pos(WorldSys)[m].{signal_2}",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.Pos(WorldSys)[m].{signal_3}",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.Acc_wrt_WorldSys(VehSys)[m/s**2].{signal_1}",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.Acc_wrt_WorldSys(VehSys)[m/s**2].{signal_2}",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.Acc_wrt_WorldSys(VehSys)[m/s**2].{signal_3}",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.RollAng[rad]",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.PitchAng[rad]",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Chassis.VehicleBody.YawAng[rad]",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Drivetrain.DrivetrainControlUnit.TransmissionControlUnit.AutomatedManualClutchPos[0_1]",
+      "alias": ""
+    },
+    {
+      "name": "Vehicle.Drivetrain.DrivetrainControlUnit.TransmissionControlUnit.Gear[-4;20]",
+      "alias": ""
+    },
+    {
+      "name": "CTRL.LateralControl.SteeringWheelAng[rad]",
+      "alias": ""
+    },
+    {
+      "name": "CTRL.LongitudinalControl.ClutchPos[0_1]",
+      "alias": ""
+    },
+    {
+      "name": "CTRL.LongitudinalControl.AccPedalPos[0_1]",
+      "alias": ""
+    },
+    {
+      "name": "CTRL.LongitudinalControl.BrakePedalPos[0_1]",
+      "alias": ""
+    },
+    {
+      "name": "CTRL.LongitudinalControl.ManualGear[-4;20]",
+      "alias": ""
+    }
+  ]
+}

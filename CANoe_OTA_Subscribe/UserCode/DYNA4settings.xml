@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <selectedFolder path="..\RunPackageExports" />
+  <simulationControl useStopTime="True" />
+  <animationControl useAnimation="True" selected="Custom path to DYNAanimation.exe" userDefinedPath="C:\Program Files\Vector DYNAanimation R9 SP1" />
+  <animationConnection ip="127.0.0.1" data_port="20000" remote_port="20001" />
+</settings>

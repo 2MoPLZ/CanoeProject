@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<Project xmlns="http://www.tesis-dynaware.com/DYNAanimation/Project/1.0" version="7.0.0">
+  <Object name="Multi Gauge Instrument" resource="Multi Gauge Instrument">
+    <Component type="MultiGaugeInstrument">
+      <Property name="size">0.2</Property>
+      <Property name="horizontalPosition">-1.0</Property>
+      <Property name="verticalPosition">-0.6</Property>
+    </Component>
+  </Object>
+</Project>

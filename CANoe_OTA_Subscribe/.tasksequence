@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TaskSequence xmlns:XMI="http://www.omg.org/XMI" name="Demo_Framework_root" description="" XMI:version="2.0">
+  <items>
+    <task href="Database/Tasks/PassengerCar/DrivingPerformance/FullThrottle.task#/"/>
+  </items>
+  <items>
+    <task href="Database/Tasks/PassengerCar/Handling/RaceTrackBarcelona_CircuitDeCatalunya.task#/"/>
+  </items>
+  <items>
+    <task href="Database/Tasks/PassengerCar/OpenDRIVE/Roundabout_ODR.task#/"/>
+  </items>
+</TaskSequence>

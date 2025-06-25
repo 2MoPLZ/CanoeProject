@@ -1,0 +1,354 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+//ECU에서 CAN으로 파일 받아서 text파일 작성하는 코드
+/*@!Encoding:65001*/
+
+variables
+{
+  struct engineDataLog
+  {
+    int64 timestamp;
+    double sig_rpm;
+    byte sig_drive_mode;
+    word sig_throttle_pos;
+    double sig_engine_torque;
+  }engineDataLogs[100];
+  int engineLogsIndex = 0;
+  
+  struct engineStatusLog
+  {
+    int64 timestamp;
+    byte sig_engine_on;
+    byte sig_idle_state;
+  }engineStatusLogs[100];
+  int engineStatusLogsIndex = 0;
+  
+  struct tcuInfoLog
+  {
+    int64 timestamp;
+    double sig_speed;
+    byte sig_gear_pos;
+    byte sig_gear_shift;
+    double sig_output_torque;
+  }tcuInfoLogs[100];
+  int tcuInfoLogsIndex = 0;
+  
+  char file_path[50] = "C:/TEAM_2_OTA/PDC";
+  char file_name[50] = "PDC_Logs.txt";
+  char ECUName[8] = "PDC";
+  dword fd; // logfile handle
+  int OTACounter = -1;
+  
+  char downloadData[4096];
+  char setData[4096];
+  int downloadSize = 0;
+  
+  message 0x760 ISOTP_MSG;
+  message 0x768 msg_vdc_diag_response;
+  
+  message P_CAN::msg_pdc_vdc vdcMsg;
+}
+
+on start
+{
+  
+}
+
+void fd_init(){
+  //해당 경로의 file_path가 반드시 존재해야 합니다.
+  setWritePath(file_path);
+  fd = openFileWrite(file_name,0);
+}
+
+void FlushEngineDataLogs()
+{
+  int i;
+  char logLine[128];
+  int64 t, h , m , s, ms;
+  for (i = 0; i < 10; i++) {
+    t = engineDataLogs[i].timestamp;
+    h = (t / 3600000) % 24;
+    m = (t / 60000) % 60;
+    s = (t / 1000) % 60;
+    ms = t % 1000;
+        
+    snprintf(logLine, elcount(logLine),
+    "%d) [%02I64d:%02I64d:%02I64d.%03I64d] MESSAGE ID: 0x011 DATA: {RPM=%.2f, Mode=%u, Throttle=%u, Torque=%.2f}\n",
+    i, h, m, s, ms,
+    engineDataLogs[i].sig_rpm,
+    engineDataLogs[i].sig_drive_mode,
+    engineDataLogs[i].sig_throttle_pos,
+    engineDataLogs[i].sig_engine_torque);
+    
+    filePutString(logLine, 128, fd);
+  }
+}
+
+void FlushEngineStatusLogs()
+{
+  int i;
+  char logLine[128];
+  int64 t, h , m , s, ms;
+  for (i = 0; i < 10; i++) {
+    t = engineDataLogs[i].timestamp;
+    h = (t / 3600000) % 24;
+    m = (t / 60000) % 60;
+    s = (t / 1000) % 60;
+    ms = t % 1000;
+  
+    snprintf(logLine, elcount(logLine),
+    "%d) [%02I64d:%02I64d:%02I64d.%03I64d] MESSAGE ID: 0x012 DATA: {ENGINE ON=%.2f, IDLE STATE=%u}\n",
+    i, h, m, s, ms,
+    engineStatusLogs[i].sig_engine_on,
+    engineStatusLogs[i].sig_idle_state);
+    filePutString(logLine, 128, fd);
+  }
+}
+
+void FlushTcuInfoLogs()
+{
+  int i;
+  char logLine[128];
+  int64 t, h , m , s, ms;
+  for (i = 0; i < 10; i++) {
+    t = engineDataLogs[i].timestamp;
+    h = (t / 3600000) % 24;
+    m = (t / 60000) % 60;
+    s = (t / 1000) % 60;
+    ms = t % 1000;
+    
+    snprintf(logLine, elcount(logLine),
+    "%d) [%02I64d:%02I64d:%02I64d.%03I64d] MESSAGE ID: 0x021 DATA: {SPEED=%.1lf, GEAR POSE=%d, GEAR SHIFT=%d, OUTPUT TORQUE=%u}\n",
+    i, h, m, s, ms,
+    tcuInfoLogs[i].sig_speed,
+    tcuInfoLogs[i].sig_gear_pos,
+    tcuInfoLogs[i].sig_gear_shift,
+    tcuInfoLogs[i].sig_output_torque);
+    filePutString(logLine, 128, fd);
+  }
+}
+
+void FlushInit(){
+  char logLine[128];
+  
+  snprintf(logLine, elcount(logLine),"---START OF CAN LOG---\n");
+  filePutString(logLine, 128, fd);
+  FlushEngineDataLogs();
+  FlushEngineStatusLogs();
+  FlushTcuInfoLogs();
+  snprintf(logLine, elcount(logLine),"---END OF CAN LOG---\n");
+  filePutString(logLine, 128, fd);
+  fileClose(fd);
+}
+
+void requestDownload(){//UDS,ISO-TP 기반 파일 다운로드 요청
+  byte msg[11];
+  msg[0] = 0x34;
+  msg[1] = 0x00;
+  msg[2] = 0x44; // 4-byte address + 4-byte length
+  msg[3] = 0x00;
+  msg[4] = 0x00;
+  msg[5] = 0x40;
+  msg[6] = 0x00; // address: 0x00004000
+  msg[7] = downloadSize&0xFF000000;
+  msg[8] = downloadSize&0x00FF0000;
+  msg[9] = downloadSize&0x0000FF00;
+  msg[10] = downloadSize&0x000000FF; // file length
+  sendISOTP(0x760, msg, 11);
+  write("PDC : >> Request Download");
+}
+
+void sendFileToVDC()
+{
+  char file_path[50] = "C:/TEAM_2_OTA/PDC";
+  char file_name[50] = "";
+  char line[256];
+  int len = 0;
+  dword sendFd;    
+  mbstrncpy(file_name,ECUName,-1);
+  strncat(file_name,"_Logs.txt",50);
+  setFilePath(file_path,0); 
+  sendFd = openFileRead(file_name, 0);
+  //write("%s", file_path);
+  //write("%s", file_name);
+  //write("check sendFileToVDC");
+  while (fileGetStringSZ(line, elcount(line), sendFd) > 0)
+  {
+    int i;
+    len = strlen(line);
+    //write("check fileGetStringSZ");
+    if (downloadSize + len >= elcount(downloadData))
+    {
+      //write("check sending");
+      transferData();
+      //
+     
+      mbstrncpy(downloadData, setData, elcount(downloadData));
+      downloadSize = 0;
+    }
+    for(i=0;i<len;i++){
+      downloadData[downloadSize++]=line[i];
+    }
+    downloadData[downloadSize++]='\n';
+  }
+  if(downloadSize!=0){
+    transferData();
+    
+    mbstrncpy(downloadData, setData, elcount(downloadData));
+    downloadSize = 0;
+  }
+  transferExit();
+  fileClose(sendFd);
+  
+}
+
+
+void transferData() // UDS, ISO-TP 기반 파일 데이터 전송
+{
+  byte msg[4098];
+  int i;
+  msg[0] = 0x36;
+  msg[1] = 0x01;
+
+  write("PDC : transfer Data");
+  for (i = 0; i < downloadSize; i++)
+  {
+    msg[2 + i] = downloadData[i];
+  }
+  //write("check size %d", elCount(msg));
+  sendISOTP( 0x760 ,msg, 2 + downloadSize);
+}
+
+void sendISOTP(dword target_address, byte tx_buffer[] ,int len)
+{
+  int i;
+  int index;
+  int seqNum;
+  message 0x7DF outmsg;//브로드캐스트(사용안함)
+  
+  index = 0;
+  seqNum = 1;
+
+  //write("sendISOTP:%02X,%02X",tx_buffer[0],tx_buffer[1]);
+  //ISOTP_MSG.id = target_address;
+  
+  if (len <= 7)//single frame
+  {
+    ISOTP_MSG.byte(0) = 0x00 | len;
+    for (i = 0; i < len; i++) ISOTP_MSG.byte(i+1) = tx_buffer[i];
+    for (i = len + 1; i < 8; i++) ISOTP_MSG.byte(i) = 0x00;
+    ISOTP_MSG.dlc = len+1;
+    //write("send check1");
+    output(ISOTP_MSG);
+  }
+  else//ff -> cf
+  {
+    ISOTP_MSG.byte(0) = 0x10 | ((len >> 8) & 0x0F);
+    ISOTP_MSG.byte(1) = len & 0xFF;
+    write("PDC : Send first Frame , ISOTP byte 0,1 : %02x,%02x",ISOTP_MSG.byte(0),ISOTP_MSG.byte(1));
+    for (i = 0; i < 6; i++) ISOTP_MSG.byte(i+2) = tx_buffer[index++];
+    ISOTP_MSG.dlc = len+2;
+    //write("send check2");
+    output(ISOTP_MSG);
+
+    //flow control을 받은 다음 cf를 보내기 시작해야하는데, 그부분은 미구현. (flow control 없이 그냥 파일 전송)
+    write("PDC : start to send CF, index:%d, len%d",index,len);
+    while (index < len)
+    {
+      int rest;
+      int cfLen;
+      ISOTP_MSG.byte(0) = 0x20 | (seqNum & 0x0F);
+      rest = len - index;
+      cfLen = (rest >= 7) ? 7 : rest;
+
+      for (i = 0; i < cfLen; i++) ISOTP_MSG.byte(i+1) = tx_buffer[index++];
+      
+      ISOTP_MSG.dlc = cfLen+1;
+      //write("send check3");
+      output(ISOTP_MSG);
+      seqNum++;
+    }
+  }
+}
+
+
+void transferExit() // UDS, ISO-TP 기반 파일 전송 종료
+{
+  byte msg[1] = {0x37};
+  sendISOTP(0x760,msg, 1);
+  write("PDC : >> Request Transfer Exit");
+}
+
+/* data for EMS */
+on message msg_engine_data
+{
+  engineDataLogs[engineLogsIndex].timestamp = this.time_ns;
+  engineDataLogs[engineLogsIndex].sig_rpm = this.sig_rpm;
+  engineDataLogs[engineLogsIndex].sig_drive_mode = this.sig_drive_mode;
+  engineDataLogs[engineLogsIndex].sig_throttle_pos = this.sig_throttle_pos;
+  engineDataLogs[engineLogsIndex].sig_engine_torque = this.sig_engine_torque;
+
+  engineLogsIndex++;
+  if (engineLogsIndex >= 100) engineLogsIndex = 0;
+}
+
+on message msg_engine_status
+{
+  engineStatusLogs[engineStatusLogsIndex].timestamp = this.time_ns;
+  engineStatusLogs[engineStatusLogsIndex].sig_engine_on = this.sig_engine_on;
+  engineStatusLogs[engineStatusLogsIndex].sig_idle_state = this.sig_idle_state;
+
+  engineStatusLogsIndex++;
+  if (engineStatusLogsIndex >= 100) engineStatusLogsIndex = 0;
+}
+
+
+on message msg_ems_pdc  //고장로그 생성
+{
+  int64  code;
+  char buf[16];
+  char logLine[128];
+  int64 t, h , m , s, ms;
+  code = this.sig_ems_dtc;
+  write("-------------------------------------------%d",code);
+  snprintf(buf, elcount(buf), "P%06d", code); 
+  fd_init();
+  t = this.time_ns;
+  h = (t / 3600000) % 24;
+  m = (t / 60000) % 60;
+  s = (t / 1000) % 60;
+  ms = t % 1000;
+    
+  //write("check s");
+  snprintf(logLine, elcount(logLine),
+  "DTC: %s [%02I64d:%02I64d:%02I64d.%03I64d] \n",
+  buf, h, m, s, ms);
+  filePutString(logLine, 128, fd);
+  //write("check e");
+  FlushInit();  
+  requestDownload();
+  sendFileToVDC();
+  //write("check d");
+}
+
+
+/* data for TCU */
+on message msg_tcu_info
+{
+  tcuInfoLogs[tcuInfoLogsIndex].timestamp = this.time_ns;
+  tcuInfoLogs[tcuInfoLogsIndex].sig_speed = this.sig_speed;
+  tcuInfoLogs[tcuInfoLogsIndex].sig_gear_pos = this.sig_gear_pos;
+  tcuInfoLogs[tcuInfoLogsIndex].sig_gear_shift = this.sig_gear_shift;
+  tcuInfoLogs[tcuInfoLogsIndex].sig_output_torque = this.sig_output_torque;
+  tcuInfoLogsIndex++;
+  if (tcuInfoLogsIndex >= 100) tcuInfoLogsIndex = 0;
+}
+
+on message msg_tcu_pdc
+{
+  
+}

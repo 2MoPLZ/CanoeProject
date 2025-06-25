@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Panel" ControlName="Dyna4 Switch">
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xb11a82dee2acce491be8255e8c6488bc23ff" ControlName="Switch / Indicator 4">
+      <Property Name="Name">Xb11a82dee2acce491be8255e8c6488bc23ff</Property>
+      <Property Name="Size">23, 30</Property>
+      <Property Name="Location">22, 15</Property>
+      <Property Name="SymbolConfiguration">8;16;DYNA4::Parameters::DYNA4_Signal_Access::CTRL::LongitudinalControl::AccPedalPos;;;Enable;2;;;-1;;;Value;;;0</Property>
+      <Property Name="TabIndex">4</Property>
+      <Property Name="Activation">Left</Property>
+      <Property Name="Epsilon">0</Property>
+      <Property Name="Increment">1</Property>
+      <Property Name="StartValue">0</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+      <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="SwitchValuesRx">1;2;0;1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X74ad4cbbe8271e480ce962fe483331345c76" ControlName="Static Text 3">
+      <Property Name="Name">X74ad4cbbe8271e480ce962fe483331345c76</Property>
+      <Property Name="Size">37, 15</Property>
+      <Property Name="Location">61, 68</Property>
+      <Property Name="Text">Brake</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xbf82302ee2e70e40ade9f43eea7717ba68d4" ControlName="Static Text 2">
+      <Property Name="Name">Xbf82302ee2e70e40ade9f43eea7717ba68d4</Property>
+      <Property Name="Size">84, 15</Property>
+      <Property Name="Location">61, 108</Property>
+      <Property Name="Text">Steering Wheel</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xe3cef929e600ce4dddeb284e74e03420054a" ControlName="Static Text 1">
+      <Property Name="Name">Xe3cef929e600ce4dddeb284e74e03420054a</Property>
+      <Property Name="Size">35, 15</Property>
+      <Property Name="Location">61, 22</Property>
+      <Property Name="Text">Accel</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xdb430646ed9fae4dc8ea1f2e56442e759118" ControlName="Switch / Indicator 3">
+      <Property Name="Name">Xdb430646ed9fae4dc8ea1f2e56442e759118</Property>
+      <Property Name="Size">23, 30</Property>
+      <Property Name="Location">22, 60</Property>
+      <Property Name="SymbolConfiguration">8;16;DYNA4::Parameters::DYNA4_Signal_Access::CTRL::LongitudinalControl::BrakePedalPos;;;Enable;2;;;-1;;;Value;;;0</Property>
+      <Property Name="TabIndex">3</Property>
+      <Property Name="Activation">Left</Property>
+      <Property Name="Epsilon">0</Property>
+      <Property Name="Increment">1</Property>
+      <Property Name="StartValue">0</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+      <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="SwitchValuesRx">1;2;0;1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X8f46a966ec68ce44dee9736e6b3d54247d13" ControlName="Switch / Indicator 2">
+      <Property Name="Name">X8f46a966ec68ce44dee9736e6b3d54247d13</Property>
+      <Property Name="Size">23, 30</Property>
+      <Property Name="Location">22, 102</Property>
+      <Property Name="SymbolConfiguration">8;16;DYNA4::Parameters::DYNA4_Signal_Access::CTRL::LateralControl::SteeringWheelAng;;;Enable;2;;;-1;;;Value;;;0</Property>
+      <Property Name="TabIndex">2</Property>
+      <Property Name="Activation">Left</Property>
+      <Property Name="Epsilon">0</Property>
+      <Property Name="Increment">1</Property>
+      <Property Name="StartValue">0</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+      <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="SwitchValuesRx">1;2;0;1</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">168, 157</Property>
+    <Property Name="Location">0, 0</Property>
+    <Property Name="BackColor">255, 255, 255, 255</Property>
+  </Object>
+</Panel>

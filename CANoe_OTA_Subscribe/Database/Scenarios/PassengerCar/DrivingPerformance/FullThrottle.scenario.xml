@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="7.0.0">
+  <Trace>FullThrottle.m</Trace>
+  <StopTime>300.0</StopTime>
+  <TraceInterval>0.1</TraceInterval>
+  <DatabaseList>
+    <Database name="SimulationControl">
+      <AssemblyList>
+        <ReferenceList/>
+      </AssemblyList>
+      <Selection>Default</Selection>
+      <Occurence>SimulationControl</Occurence>
+    </Database>
+    <Database name="Traffic">
+      <AssemblyList>
+        <ReferenceList/>
+      </AssemblyList>
+      <Selection>Basics</Selection>
+      <Occurence>NoTraffic</Occurence>
+    </Database>
+    <Database name="Environment">
+      <AssemblyList>
+        <ConfigurationList>
+          <Configuration name="RoadType" comment="Road type">Proving ground</Configuration>
+        </ConfigurationList>
+        <ReferenceList>
+          <Reference xsi:type="DataReference" name="AmbientConditions">
+            <FilePath>cms:/$(database)/EnvironmentDatabase/Basics/EnvironmentModules/AmbientConditions/StandardConditions.m</FilePath>
+            <BlockPath>EnvironmentModules/AmbientConditions</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Road.ProvingGround">
+            <FilePath>cms:/$(database)/EnvironmentDatabase/Basics/RoadModules/3DRoad/ProvingGround/Flat.m</FilePath>
+            <BlockPath>RoadModules/3DRoad/ProvingGround</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="AnimationContent">
+            <FilePath>cms:/$(database)/EnvironmentDatabase/Basics/AnimationModules/AnimationContentEnvironment/Sunny_1.m</FilePath>
+            <BlockPath>AnimationModules/AnimationContentEnvironment</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Road.HorizontalLayout">
+            <BlockPath>RoadModules/3DRoad/HorizontalLayout</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Road.HeightProfile">
+            <BlockPath>RoadModules/3DRoad/HeightProfile</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Road.SurfaceProfile">
+            <BlockPath>RoadModules/3DRoad/SurfaceProfile</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Road.RoadSigns">
+            <BlockPath>RoadModules/3DRoad/RoadSigns</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Road.ReferencePath">
+            <BlockPath>RoadModules/3DRoad/ReferencePath</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Road.OpenDRIVE">
+            <BlockPath>RoadModules/3DRoad/OpenDRIVE</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Road.AnimationContentProvingGround">
+            <BlockPath>RoadModules/3DRoad/AnimationContentProvingGround</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Road.AnimationContent3DRoad">
+            <BlockPath>RoadModules/3DRoad/AnimationContent3DRoad</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Road.AnimationContentOpenDRIVE">
+            <BlockPath>RoadModules/3DRoad/AnimationContentOpenDRIVE</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Road.AnimationContentTerrain">
+            <BlockPath>RoadModules/3DRoad/AnimationContentTerrain</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="AdditionalRoadElevation">
+            <BlockPath>EnvironmentModules/AdditionalRoadElevation</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="RoadFrictionScaling">
+            <BlockPath>EnvironmentModules/RoadFrictionScaling</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="WindImpact">
+            <BlockPath>EnvironmentModules/WindImpact</BlockPath>
+          </Reference>
+        </ReferenceList>
+      </AssemblyList>
+      <Selection>Basics</Selection>
+      <Occurence></Occurence>
+    </Database>
+    <Database name="VehicleControl">
+      <AssemblyList>
+        <ReferenceList>
+          <Reference xsi:type="DataReference" name="LateralControl.Maneuver">
+            <FilePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/ManeuverControlModules/LateralManeuver/CourseDrive.m</FilePath>
+            <BlockPath>ManeuverControlModules/LateralManeuver</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="LateralControl.ControlSystems.PathControl">
+            <FilePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/LateralControllerModules/PathControl/Standard/SmoothDriverCurveCutting.m</FilePath>
+            <BlockPath>LateralControllerModules/PathControl</BlockPath>
+            <configDirectory>Standard</configDirectory>
+          </Reference>
+          <Reference xsi:type="DataReference" name="LongitudinalControl.Maneuver">
+            <FilePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/ManeuverControlModules/LongitudinalManeuver/FullThrottle.m</FilePath>
+            <BlockPath>ManeuverControlModules/LongitudinalManeuver</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="LongitudinalControl.ControlSystems.ShiftControl">
+            <FilePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/LongitudinalControllerModules/ShiftControl/FullThrottle.m</FilePath>
+            <BlockPath>LongitudinalControllerModules/ShiftControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Miscellaneous.TemperatureControl">
+            <FilePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/MiscellaneousControlModules/TemperatureControl/DefaultTemperatures.m</FilePath>
+            <BlockPath>MiscellaneousControlModules/TemperatureControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="InitialPosition">
+            <FilePath>cms:/$(database)/VehicleControlDatabase/Basics/InitialConditionsModules/InitialPosition/S0_Q0.m</FilePath>
+            <BlockPath>InitialConditionsModules/InitialPosition</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="LongitudinalControl.ControlSystems.SpeedControl">
+            <BlockPath>LongitudinalControllerModules/SpeedControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="LongitudinalControl.ControlSystems.AccelerationControl">
+            <BlockPath>LongitudinalControllerModules/AccelerationControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="LongitudinalControl.ControlSystems.UserDefinedControl">
+            <BlockPath>LongitudinalControllerModules/UserDefinedLongitudinalControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="LongitudinalControl.ReferenceSpeedComputation">
+            <BlockPath>LongitudinalControllerModules/ReferenceSpeedComputation</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Miscellaneous.BrakeHydraulicsControl">
+            <BlockPath>MiscellaneousControlModules/BrakeHydraulicsControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Miscellaneous.EngineControl">
+            <BlockPath>MiscellaneousControlModules/EngineControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Miscellaneous.SuspensionTestRigControl">
+            <BlockPath>MiscellaneousControlModules/SuspensionTestRigControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="Miscellaneous.UserDefinedControl">
+            <BlockPath>MiscellaneousControlModules/UserDefinedControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="LateralControl.ControlSystems.CurvatureControl">
+            <BlockPath>LateralControllerModules/CurvatureControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="LateralControl.ControlSystems.UserDefinedControl">
+            <BlockPath>LateralControllerModules/UserDefinedLateralControl</BlockPath>
+          </Reference>
+        </ReferenceList>
+      </AssemblyList>
+      <Selection>PassengerCar</Selection>
+      <Occurence></Occurence>
+    </Database>
+  </DatabaseList>
+</Scenario>

@@ -1,0 +1,11 @@
+# ignore generated files
+*.dll
+*.dll.gen
+*.cbf
+*.stcfg
+*.fbbin
+animation.mf4
+animation_parameters.dat
+
+# allow specific files with ignored extension
+!Vector.DYNA4.CANoeSimulationControl.dll

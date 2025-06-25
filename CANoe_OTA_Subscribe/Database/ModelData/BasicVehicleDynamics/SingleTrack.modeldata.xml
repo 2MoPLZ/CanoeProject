@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="7.0.0" description="M-Segment (EU) demo parameters for basic vehicle dynamics,&#xA;matching VW Golf Sportsvan 2015 geometry">
+  <DatabaseList>
+    <Database name="Vehicle">
+      <AssemblyList>
+        <ReferenceList>
+          <Reference xsi:type="AssemblyReference" name="Auxiliaries">
+            <BlockPath>Auxiliaries/RegularAuxiliaries</BlockPath>
+            <ReferenceList>
+              <Reference xsi:type="DataReference" name="Alternator">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/AuxiliariesModules/Alternator/Basic.m</FilePath>
+                <BlockPath>AuxiliariesModules/Alternator</BlockPath>
+              </Reference>
+              <Reference xsi:type="DataReference" name="PermanentMagnetDCMotor">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/AuxiliariesModules/PermanentMagnetDCMotor/Basic.m</FilePath>
+                <BlockPath>AuxiliariesModules/PermanentMagnetDCMotor</BlockPath>
+              </Reference>
+              <Reference xsi:type="DataReference" name="StarterControl">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/AuxiliariesModules/StarterControl/Basic.m</FilePath>
+                <BlockPath>AuxiliariesModules/StarterControl</BlockPath>
+              </Reference>
+              <Reference xsi:type="DataReference" name="VoltageRegulator">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/AuxiliariesModules/VoltageRegulator/Basic.m</FilePath>
+                <BlockPath>AuxiliariesModules/VoltageRegulator</BlockPath>
+              </Reference>
+              <Reference xsi:type="DataReference" name="GeneratorReferenceVoltage">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/LookupTableModules/ConstantVoltage/14V.m</FilePath>
+                <BlockPath>LookupTableModules/ConstantVoltage</BlockPath>
+              </Reference>
+            </ReferenceList>
+          </Reference>
+          <Reference xsi:type="AssemblyReference" name="Engine">
+            <BlockPath>Engine/IdealizedMapEngine_BasicControl</BlockPath>
+            <ReferenceList>
+              <Reference xsi:type="AssemblyReference" name="EngineControlUnit">
+                <BlockPath>EngineControlUnit/BasicControl</BlockPath>
+                <ReferenceList>
+                  <Reference xsi:type="DataReference" name="AcceleratorPedalCharacteristic">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/BasicEngineControlModules/AcceleratorPedalCharacteristic/Basic.m</FilePath>
+                    <BlockPath>BasicEngineControlModules/AcceleratorPedalCharacteristic</BlockPath>
+                  </Reference>
+                  <Reference xsi:type="DataReference" name="IdleSpeedController">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/BasicEngineControlModules/IdleSpeedController/IdleSpeed_680rpm.m</FilePath>
+                    <BlockPath>BasicEngineControlModules/IdleSpeedController</BlockPath>
+                  </Reference>
+                  <Reference xsi:type="DataReference" name="FuelCutoff">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/BasicEngineControlModules/FuelCutoff/MaxSpeed_6685rpm.m</FilePath>
+                    <BlockPath>BasicEngineControlModules/FuelCutoff</BlockPath>
+                  </Reference>
+                  <Reference xsi:type="DataReference" name="EngineLoadSignalCalculation">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/BasicEngineControlModules/EngineLoadSignalCalculation/Basic.m</FilePath>
+                    <BlockPath>BasicEngineControlModules/EngineLoadSignalCalculation</BlockPath>
+                  </Reference>
+                </ReferenceList>
+              </Reference>
+              <Reference xsi:type="AssemblyReference" name="EnginePhysics">
+                <BlockPath>EnginePhysics/IdealizedMapEnginePhysics</BlockPath>
+                <ReferenceList>
+                  <Reference xsi:type="DataReference" name="TabledEngineTorque">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/EngineLookupTableModules/TabledEngineTorque/SedanTabledEngineTorque_SI_TC_MPI_I4.m</FilePath>
+                    <BlockPath>EngineLookupTableModules/TabledEngineTorque</BlockPath>
+                  </Reference>
+                  <Reference xsi:type="DataReference" name="TabledFuelConsumption">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/EngineLookupTableModules/TabledFuelConsumption/SedanTabledFuelConsumption_SI_TC_MPI_I4.m</FilePath>
+                    <BlockPath>EngineLookupTableModules/TabledFuelConsumption</BlockPath>
+                  </Reference>
+                </ReferenceList>
+              </Reference>
+            </ReferenceList>
+          </Reference>
+          <Reference xsi:type="AssemblyReference" name="Drivetrain">
+            <BlockPath>Drivetrain/LossFreeFourWheelDrivetrain</BlockPath>
+            <ReferenceList>
+              <Reference xsi:type="AssemblyReference" name="DrivetrainControlUnit">
+                <BlockPath>DrivetrainControlUnit/BasicTransmissionControl</BlockPath>
+                <ReferenceList>
+                  <Reference xsi:type="DataReference" name="TransmissionControlUnit">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/TransmissionControlModules/TransmissionControlUnit/6Speed_SI.m</FilePath>
+                    <BlockPath>TransmissionControlModules/TransmissionControlUnit</BlockPath>
+                  </Reference>
+                </ReferenceList>
+              </Reference>
+              <Reference xsi:type="AssemblyReference" name="DrivetrainPhysics">
+                <BlockPath>DrivetrainPhysics/LossFreeFourWheelDrivetrainPhysics</BlockPath>
+                <ReferenceList>
+                  <Reference xsi:type="DataReference" name="LossFreeFourWheelDrivetrain">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/DrivetrainModules/LossFreeFourWheelDrivetrain/4WD_Manual_6Speed_RatioSpan6p3.m</FilePath>
+                    <BlockPath>DrivetrainModules/LossFreeFourWheelDrivetrain</BlockPath>
+                  </Reference>
+                </ReferenceList>
+              </Reference>
+            </ReferenceList>
+          </Reference>
+          <Reference xsi:type="DataReference" name="DriverInformationVehicle">
+            <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/DriverInformationModules/DriverInformationVehicle/Basic.m</FilePath>
+            <BlockPath>DriverInformationModules/DriverInformationVehicle</BlockPath>
+          </Reference>
+          <Reference xsi:type="AssemblyReference" name="ElectricalSystem">
+            <BlockPath>ElectricalSystem/ConstantVoltageElectricalSystem</BlockPath>
+            <ReferenceList>
+              <Reference xsi:type="DataReference" name="LowVoltageBatteryVoltage">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/LookupTableModules/ConstantVoltage/14V.m</FilePath>
+                <BlockPath>LookupTableModules/ConstantVoltage</BlockPath>
+              </Reference>
+              <Reference xsi:type="DataReference" name="LowVoltageBatteryInitialSOC">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/LookupTableModules/ConstantSOC/70percent.m</FilePath>
+                <BlockPath>LookupTableModules/ConstantSOC</BlockPath>
+              </Reference>
+            </ReferenceList>
+          </Reference>
+          <Reference xsi:type="AssemblyReference" name="Chassis">
+            <BlockPath>Chassis/SingleTrackChassis</BlockPath>
+            <ReferenceList>
+              <Reference xsi:type="DataReference" name="SingleTrack">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/ReducedChassisModules/SingleTrack/CompactVan.m</FilePath>
+                <BlockPath>ReducedChassisModules/SingleTrack</BlockPath>
+              </Reference>
+            </ReferenceList>
+          </Reference>
+          <Reference xsi:type="AssemblyReference" name="WheelSystem">
+            <BlockPath>WheelSystem/TabledTire_WheelSystem</BlockPath>
+            <ConfigurationList>
+              <Configuration name="ChassisType" comment="Chassis type">Vehicle</Configuration>
+              <Configuration name="NumberOfAxles" comment="Number of available axles">2</Configuration>
+            </ConfigurationList>
+            <ReferenceList>
+              <Reference xsi:type="DataReference" name="FrontLeft.Wheel">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/WheelSystemModules/Wheel/SedanWheel.m</FilePath>
+                <BlockPath>WheelSystemModules/Wheel</BlockPath>
+              </Reference>
+              <Reference xsi:type="DataReference" name="FrontRight.Wheel">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/WheelSystemModules/Wheel/SedanWheel.m</FilePath>
+                <BlockPath>WheelSystemModules/Wheel</BlockPath>
+              </Reference>
+              <Reference xsi:type="DataReference" name="RearLeft.Wheel">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/WheelSystemModules/Wheel/SedanWheel.m</FilePath>
+                <BlockPath>WheelSystemModules/Wheel</BlockPath>
+              </Reference>
+              <Reference xsi:type="DataReference" name="RearRight.Wheel">
+                <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/WheelSystemModules/Wheel/SedanWheel.m</FilePath>
+                <BlockPath>WheelSystemModules/Wheel</BlockPath>
+              </Reference>
+              <Reference xsi:type="AssemblyReference" name="FrontLeft.Tire">
+                <BlockPath>Tire/TabledTire</BlockPath>
+                <ReferenceList>
+                  <Reference xsi:type="DataReference" name="TabledTireForces">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/ReducedTireModules/TabledTireForces/225_60_R15.m</FilePath>
+                    <BlockPath>ReducedTireModules/TabledTireForces</BlockPath>
+                  </Reference>
+                </ReferenceList>
+              </Reference>
+              <Reference xsi:type="AssemblyReference" name="FrontRight.Tire">
+                <BlockPath>Tire/TabledTire</BlockPath>
+                <ReferenceList>
+                  <Reference xsi:type="DataReference" name="TabledTireForces">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/ReducedTireModules/TabledTireForces/225_60_R15.m</FilePath>
+                    <BlockPath>ReducedTireModules/TabledTireForces</BlockPath>
+                  </Reference>
+                </ReferenceList>
+              </Reference>
+              <Reference xsi:type="AssemblyReference" name="RearLeft.Tire">
+                <BlockPath>Tire/TabledTire</BlockPath>
+                <ReferenceList>
+                  <Reference xsi:type="DataReference" name="TabledTireForces">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/ReducedTireModules/TabledTireForces/225_60_R15.m</FilePath>
+                    <BlockPath>ReducedTireModules/TabledTireForces</BlockPath>
+                  </Reference>
+                </ReferenceList>
+              </Reference>
+              <Reference xsi:type="AssemblyReference" name="RearRight.Tire">
+                <BlockPath>Tire/TabledTire</BlockPath>
+                <ReferenceList>
+                  <Reference xsi:type="DataReference" name="TabledTireForces">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/ReducedTireModules/TabledTireForces/225_60_R15.m</FilePath>
+                    <BlockPath>ReducedTireModules/TabledTireForces</BlockPath>
+                  </Reference>
+                </ReferenceList>
+              </Reference>
+            </ReferenceList>
+          </Reference>
+          <Reference xsi:type="AssemblyReference" name="BrakeSystem">
+            <BlockPath>BrakeSystem/BrakeSystem_NoControl</BlockPath>
+            <ReferenceList>
+              <Reference xsi:type="AssemblyReference" name="BrakeSystemPhysics">
+                <BlockPath>BrakeSystemPhysics/BasicBrakeHydraulics</BlockPath>
+                <ReferenceList>
+                  <Reference xsi:type="DataReference" name="TabledBrakeHydraulics">
+                    <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/BrakeSystemModules/TabledBrakeHydraulics/MainBrakePressure_200bar.m</FilePath>
+                    <BlockPath>BrakeSystemModules/TabledBrakeHydraulics</BlockPath>
+                  </Reference>
+                </ReferenceList>
+              </Reference>
+              <Reference xsi:type="AssemblyReference" name="BrakeSystemControlUnit">
+                <BlockPath>BrakeSystemControlUnit/NoControl</BlockPath>
+              </Reference>
+            </ReferenceList>
+          </Reference>
+          <Reference xsi:type="DataReference" name="AnimationContentVehicle">
+            <FilePath>cms:/$(database)/VehicleDatabase/PassengerCar/AnimationModules/AnimationContentVehicle/VW_Golf_Sportsvan_2015_noForces.m</FilePath>
+            <BlockPath>AnimationModules/AnimationContentVehicle</BlockPath>
+          </Reference>
+          <Reference xsi:type="AssemblyReference" name="CoolingSystem">
+            <BlockPath>CoolingSystem/NoCoolingSystem</BlockPath>
+          </Reference>
+          <Reference xsi:type="AssemblyReference" name="VehicleRoadInfo">
+            <BlockPath>VehicleRoadInfo/VehicleRoadInfo</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="GeneralSettings">
+            <BlockPath>GeneralSettings</BlockPath>
+          </Reference>
+        </ReferenceList>
+      </AssemblyList>
+      <Selection>PassengerCar</Selection>
+      <Occurence></Occurence>
+    </Database>
+    <Database name="Animation">
+      <AssemblyList>
+        <ReferenceList>
+          <Reference xsi:type="DataReference" name="Animation3">
+            <FilePath>cms:/$(database)/AnimationDatabase/Default/AnimationModules/Animation3/Default.m</FilePath>
+            <BlockPath>AnimationModules/Animation3</BlockPath>
+          </Reference>
+          <Reference xsi:type="DataReference" name="AnimationContent">
+            <FilePath>cms:/$(database)/AnimationDatabase/Default/AnimationModules/AnimationContentGeneric/MultiGauge.m</FilePath>
+            <BlockPath>AnimationModules/AnimationContentGeneric</BlockPath>
+          </Reference>
+        </ReferenceList>
+      </AssemblyList>
+      <Selection>Default</Selection>
+      <Occurence>Animation3</Occurence>
+    </Database>
+    <Database name="ControlUnits">
+      <AssemblyList>
+        <ReferenceList>
+          <Reference xsi:type="AssemblyReference" name="StateSensors">
+            <BlockPath>StateSensors/InertialMeasurementUnit</BlockPath>
+            <ReferenceList>
+              <Reference xsi:type="DataReference" name="InertialMeasurementUnit">
+                <FilePath>cms:/$(database)/ControlUnitsDatabase/PassengerCar/StateSensorModules/InertialMeasurementUnit/VehicleReferencePoint.m</FilePath>
+                <BlockPath>StateSensorModules/InertialMeasurementUnit</BlockPath>
+              </Reference>
+            </ReferenceList>
+          </Reference>
+          <Reference xsi:type="AssemblyReference" name="ADAS">
+            <BlockPath>ADAS/NoADASControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="AssemblyReference" name="LCU">
+            <BlockPath>LCU/BasicLightControl</BlockPath>
+          </Reference>
+          <Reference xsi:type="AssemblyReference" name="VCU">
+            <BlockPath>VCU/ConventionalVehicleControl</BlockPath>
+          </Reference>
+        </ReferenceList>
+      </AssemblyList>
+      <Selection>PassengerCar</Selection>
+      <Occurence>BasicControlUnit</Occurence>
+    </Database>
+    <Database name="Trailer">
+      <AssemblyList>
+        <ReferenceList/>
+      </AssemblyList>
+      <Selection>Caravan</Selection>
+      <Occurence></Occurence>
+    </Database>
+  </DatabaseList>
+</ModelData>

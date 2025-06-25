@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>스토어</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .cart {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 600px;
+        }
+
+        .cart h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .item img {
+            width: 120px;
+            height: 120px;
+            margin-right: 20px;
+        }
+
+        .desc {
+            flex: 1;
+            font-size: 18px;
+        }
+
+        .checkbox {
+            transform: scale(1.5); /* 체크박스도 키우기 */
+            margin-left: 15px;
+        }
+
+        #update {
+            display: block;
+            margin: 30px auto 0 auto;
+            padding: 16px 32px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .home-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #333;
+            background: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background 0.2s;
+        }
+        .home-link:hover {
+            background: #eaeaea;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-link">🏠 홈으로</a>
+    <form method="POST" action="/update">
+    <div class="cart">
+        <h2>STORE</h2>
+        <div class="item">
+            <img src="{{ url_for('static', filename='figure/ambient.webp') }}" alt="item1">
+            <div class="desc">
+                <strong>Ambient Light</strong><br>
+                <span>
+                    차량 실내 분위기를 개선하는 새로운 앰비언트 라이트 테마가 추가되었습니다. 
+                </br>조명 색상 및 연출이 더 부드럽고 고급스럽게 변경됩니다.
+                </span>
+            </div>
+            <input type="checkbox" name="features" value="ambient" class="checkbox">
+        </div>
+        <div class="item">
+            <img src="{{ url_for('static', filename='figure/aeb.jpg') }}" alt="item2">
+            <div class="desc">
+                <strong>AEB</strong><br>
+                <span>
+                    급박한 상황에서 더욱 빠르고 정밀하게 작동하는 AEB 알고리즘이 적용되었습니다. 
+                </br>긴급 상황에서의 제동 반응성이 향상됩니다.
+                </span>
+            </div>
+            <input type="checkbox" name="features" value="aeb" class="checkbox">
+        </div>
+        <div class="item">
+            <img src="{{ url_for('static', filename='figure/cluster.jpg') }}" alt="item3">
+            <div class="desc">
+                <strong>Cluster</strong><br>
+                <span>
+                    계기판 클러스터 UI 디자인이 업데이트되어 시인성이 향상되고, 새로운 테마 조명으로 주행 감성이 개선됩니다.
+                </span>
+            </div>
+            <input type="checkbox" name="features" value="cluster" class="checkbox">
+        </div>
+        <button id="update" type="submit">업데이트하기</button>
+    </div>
+</form>
+
+</body>
+</html>

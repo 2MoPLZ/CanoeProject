@@ -1,0 +1,32 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  message B_CAN::msg_engine_data msg;
+  message B_CAN::msg_adas_ieb ADAS_BCAN;
+}
+
+on start
+{
+  @Cluster::Cruise = 0;
+}
+
+on message B_CAN::msg_engine_data {
+  
+}
+
+
+on message B_CAN::msg_adas_ieb {
+  @Cluster::AEB = this.sig_adas_ieb_cmd;
+}
+
+on message B_CAN::msg_fconsole_cruise {
+  @Cluster::Cruise = this.sig_cruise_state;
+}
+
+
+

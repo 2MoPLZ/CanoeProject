@@ -1,0 +1,311 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  // dynamic system model
+  const int kDeltaT         = 10;           // sampling rate of engine
+  const double kDeltaTInSec = kDeltaT / 1000.0;
+  int gPedal = 0;          // 페달 상태 (0: 미밟음, 1: 밟음)
+  double gRPM;             // 입력된 RPM 값
+  int gGear;               // 현재 기어 (1~5)
+  int tempGear;
+  double gSpeed;           // 차량 속도 (m/s)
+  double gEngSpeed;        // 엔진 회전수 (rev/sec)
+  double gForce;           // 추진력
+  double kMass = 800.0;    // 차량 질량 (kg)
+
+  // engine image 
+  double gWheelSpinTimerInterval = 186;
+  int gWheelSpin = 0;
+  
+  int IgnitionState = 0;       // 시동 상태 (0: 꺼짐, 1: 켜짐)
+  
+  // engine temperature
+  const int kEngTempInc            = 3;
+  const int kEngTempUpdateInterval = 3000;
+  const int kEngTempMax            = 85;
+  int gEngTemp = 20;
+  msTimer tEngTempTimer;  
+  
+  msTimer tSystemClockTimer;
+  msTimer tWheelSpin; 
+  word timerCountBatteryCheck = 0;
+  byte batteryHighCheckCount = 0;
+  byte batteryLowCheckCount = 0;
+  byte batteryFaultFlag = 0;
+  
+  message P_CAN::msg_engine_data engineMsg;
+  message P_CAN::msg_ems_pdc pdcMsg;
+  message P_CAN::msg_engine_status engineStatusMsg;
+  
+}
+
+on timer tEngTempTimer
+{
+  if (IgnitionState) 
+  {
+    // engine is heating up
+    gEngTemp += kEngTempInc;
+    if (gEngTemp > kEngTempMax) 
+    {
+      gEngTemp = kEngTempMax;
+    }
+    //$EngineData::EngTemp = gEngTemp;
+  } else 
+  {
+    // engine is cooling down
+    gEngTemp -= kEngTempInc;
+    if (gEngTemp < 20) 
+    {
+      gEngTemp = 20;
+    }
+  }
+  //write("engine %d",gEngTemp);
+  engineStatusMsg.sig_engine_temp = gEngTemp;
+  output(engineStatusMsg);
+  setTimer(this, kEngTempUpdateInterval);
+}
+
+on timer tWheelSpin
+{
+  if(gWheelSpin < 16) 
+  {
+    @sysvar::EMS::EngineRunningWheel = gWheelSpin;
+    gWheelSpin ++;   
+  }
+  else
+  {
+    gWheelSpin = 0; 
+    @sysvar::EMS::EngineRunningWheel = gWheelSpin;
+    gWheelSpin ++;
+  }
+  cancelTimer(this);
+  setTimer(this,gWheelSpinTimerInterval);
+}
+
+
+// 시스템 주기 타이머
+on timer tSystemClockTimer
+{
+  double pedal, power, acceleration,accelerationForce, frictionForce, brakeForce;
+
+  setTimer(this, 10);  // 10ms
+  
+  if(timerCountBatteryCheck == 0xffff)
+  {
+    timerCountBatteryCheck = 0;
+  }
+  else 
+  {
+    timerCountBatteryCheck++;
+  }
+  
+  if(batteryFaultFlag == 0 && timerCountBatteryCheck % 50 == 0)
+  {
+    int64  code;
+
+    if(@EMS::EMS_Battery_voltage >= 80){
+      batteryHighCheckCount++;
+    }
+    else if(@EMS::EMS_Battery_voltage <= 20){
+      batteryLowCheckCount++;
+    }
+    
+    if(batteryLowCheckCount >= 3)
+    {
+      batteryFaultFlag = 1;
+      batteryLowCheckCount = 0;
+      code= 173700;
+      pdcMsg.sig_ems_dtc = code; 
+      output(pdcMsg);
+    }
+    if(batteryHighCheckCount >= 3)
+    {
+      batteryFaultFlag = 1;
+      batteryHighCheckCount = 0;
+      code= 173600;
+      pdcMsg.sig_ems_dtc = code; 
+      output(pdcMsg);
+    }
+    
+  }
+  
+  pedal = @sysvar::EMS::PedalPosition;
+
+  if (pedal == 1) 
+  {
+    power += 0.1;
+  }
+  else 
+  {
+
+    power -= 0.05;
+  }
+  
+  if(gSpeed == 0 && $P_CAN::msg_ieb_brake::sig_ieb_brake == 1){
+    accelerationForce = power =5 * 1.5;
+  }
+  
+  // idle running
+  if(power <= 7.5) power = 5 * 1.5; 
+  else if(power >= 750.0) power = 750 ;
+  //write("power %f", power);
+  //write("power %f", power);
+  
+  gEngSpeed = CalcEngSpeed(gSpeed, gGear, power/(1.5), IgnitionState); 
+  
+  //write("gEngSpeed %f", gEngSpeed);
+  gForce = Force(power, gGear, IgnitionState);
+  gWheelSpinTimerInterval = 186*75/gEngSpeed;
+  
+  if (!IgnitionState || @EMS::GearState == P ) {
+    // 시동 꺼진 상태: 엔진/속도 모두 정지
+    gRPM = 0;
+    gSpeed = 0;
+    gEngSpeed = 0;
+    gForce = 0;
+  }
+  
+  engineMsg.sig_rpm = gEngSpeed* 25 ; 
+  engineMsg.sig_drive_mode = 0;
+  engineMsg.sig_throttle_pos = pedal; 
+  engineMsg.sig_engine_torque = gForce;
+  output(engineMsg);
+}
+
+on sysvar EMS::PedalPosition {
+  if(IgnitionState ==1&&@EMS::GearState == D){
+    if(@this==1){
+      @DYNA4::Parameters::DYNA4_Signal_Access::CTRL::LongitudinalControl::AccPedalPos::Value = 0.5;
+    }
+    else {
+      @DYNA4::Parameters::DYNA4_Signal_Access::CTRL::LongitudinalControl::AccPedalPos::Value = 0;
+    }
+  }
+}
+
+double CalcEngSpeed(double speed, int gGear, double pedal, int engineIsRunning)
+{
+  // in Newton
+  double engSpeed, ratio;
+
+  if (engineIsRunning) 
+  {
+    if (gGear==1) //기어가 0 일시
+    {
+      if (pedal<6) 
+      {
+        engSpeed = 10;
+      }
+      else 
+      {
+        engSpeed = 100;
+      }
+    } 
+    else //주행중 상태
+    { 
+      //write("speed %f", speed);
+      // stationary condition
+      ratio = EngSpeedToSpeedRatio(gGear);
+      engSpeed = speed * ratio;
+      if (engSpeed > 2000) engSpeed = 2000;
+    }
+  } 
+  else 
+  {
+    engSpeed = 0;
+  }
+  
+  return engSpeed;
+}
+
+double EngSpeedToSpeedRatio(int gear) 
+{
+  if (gear==0) return 10000000.0;
+  return (6-gear)*1.2;
+}
+
+double Force(double power, int gear, int isEngineRunning)
+{
+  // gear==0: idle gear 
+  // force in Newton
+  // power in kW
+  double force;
+
+  double kGearForceFactor[6] =    { 0.0, 
+                                    50,  // max at 150 kW  
+                                    36.0,  // max at 100 kW
+                                    20.0,  // max at 120 kW
+                                    18.0,  // max at 100 kW   
+                                    30.0   // max at 100 kW 
+                                    };
+  double kMaxGearForce[6] = { 0.0, 5500, 4600, 4200, 3500, 3000 };
+
+  if (isEngineRunning)  
+  {
+    force = power *( kGearForceFactor[gear] );
+ 
+    // limit force   
+    if( force > kMaxGearForce[gear]) 
+    {
+      force = kMaxGearForce[gear];
+    }
+  }
+  else
+  {
+    force = 0;
+  }
+
+  return force;
+}
+
+on message P_CAN::msg_tcu_info
+{
+  gSpeed = this.sig_speed;
+}
+
+
+on sysvar_update sysvar::EMS::PedalPosition{
+  gPedal = @this;
+}
+
+/*시동상태 업데이트*/
+on sysvar_update sysvar::SCU::IgnitionState
+{
+  IgnitionState = @this;
+  if (IgnitionState) {
+    SetTimer(tWheelSpin,gWheelSpinTimerInterval);
+    setTimer(tSystemClockTimer, 10);
+  } else {
+    cancelTimer(tSystemClockTimer);
+    cancelTimer(tWheelSpin);
+  }
+}
+
+/* 기어 상태 업데이트 */
+on sysvar_update sysvar::TCU::GearState
+{
+  gGear = @this;   
+}
+
+/*EMS 전류 관련 에러 발생*/
+on sysvar EMS::EMS_Battery_voltage
+{
+  
+
+}
+
+
+on start
+{
+  IgnitionState = 0;
+  gRPM = 0;
+  gSpeed = 0;
+  gGear = 0;
+  setTimer(tEngTempTimer,kEngTempUpdateInterval);
+}
+

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Panel" ControlName="RMDPS">
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X3f00c984ea967e4d6be84a1e5365cc69801a" ControlName="Button 1">
+      <Property Name="Name">X3f00c984ea967e4d6be84a1e5365cc69801a</Property>
+      <Property Name="Size">75, 23</Property>
+      <Property Name="Location">64, 162</Property>
+      <Property Name="TabIndex">2</Property>
+      <Property Name="Text">Reset</Property>
+      <Property Name="SymbolConfiguration">8;16;RMDPS;;;RMDPS_RESET;1;;;-1;;;Value;;;0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ProgressBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xb66afface3717e41a8eacafe8261e155b917" ControlName="Progress Bar 1">
+      <Property Name="Name">Xb66afface3717e41a8eacafe8261e155b917</Property>
+      <Property Name="Size">192, 29</Property>
+      <Property Name="Location">5, 88</Property>
+      <Property Name="Minimum">-540</Property>
+      <Property Name="Maximum">540</Property>
+      <Property Name="ValueSize">43, 12</Property>
+      <Property Name="OriginValue">0</Property>
+      <Property Name="SymbolConfiguration">8;16;RMDPS;;;SteerAngle;1;;;-1;;;Value;;;0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.LCDControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X6b974b2fe8125e4854eac12edb483006c31b" ControlName="LCD Control 1">
+      <Property Name="Name">X6b974b2fe8125e4854eac12edb483006c31b</Property>
+      <Property Name="Size">164, 50</Property>
+      <Property Name="Location">14, 32</Property>
+      <Property Name="SymbolConfiguration">8;16;RMDPS;;;SteerAngle;1;;;-1;;;Value;;;0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X2a8944e6ec365e4bc6e8abaed3c3cd06013a" ControlName="Static Text 1">
+      <Property Name="Name">X2a8944e6ec365e4bc6e8abaed3c3cd06013a</Property>
+      <Property Name="Size">84, 15</Property>
+      <Property Name="Location">42, 11</Property>
+      <Property Name="Text">Steering Wheel</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X9fe2e7cde2bf8e4c49e8774e73ab912e76f5" ControlName="Track Bar 1">
+      <Property Name="Name">X9fe2e7cde2bf8e4c49e8774e73ab912e76f5</Property>
+      <Property Name="Size">192, 24</Property>
+      <Property Name="Location">5, 123</Property>
+      <Property Name="TickStyle">None</Property>
+      <Property Name="TabIndex">1</Property>
+      <Property Name="MaximumDouble">540</Property>
+      <Property Name="MinimumDouble">-540</Property>
+      <Property Name="LargeChangeDouble">1</Property>
+      <Property Name="MaximumSize">100000, 24</Property>
+      <Property Name="Minimum">-540</Property>
+      <Property Name="Maximum">540</Property>
+      <Property Name="LargeChange">1</Property>
+      <Property Name="SymbolConfiguration">8;16;RMDPS;;;SteerAngle;1;;;-1;;;Value;;;0</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">213, 190</Property>
+    <Property Name="Location">0, 0</Property>
+    <Property Name="BackColor">255, 255, 255, 255</Property>
+  </Object>
+</Panel>

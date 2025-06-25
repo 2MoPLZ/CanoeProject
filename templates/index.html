@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>메인 페이지</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .main-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 600px;
+            text-align: center;
+        }
+
+        .main-box h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .main-box button {
+            width: 80%;
+            height: 80px;
+            font-size: 22px;
+            margin: 20px auto;
+            display: block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-box">
+        <h2>메인 메뉴</h2>
+        <button onclick="location.href='/store'">스토어</button>
+        <button onclick="location.href='/diagnosis'">진단하기</button>
+    </div>
+</body>
+</html>

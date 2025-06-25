@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Panel" ControlName="Console">
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="GroupBoxControl1" ControlName="Group Box">
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xa6b9de4fe9341e4628e97b7edb51598e1eb1" ControlName="Switch / Indicator 1">
+        <Property Name="Name">Xa6b9de4fe9341e4628e97b7edb51598e1eb1</Property>
+        <Property Name="Size">85, 26</Property>
+        <Property Name="Location">71, 183</Property>
+        <Property Name="SymbolConfiguration">8;16;ComfortBus;;;SetRadioChannel_4;1;;;-1;;;Value;;;0</Property>
+        <Property Name="ImageFile">bitmap\SWR4.png</Property>
+        <Property Name="IsProportional">False</Property>
+        <Property Name="TabIndex">67</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="Epsilon">0</Property>
+        <Property Name="Increment">1</Property>
+        <Property Name="StartValue">0</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;3&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;RxValue&gt;2&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;2&lt;/TxValue&gt;</Property>
+        <Property Name="SwitchValuesVT">1;3;0/Lower/0;1/Lower/1;2/Lower/2</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="SwitchValuesRx">1;3;0;1;2</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl2" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl2</Property>
+        <Property Name="Size">261, 17</Property>
+        <Property Name="Location">72, 125</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="BoxBorderStyle">None</Property>
+        <Property Name="DisplayLabel">Hide</Property>
+        <Property Name="BoxBackColor">Black</Property>
+        <Property Name="BoxTextAlign">Center</Property>
+        <Property Name="BoxForeColor">White</Property>
+        <Property Name="TextForeColor">HighlightText</Property>
+        <Property Name="TabIndex">66</Property>
+        <Property Name="DescriptionText">SetRadioChannelDisplay:</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="ValueDisplay">Text</Property>
+        <Property Name="UsedValueTable">PhysicalValue</Property>
+        <Property Name="DescriptionSize">0, 0</Property>
+        <Property Name="SymbolConfiguration">8;16;ComfortBus;;;SetRadioChannelDisplay;4;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.ClockControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="ClockControl1" ControlName="Clock Control">
+        <Property Name="Name">ClockControl1</Property>
+        <Property Name="Size">67, 21</Property>
+        <Property Name="Location">74, 58</Property>
+        <Property Name="BackColor">255, 255, 121, 75</Property>
+        <Property Name="ColorOn">White</Property>
+        <Property Name="ColorOff">255, 255, 121, 75</Property>
+        <Property Name="DisplaySeconds">False</Property>
+        <Property Name="SegmentStrength">1</Property>
+        <Property Name="SymbolConfiguration"></Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" ControlName="Input/Output Box">
+        <Property Name="Name">TextBoxControl1</Property>
+        <Property Name="Size">261, 32</Property>
+        <Property Name="Location">71, 94</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="AlarmLowerTextColor">WindowText</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmUpperTextColor">WindowText</Property>
+        <Property Name="BoxBorderStyle">None</Property>
+        <Property Name="DisplayLabel">Hide</Property>
+        <Property Name="BoxBackColor">Black</Property>
+        <Property Name="BoxFont">Microsoft Sans Serif, 18pt, style=Bold</Property>
+        <Property Name="AlarmLowerFont">Microsoft Sans Serif, 18pt, style=Bold</Property>
+        <Property Name="AlarmUpperFont">Microsoft Sans Serif, 18pt, style=Bold</Property>
+        <Property Name="BoxTextAlign">Center</Property>
+        <Property Name="BoxForeColor">White</Property>
+        <Property Name="TextForeColor">HighlightText</Property>
+        <Property Name="TabIndex">64</Property>
+        <Property Name="DescriptionText">RadioInfoDisplay:</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="ValueDisplay">Text</Property>
+        <Property Name="UsedValueTable">PhysicalValue</Property>
+        <Property Name="DescriptionSize">0, 0</Property>
+        <Property Name="SymbolConfiguration">8;16;ComfortBus;;;RadioInfoDisplay;4;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl19" ControlName="Switch/Indicator 3">
+        <Property Name="Name">SwitchControl19</Property>
+        <Property Name="Size">47, 47</Property>
+        <Property Name="Location">11, 204</Property>
+        <Property Name="SymbolConfiguration">8;16;ComfortBus;;;RadioOnOff;1;;;-1;;;Value;;;0</Property>
+        <Property Name="ImageFile">bitmap\Radio_OnOff.png</Property>
+        <Property Name="IsProportional">False</Property>
+        <Property Name="TabIndex">7</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="Epsilon">0</Property>
+        <Property Name="Increment">1</Property>
+        <Property Name="StartValue">0</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+        <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="SwitchValuesRx">1;2;0;1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl15" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl15</Property>
+        <Property Name="Size">85, 26</Property>
+        <Property Name="Location">159, 153</Property>
+        <Property Name="SymbolConfiguration">8;16;ComfortBus;;;SetRadioChannel_2;1;;;-1;;;Value;;;0</Property>
+        <Property Name="ImageFile">bitmap\SWR2.png</Property>
+        <Property Name="IsProportional">False</Property>
+        <Property Name="TabIndex">3</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="Epsilon">0</Property>
+        <Property Name="Increment">1</Property>
+        <Property Name="StartValue">0</Property>
+        <Property Name="StateCnt">4</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;4&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;RxValue&gt;2&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;2&lt;/TxValue&gt;&lt;RxValue&gt;3&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;3&lt;/TxValue&gt;</Property>
+        <Property Name="SwitchValuesVT">1;4;0/Lower/0;1/Lower/1;2/Lower/2;3/Lower/3</Property>
+        <Property Name="SwitchValues">1;4;0;1;2;3</Property>
+        <Property Name="SwitchValuesRx">1;4;0;1;2;3</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl14" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl14</Property>
+        <Property Name="Size">85, 26</Property>
+        <Property Name="Location">248, 153</Property>
+        <Property Name="SymbolConfiguration">8;16;ComfortBus;;;SetRadioChannel_3;1;;;-1;;;Value;;;0</Property>
+        <Property Name="ImageFile">bitmap\SWR3.png</Property>
+        <Property Name="IsProportional">False</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="Epsilon">0</Property>
+        <Property Name="Increment">1</Property>
+        <Property Name="StartValue">0</Property>
+        <Property Name="StateCnt">3</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;3&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;RxValue&gt;2&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;2&lt;/TxValue&gt;</Property>
+        <Property Name="SwitchValuesVT">1;3;0/Lower/0;1/Lower/1;2/Lower/2</Property>
+        <Property Name="SwitchValues">1;3;0;1;2</Property>
+        <Property Name="SwitchValuesRx">1;3;0;1;2</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="SwitchControl13" ControlName="Switch/Indicator 2">
+        <Property Name="Name">SwitchControl13</Property>
+        <Property Name="Size">85, 26</Property>
+        <Property Name="Location">71, 153</Property>
+        <Property Name="SymbolConfiguration">8;16;ComfortBus;;;SetRadioChannel_1;1;;;-1;;;Value;;;0</Property>
+        <Property Name="ImageFile">bitmap\SWR1.png</Property>
+        <Property Name="IsProportional">False</Property>
+        <Property Name="TabIndex">1</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="Epsilon">0</Property>
+        <Property Name="Increment">1</Property>
+        <Property Name="StartValue">0</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+        <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="SwitchValuesRx">1;2;0;1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.PictureBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="PictureBoxControl1" ControlName="Picture Box">
+        <Property Name="Name">PictureBoxControl1</Property>
+        <Property Name="Size">391, 237</Property>
+        <Property Name="Location">6, 19</Property>
+        <Property Name="ImageFile">bitmap\ConsoleRadio.png</Property>
+      </Object>
+      <Property Name="Name">GroupBoxControl1</Property>
+      <Property Name="Size">404, 262</Property>
+      <Property Name="Location">5, 3</Property>
+      <Property Name="BackColor">Black</Property>
+      <Property Name="ForeColor">White</Property>
+      <Property Name="Text">Stations transmission via TP</Property>
+      <Property Name="TabIndex">18</Property>
+      <Property Name="UseWindowsStyle">False</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">415, 270</Property>
+    <Property Name="Location">0, 0</Property>
+    <Property Name="BackColor">Black</Property>
+    <Property Name="Panel">Panel</Property>
+  </Object>
+</Panel>

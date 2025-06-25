@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<systemvariables version="4">
+  <namespace name="" comment="" interface="">
+    <namespace name="SCU" comment="" interface="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="SwitchIgnition" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" minValue="0" minValuePhys="0" maxValue="2" maxValuePhys="2">
+        <valuetable name="eState" definesMinMax="false">
+          <valuetableentry value="0" lowerBound="0" upperBound="0" description="OFF" displayString="OFF" />
+          <valuetableentry value="1" lowerBound="1" upperBound="1" description="ON" displayString="ON" />
+        </valuetable>
+      </variable>
+    </namespace>
+  </namespace>
+</systemvariables>

@@ -1,0 +1,18 @@
+/*@!Encoding:1252*/
+/*
+ * DYNA4_Constants.cin
+ *
+ * This include provides variables, that can be used in multiple CAPL files.
+ *
+ * This file has been prepared for DYNA4 R9 SP1. Don't use with different versions!
+ *
+ * Copyright 2020-2024, Vector Informatik GmbH - All right reserved
+ *
+ */
+variables
+{
+  char globalDyna4RootNodeName[130] = "DYNA4"; // Root namespace for model parameters in CANoe. The default is `DYNA4`. Change this if you changed the `GlobalDyna4RootNodeName` parameter on the Simulink model.
+  char enabledSubsystemName[130] = "SimulationModel";   // adapt the name of your enabled subsystem in the model here
+  char animationSubsystemName[130] = "/Animation/Animation3/Send To DYNAanimation"; // adapt the path to animation block in the model here
+  char animationDataFileName[64] = "animation_parameters.dat";
+}

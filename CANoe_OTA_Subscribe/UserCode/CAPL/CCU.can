@@ -1,0 +1,167 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  #include "ota.can"
+}
+
+variables {
+  //수신
+  message C_CAN::msg_ieb_brake Brake_Status;     // C-CAN 수신 메시지
+  message B_CAN::msg_ieb_brake Brake_Status_BCAN;     // B-CAN 전송 메시지
+  message P_CAN::msg_ieb_brake Brake_Status_PCAN;     // B-CAN 전송 메시지
+  message B_CAN::msg_tcu_info Cluster_Speed_BCAN;
+  
+  //송신
+  message E_CAN::msg_adas_ieb Adas_Ieb;
+  message B_CAN::msg_adas_ieb Adas_Ieb_BCAN;
+  message C_CAN::msg_adas_ieb Adas_Ieb_CCAN;
+  message E_CAN::msg_fconsole_cruise Cruise_ECAN;
+  message P_CAN::msg_fconsole_cruise Cruise_PCAN;
+  message P_CAN::msg_fconsole_drive Drive_PCAN;
+  message B_CAN::msg_engine_data Engine_BCAN;
+  message B_CAN::msg_engine_status Engine_status_BCAN;
+  message D_CAN::msg_conn_vdc Conn_DCAN;
+  
+  message D_CAN.* DCAN_msg;
+  
+  message 0x000 serviceRequsetMsg;
+  message 0x763 sendMsg;
+}
+
+
+
+on message C_CAN::msg_ieb_brake {
+  // C-CAN에서 수신 시 B-CAN으로 복사해서 중계
+  Brake_Status_BCAN.sig_ieb_brake = this.sig_ieb_brake;
+  Brake_Status_PCAN.sig_ieb_brake = this.sig_ieb_brake;
+  output(Brake_Status_BCAN);
+  output(Brake_Status_PCAN);
+  //write("CCU: C-CAN → B-CAN 제동 신호 중계됨 (%d)", this.sig_ieb_brake);
+}
+
+on message P_CAN::msg_tcu_info {
+  Cluster_Speed_BCAN = this;
+  output(Cluster_Speed_BCAN);
+  
+  DCAN_msg = this;
+  output(DCAN_msg);
+}
+
+on message P_CAN::msg_engine_data {
+  Engine_BCAN.sig_rpm = this.sig_rpm;
+  output(Engine_BCAN);
+}
+
+on message P_CAN::msg_engine_status {
+  Engine_status_BCAN = this;
+  output(Engine_status_BCAN);
+}
+
+on message E_CAN::msg_adas_ieb {
+  Adas_Ieb_BCAN = this;
+  Adas_Ieb_CCAN = this;
+  output(Adas_Ieb_BCAN);
+  output(Adas_Ieb_CCAN);
+}
+
+on message B_CAN::msg_fconsole_drive {
+  Drive_PCAN = this;
+  output(Drive_PCAN);
+}
+
+on message B_CAN::msg_fconsole_cruise {
+  Cruise_ECAN = this;
+  Cruise_PCAN = this;
+  output(Cruise_ECAN);
+  output(Cruise_PCAN);
+}
+
+on message Connectivity::msg_conn_vdc{
+  Conn_DCAN=this;
+  output(Conn_DCAN);
+}
+
+on message 0x763{
+  if(this.dir != rx)
+  {
+    return;
+  }
+  sendMsg = this;
+  sendMsg.can = 7;
+  output(sendMsg);
+}
+
+//커넥티비티 모듈로부터 받은 진단 메시지 포워딩
+on message * //이벤트 핸들러를 정의하지 않은 모든 can 메시지 수신 시 호출
+{
+  dword addr;
+  
+  if(this.dir != rx)
+  {
+    return;
+  }
+  
+  addr = this.id; //진단 서비스 사용 시 msg_id == ecu physical address
+  
+  //0x740~743 : p-can
+  //0x744~0x746 : c-can
+  //0x747, 0x750~0x756 : b-can
+  //0x757, 0x760 : d-can
+  //0x761~0x762 : e-can
+  
+  if(addr >= 0x740 && addr <= 0x743) //p-can
+  {
+    message P_CAN.* msg;
+    msg = this;
+    output(msg);
+  }
+  else if(addr >= 0x744 && addr <= 0x746) //c-can
+  {
+    message C_CAN.* msg;
+    msg = this;
+    output(msg);
+  }
+  else if(addr == 0x747 || (addr >= 0x750 && addr <= 0x756)) //b-can
+  {
+    message B_CAN.* msg;
+    msg = this;
+    output(msg);
+  }
+  else if(addr == 0x757 || addr == 0x760) //d-can
+  {
+    message D_CAN.* msg;
+    msg = this;
+    output(msg);
+  }
+  else if(addr >= 0x761 && addr <= 0x762) //e-can
+  {
+    message E_CAN.* msg;
+    msg = this;
+    output(msg);
+  }
+  
+}
+
+on message 0x316 {
+  if(this.can == 7){
+  message 0x316 Check_msg;
+  Check_msg.can = 4;
+  output(Check_msg);
+  }
+}
+
+on message 0x432 {
+  if(this.can == 4){
+    message 0x432 Check_Ok_msg;
+    Check_Ok_msg.dlc = 1;
+    Check_Ok_msg.byte(0) = this.byte(0);
+    Check_Ok_msg.can = 7;
+    output(Check_Ok_msg);
+  }
+}
+
+on message Connectivity::msg_file_update{
+  message D_CAN::msg_file_update msg;
+  msg = this;
+  output(msg);
+}

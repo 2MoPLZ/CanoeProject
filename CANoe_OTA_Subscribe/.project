@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><projectDescription>
+	<name>My_Demo_Basic</name>
+	<comment/>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.vector.d4.simulationproject</name>
+			<arguments>
+				<dictionary>
+					<key>Version</key>
+					<value>9.1.1</value>
+				</dictionary>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>de.tesis.dynaware.simulationproject</nature>
+	</natures>
+</projectDescription>

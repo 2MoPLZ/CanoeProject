@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Panel" ControlName="Battery">
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X7312843deaaaae40e2e8b1feb286a3a3ea9a" ControlName="Static Text 3">
+      <Property Name="Name">X7312843deaaaae40e2e8b1feb286a3a3ea9a</Property>
+      <Property Name="Size">82, 15</Property>
+      <Property Name="Location">15, 65</Property>
+      <Property Name="Text">Battery voltage</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xb794eb17e5db1e44e0eb0e7e8708b29fbeb4" ControlName="Static Text 2">
+      <Property Name="Name">Xb794eb17e5db1e44e0eb0e7e8708b29fbeb4</Property>
+      <Property Name="Size">43, 15</Property>
+      <Property Name="Location">15, 116</Property>
+      <Property Name="Text">Battery</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X6a85b470e5d26e4e2fea47be051b7a65e9c1" ControlName="Static Text 1">
+      <Property Name="Name">X6a85b470e5d26e4e2fea47be051b7a65e9c1</Property>
+      <Property Name="Size">30, 15</Property>
+      <Property Name="Location">15, 18</Property>
+      <Property Name="Text">Fuel</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X1008701de522de4b99e85bbec2b77fc725ab" ControlName="Track Bar 3">
+      <Property Name="Name">X1008701de522de4b99e85bbec2b77fc725ab</Property>
+      <Property Name="Size">106, 24</Property>
+      <Property Name="Location">12, 86</Property>
+      <Property Name="TickStyle">None</Property>
+      <Property Name="TabIndex">3</Property>
+      <Property Name="MaximumDouble">100</Property>
+      <Property Name="MaximumSize">100000, 24</Property>
+      <Property Name="Maximum">100</Property>
+      <Property Name="SymbolConfiguration">8;16;BCM;;;Battery_voltage;1;;;-1;;;Value;;;0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X9c9ff702e9969e448feab57e1a6a8b924970" ControlName="Track Bar 2">
+      <Property Name="Name">X9c9ff702e9969e448feab57e1a6a8b924970</Property>
+      <Property Name="Size">106, 24</Property>
+      <Property Name="Location">12, 137</Property>
+      <Property Name="TickStyle">None</Property>
+      <Property Name="TabIndex">2</Property>
+      <Property Name="MaximumDouble">100</Property>
+      <Property Name="MaximumSize">100000, 24</Property>
+      <Property Name="Maximum">100</Property>
+      <Property Name="SymbolConfiguration">8;16;BCM;;;Battery;1;;;-1;;;Value;;;0</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X9f38cc38ed45be4a94e94c8e81ba001132af" ControlName="Track Bar 1">
+      <Property Name="Name">X9f38cc38ed45be4a94e94c8e81ba001132af</Property>
+      <Property Name="Size">106, 24</Property>
+      <Property Name="Location">12, 39</Property>
+      <Property Name="TickStyle">None</Property>
+      <Property Name="TabIndex">1</Property>
+      <Property Name="MaximumDouble">45</Property>
+      <Property Name="CommitValue">OnlyLastValue</Property>
+      <Property Name="SmallChangeDouble">2.55</Property>
+      <Property Name="LargeChangeDouble">12.75</Property>
+      <Property Name="TickFrequencyDouble">2.55</Property>
+      <Property Name="MaximumSize">100000, 24</Property>
+      <Property Name="Maximum">45</Property>
+      <Property Name="SmallChange">2</Property>
+      <Property Name="LargeChange">12</Property>
+      <Property Name="TickFrequency">2</Property>
+      <Property Name="SymbolConfiguration">8;16;BCM;;;Fuel;1;;;-1;;;Value;;;0</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">144, 189</Property>
+    <Property Name="Location">0, 0</Property>
+    <Property Name="BackColor">255, 255, 255, 255</Property>
+  </Object>
+</Panel>

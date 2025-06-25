@@ -1,0 +1,185 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+
+}
+
+variables
+{
+  msTimer tResetRadio;
+  int     tResetRadioTime = 1;
+
+  message B_CAN::msg_fconsole_drive Drive_BCAN;
+  message B_CAN::msg_fconsole_ambient Ambient_BCAN;
+  message B_CAN::msg_fconsole_cruise Cruise_BCAN;
+  
+  message 0x432 msg432;
+}
+
+on start
+{
+  canOnline(3);
+  @sysvar::ComfortBus::RadioOnOff = 0;
+}
+
+SetRadioChannel(int channel, int value)
+{
+  char Text[32];
+  int MaxLength = 32;
+
+  switch(channel)
+  {
+    case 1: // Cruise Control
+      if (value == 1) {
+        SysSetVariableString(sysvar::ComfortBus::RadioInfoDisplay, "Cruise Mode: ON");
+      } else {
+        SysSetVariableString(sysvar::ComfortBus::RadioInfoDisplay, "Cruise Mode: OFF");
+      }
+      SysSetVariableString(sysvar::ComfortBus::SetRadioChannelDisplay, "Function: Cruise Control");
+      break;
+
+    case 2: // Ambient Light
+      switch(value)
+      {
+        case 0: strncpy(Text, "Ambient Light: OFF", MaxLength); break;
+        case 1: strncpy(Text, "Ambient Light: RED", MaxLength); break;
+        case 2: strncpy(Text, "Ambient Light: GREEN", MaxLength); break;
+        case 3: strncpy(Text, "Ambient Light: BLUE", MaxLength); break;
+        default: strncpy(Text, "Ambient Light: INVALID", MaxLength); break;
+      }
+      SysSetVariableString(sysvar::ComfortBus::RadioInfoDisplay, Text);
+      SysSetVariableString(sysvar::ComfortBus::SetRadioChannelDisplay, "Function: Ambient Light");
+      break;
+
+    case 3: // Drive Mode
+      switch(value)
+      {
+        case 0: strncpy(Text, "Drive Mode: NORMAL", MaxLength); break;
+        case 1: strncpy(Text, "Drive Mode: ECO", MaxLength); break;
+        case 2: strncpy(Text, "Drive Mode: SPORT", MaxLength); break;
+        default: strncpy(Text, "Drive Mode: INVALID", MaxLength); break;
+      }
+      SysSetVariableString(sysvar::ComfortBus::RadioInfoDisplay, Text);
+      SysSetVariableString(sysvar::ComfortBus::SetRadioChannelDisplay, "Function: Drive Mode");
+      break;
+      
+    case 4: // Update Check
+      switch(value)
+      {
+        case 0: strncpy(Text, "Update Check: INVALID", MaxLength); break;
+        case 1: strncpy(Text, "Update Check: OK?", MaxLength); break;
+        case 2: strncpy(Text, "Update Check: OK!", MaxLength); break;
+        default: strncpy(Text, "Update Check: INVALID", MaxLength); break;
+      }
+      SysSetVariableString(sysvar::ComfortBus::RadioInfoDisplay, Text);
+      SysSetVariableString(sysvar::ComfortBus::SetRadioChannelDisplay, "Function: Update Check");
+      break;
+    default:
+      SysSetVariableString(sysvar::ComfortBus::RadioInfoDisplay, "");
+      SysSetVariableString(sysvar::ComfortBus::SetRadioChannelDisplay, "");
+      break;
+  }
+}
+
+on timer tResetRadio
+{
+  @sysvar::ComfortBus::SetRadioChannel_1 = 0;
+  @sysvar::ComfortBus::SetRadioChannel_2 = 0;    
+  @sysvar::ComfortBus::SetRadioChannel_3 = 0;
+  @sysvar::ComfortBus::SetRadioChannel_4 = 0;
+  @sysvar::ComfortBus::SetRadioChannel_5 = 0;
+  @sysvar::ComfortBus::SetRadioChannel_6 = 0;
+  SysSetVariableString(sysvar::ComfortBus::SetRadioChannelDisplay, "");
+  SysSetVariableString(sysvar::ComfortBus::RadioInfoDisplay, "");
+}
+
+on preStart
+{
+  canOffline(3);
+
+  @sysvar::ComfortBus::SetRadioChannel_1 = 0;
+  @sysvar::ComfortBus::SetRadioChannel_2 = 0;    
+  @sysvar::ComfortBus::SetRadioChannel_3 = 0;
+  @sysvar::ComfortBus::SetRadioChannel_4 = 0;
+  @sysvar::ComfortBus::SetRadioChannel_5 = 0;
+  @sysvar::ComfortBus::SetRadioChannel_6 = 0;
+  SysSetVariableString(sysvar::ComfortBus::SetRadioChannelDisplay, "");
+  SysSetVariableString(sysvar::ComfortBus::RadioInfoDisplay, "");
+}
+
+
+
+
+
+
+on sysvar_update sysvar::ComfortBus::RadioOnOff
+{
+  if(@this == 1) {@sysvar::ComfortBus::SetRadioChannel_3 = 0;
+  SetRadioChannel(3, 0);}
+  else 
+  {
+    @sysvar::ComfortBus::SetRadioChannel_1 = 0;
+    @sysvar::ComfortBus::SetRadioChannel_2 = 0;    
+    @sysvar::ComfortBus::SetRadioChannel_3 = 0;
+    @sysvar::ComfortBus::SetRadioChannel_4 = 0;
+    @sysvar::ComfortBus::SetRadioChannel_5 = 0;
+    @sysvar::ComfortBus::SetRadioChannel_6 = 0;
+    SysSetVariableString(sysvar::ComfortBus::SetRadioChannelDisplay, "");
+    SysSetVariableString(sysvar::ComfortBus::RadioInfoDisplay, "");
+  }
+}
+
+on sysvar_update sysvar::ComfortBus::SetRadioChannel_1
+{
+  if (@sysvar::ComfortBus::RadioOnOff == 1)
+  {
+    SetRadioChannel(1, @this);
+    Cruise_BCAN.sig_cruise_state = @this;
+    output(Cruise_BCAN);
+  }
+}
+
+on sysvar_update sysvar::ComfortBus::SetRadioChannel_2
+{
+  if (@sysvar::ComfortBus::RadioOnOff == 1)
+  {
+    SetRadioChannel(2, @this);
+    Ambient_BCAN.sig_console_ambient_light = @this;
+    output(Ambient_BCAN);
+  }
+}
+
+on sysvar_update sysvar::ComfortBus::SetRadioChannel_3
+{
+  if (@sysvar::ComfortBus::RadioOnOff == 1)
+  {
+    SetRadioChannel(3, @this);
+
+  }
+}
+
+on sysvar_update sysvar::ComfortBus::SetRadioChannel_4
+{
+  if (@sysvar::ComfortBus::RadioOnOff == 1)
+  {
+    SetRadioChannel(4, @this);
+    if(@this == 2){
+      msg432.dlc = 1;
+      msg432.byte(0) = 1;
+      msg432.can = 4;
+      output(msg432);
+    }
+  }
+}
+
+on message B_CAN::msg_ieb_brake {
+  if(this.sig_ieb_brake==1)
+  {
+    @ComfortBus::SetRadioChannel_1 = 0;
+  }
+}
+
+on message 0x316 {
+  @ComfortBus::SetRadioChannel_4 = 1;
+  
+}

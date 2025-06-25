@@ -1,0 +1,38 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  
+}
+
+on start {
+  @SCU::IgnitionState = 0;
+}
+
+IgnitionStatus (long status)
+{
+   switch(status)
+  {
+    case OFF:
+       @sysvar::SCU::IgnitionState = 0;
+       break;
+    case ON:  
+      if(@sysVar::BCM::Battery_voltage >= 30){
+        @sysvar::SCU::IgnitionState = 1;
+      }
+      else{
+        @sysvar::SCU::SwitchIgnition = 0;
+        @sysvar::SCU::IgnitionState = 0;
+      }
+      break;
+  }
+}
+
+on sysvar_update sysvar::SCU::SwitchIgnition
+{
+   IgnitionStatus(@sysvar::SCU::SwitchIgnition);
+}

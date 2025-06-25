@@ -1,0 +1,92 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  message B_CAN::msg_bcm_data BCM_BCAN;
+}
+
+on start 
+{
+  @sysvar::BCM::Battery = 0;
+  @sysvar::BCM::Battery_voltage = 0;
+  
+    @EMS::EMS_Battery = 0;
+    @BCM::ADAS_Battery = 0;
+    @BCM::Cluster_Battery = 0;
+    @BCM::FSW_Battery = 0;
+    @BCM::MOOD_LP_Battery = 0;
+    
+    @EMS::EMS_Battery_voltage = 0;
+    @BCM::ADAS_Battery_voltage = 0;
+    @BCM::Cluster_Battery_voltage = 0;
+    @BCM::FSW_Battery_voltage = 0;
+    @BCM::MOOD_LP_Battery_voltage = 0;
+}
+
+on sysvar BCM::Fuel{
+  BCM_BCAN.sig_bcm_fuel = @this;
+  output(BCM_BCAN);
+}
+
+on sysvar BCM::Battery {
+  BCM_BCAN.sig_bcm_battery = @this;
+  output(BCM_BCAN);
+}
+
+on sysvar BCM::Battery_voltage {
+  BCM_BCAN.sig_bcm_battery_voltage = @this;
+  output(BCM_BCAN);
+}
+
+on sysvar_update BCM::Battery {
+  if(@sysvar::SCU::SwitchIgnition==1){
+    @EMS::EMS_Battery = @this;
+    @BCM::ADAS_Battery = @this;
+    @BCM::Cluster_Battery = @this;
+    @BCM::FSW_Battery = @this;
+    @BCM::MOOD_LP_Battery = @this;
+  }
+}
+
+on sysvar_update BCM::Battery_voltage {
+  if(@sysvar::SCU::SwitchIgnition==1){
+    @EMS::EMS_Battery_voltage = @this;
+    @BCM::ADAS_Battery_voltage = @this;
+    @BCM::Cluster_Battery_voltage = @this;
+    @BCM::FSW_Battery_voltage = @this;
+    @BCM::MOOD_LP_Battery_voltage = @this;
+  }
+}
+
+on sysvar_update SCU::SwitchIgnition{
+  if(@this ==1){
+    @EMS::EMS_Battery = @BCM::Battery;
+    @BCM::ADAS_Battery = @BCM::Battery;
+    @BCM::Cluster_Battery = @BCM::Battery;
+    @BCM::FSW_Battery = @BCM::Battery;
+    @BCM::MOOD_LP_Battery = @BCM::Battery;
+    
+    @EMS::EMS_Battery_voltage = @BCM::Battery_voltage;
+    @BCM::ADAS_Battery_voltage = @BCM::Battery_voltage;
+    @BCM::Cluster_Battery_voltage = @BCM::Battery_voltage;
+    @BCM::FSW_Battery_voltage = @BCM::Battery_voltage;
+    @BCM::MOOD_LP_Battery_voltage = @BCM::Battery_voltage;
+  }
+  else{
+    @EMS::EMS_Battery = 0;
+    @BCM::ADAS_Battery = 0;
+    @BCM::Cluster_Battery = 0;
+    @BCM::FSW_Battery = 0;
+    @BCM::MOOD_LP_Battery = 0;
+    
+    @EMS::EMS_Battery_voltage = 0;
+    @BCM::ADAS_Battery_voltage = 0;
+    @BCM::Cluster_Battery_voltage = 0;
+    @BCM::FSW_Battery_voltage = 0;
+    @BCM::MOOD_LP_Battery_voltage = 0;
+  }
+}

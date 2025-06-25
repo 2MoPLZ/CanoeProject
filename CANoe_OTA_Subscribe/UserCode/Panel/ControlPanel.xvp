@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Panel" ControlName="ControlPanel">
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X9660fd1aecd2fe472be8584edd3ff14b3560" ControlName="Button 1">
+      <Property Name="Name">X9660fd1aecd2fe472be8584edd3ff14b3560</Property>
+      <Property Name="Size">75, 23</Property>
+      <Property Name="Location">453, 28</Property>
+      <Property Name="TabIndex">9</Property>
+      <Property Name="Text">Button</Property>
+      <Property Name="SymbolConfiguration"></Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X3c175985e0e04e4852ea110e299dfb0a99ce" ControlName="Static Text 3">
+      <Property Name="Name">X3c175985e0e04e4852ea110e299dfb0a99ce</Property>
+      <Property Name="Size">68, 15</Property>
+      <Property Name="Location">232, 250</Property>
+      <Property Name="Text">Brake Lamp</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X09657e44ee74fe4e4deb6d4e617ea4cdc3a1" ControlName="Switch / Indicator 5">
+      <Property Name="Name">X09657e44ee74fe4e4deb6d4e617ea4cdc3a1</Property>
+      <Property Name="Size">73, 95</Property>
+      <Property Name="Location">232, 151</Property>
+      <Property Name="SymbolConfiguration">8;16;LAMP_UNIT;;;BrakeLamp;1;;;-1;;;Value;;;0</Property>
+      <Property Name="ImageFile">bitmap\ControlRearLight.bmp</Property>
+      <Property Name="ReadOnlyControl">True</Property>
+      <Property Name="TabIndex">8</Property>
+      <Property Name="Epsilon">0</Property>
+      <Property Name="Increment">1</Property>
+      <Property Name="StartValue">0</Property>
+      <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+      <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+      <Property Name="SwitchValues">1;2;0;1</Property>
+      <Property Name="SwitchValuesRx">1;2;0;1</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X13b7dcb0e639be44aee9528ea048b030192d" ControlName="Group Box 3">
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X0e63a969e7284e4e8fe9d9bed9d328023111" ControlName="Static Text 5">
+        <Property Name="Name">X0e63a969e7284e4e8fe9d9bed9d328023111</Property>
+        <Property Name="Size">45, 15</Property>
+        <Property Name="Location">134, 120</Property>
+        <Property Name="Text">D-Gear</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X716728bdea20ee46bde9144ebfa7e078e3e3" ControlName="Static Text 4">
+        <Property Name="Name">X716728bdea20ee46bde9144ebfa7e078e3e3</Property>
+        <Property Name="Size">44, 15</Property>
+        <Property Name="Location">135, 35</Property>
+        <Property Name="Text">P-Gear</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X8f421bb6ef43ee4c40eacd7e85f8ccd5d8cf" ControlName="Switch / Indicator 6">
+        <Property Name="Name">X8f421bb6ef43ee4c40eacd7e85f8ccd5d8cf</Property>
+        <Property Name="Size">58, 58</Property>
+        <Property Name="Location">127, 56</Property>
+        <Property Name="SymbolConfiguration">8;16;EMS;;;GearState;1;;;-1;;;Value;;;0</Property>
+        <Property Name="ImageFile">bitmap\Gear_Pos.png</Property>
+        <Property Name="TabIndex">3</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="Epsilon">0</Property>
+        <Property Name="Increment">1</Property>
+        <Property Name="StartValue">0</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+        <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="SwitchValuesRx">1;2;0;1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X661ba32de1a58e4a59eace1eb1dee061abbd" ControlName="Input/Output Box 1">
+        <Property Name="Name">X661ba32de1a58e4a59eace1eb1dee061abbd</Property>
+        <Property Name="Size">31, 19</Property>
+        <Property Name="Location">48, 14</Property>
+        <Property Name="AlarmGeneralSettings">1;0;0;100</Property>
+        <Property Name="AlarmLowerBkgColor">Salmon</Property>
+        <Property Name="AlarmLowerTextColor">ControlText</Property>
+        <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+        <Property Name="AlarmUpperTextColor">ControlText</Property>
+        <Property Name="BoxBorderStyle">FixedSingle</Property>
+        <Property Name="DisplayLabel">Hide</Property>
+        <Property Name="BoxTextAlign">Center</Property>
+        <Property Name="TextBackColor">255, 231, 231, 231</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="TabStopActive">False</Property>
+        <Property Name="DescriptionText">GearTextDisplay:</Property>
+        <Property Name="ValueDecimalPlaces">0</Property>
+        <Property Name="ValueDisplay">Decimal</Property>
+        <Property Name="UsedValueTable">PhysicalValue</Property>
+        <Property Name="DescriptionSize">94, 0</Property>
+        <Property Name="SymbolConfiguration">8;16;TCU;;;GearState;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X6aecfcb2e54c8e4cb4eac83e77b72cfae2c5" ControlName="Switch / Indicator 4">
+        <Property Name="Name">X6aecfcb2e54c8e4cb4eac83e77b72cfae2c5</Property>
+        <Property Name="Size">129, 105</Property>
+        <Property Name="Location">0, 30</Property>
+        <Property Name="SymbolConfiguration">8;16;TCU;;;GearState;1;;;-1;;;Value;;;0</Property>
+        <Property Name="ImageFile">bitmap\ControlGear.bmp</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+        <Property Name="TabIndex">1</Property>
+        <Property Name="Epsilon">0</Property>
+        <Property Name="Increment">1</Property>
+        <Property Name="StartValue">0</Property>
+        <Property Name="StateCnt">7</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;7&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;RxValue&gt;2&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;2&lt;/TxValue&gt;&lt;RxValue&gt;3&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;3&lt;/TxValue&gt;&lt;RxValue&gt;4&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;4&lt;/TxValue&gt;&lt;RxValue&gt;5&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;5&lt;/TxValue&gt;&lt;RxValue&gt;6&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;6&lt;/TxValue&gt;</Property>
+        <Property Name="SwitchValuesVT">1;7;0/Lower/0;1/Lower/1;2/Lower/2;3/Lower/3;4/Lower/4;5/Lower/5;6/Lower/6</Property>
+        <Property Name="SwitchValues">1;7;0;1;2;3;4;5;6</Property>
+        <Property Name="SwitchValuesRx">1;7;0;1;2;3;4;5;6</Property>
+      </Object>
+      <Property Name="Name">X13b7dcb0e639be44aee9528ea048b030192d</Property>
+      <Property Name="Size">200, 140</Property>
+      <Property Name="Location">221, 5</Property>
+      <Property Name="Text">gear box</Property>
+      <Property Name="TabIndex">7</Property>
+      <Property Name="UseWindowsStyle">False</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X61fd87d6ee772e418be802beb05c00bab5b1" ControlName="Group Box 1">
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X6321a83ee6372e47d2eba6ee2babad490dc0" ControlName="Static Text 2">
+        <Property Name="Name">X6321a83ee6372e47d2eba6ee2babad490dc0</Property>
+        <Property Name="Size">69, 15</Property>
+        <Property Name="Location">114, 113</Property>
+        <Property Name="Text">Accelaration</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xe130943eebe05e40a9e857be2d878a322a94" ControlName="Static Text 1">
+        <Property Name="Name">Xe130943eebe05e40a9e857be2d878a322a94</Property>
+        <Property Name="Size">37, 15</Property>
+        <Property Name="Location">25, 113</Property>
+        <Property Name="Text">Brake</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xd03737b0eaa7ee47fce846de97854428c3f2" ControlName="Switch / Indicator 3">
+        <Property Name="Name">Xd03737b0eaa7ee47fce846de97854428c3f2</Property>
+        <Property Name="Size">66, 86</Property>
+        <Property Name="Location">114, 20</Property>
+        <Property Name="SymbolConfiguration">8;16;EMS;;;PedalPosition;1;;;-1;;;Value;;;0</Property>
+        <Property Name="ImageFile">bitmap\ControlBreak.bmp</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="IsButton">True</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="Epsilon">0</Property>
+        <Property Name="Increment">1</Property>
+        <Property Name="StartValue">0</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+        <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="SwitchValuesRx">1;2;0;1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X20d7b27ae5b4be419ee92aae12b32893bd8e" ControlName="Switch / Indicator 2">
+        <Property Name="Name">X20d7b27ae5b4be419ee92aae12b32893bd8e</Property>
+        <Property Name="Size">66, 86</Property>
+        <Property Name="Location">12, 20</Property>
+        <Property Name="SymbolConfiguration">8;16;IEB;;;BrakePedal;1;;;-1;;;Value;;;0</Property>
+        <Property Name="ImageFile">bitmap\ControlBreak.bmp</Property>
+        <Property Name="TabIndex">1</Property>
+        <Property Name="IsButton">True</Property>
+        <Property Name="Activation">Left</Property>
+        <Property Name="Epsilon">0</Property>
+        <Property Name="Increment">1</Property>
+        <Property Name="StartValue">0</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+        <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="SwitchValuesRx">1;2;0;1</Property>
+      </Object>
+      <Property Name="Name">X61fd87d6ee772e418be802beb05c00bab5b1</Property>
+      <Property Name="Size">200, 133</Property>
+      <Property Name="Location">10, 132</Property>
+      <Property Name="Text">pedal control</Property>
+      <Property Name="TabIndex">5</Property>
+      <Property Name="UseWindowsStyle">False</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X6df80301ecc2ae425de8c17e818377b8934c" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xadc33205e7d99e4497ebcfbe6beba7a0ace2" ControlName="Switch / SCU ">
+        <Property Name="Name">Xadc33205e7d99e4497ebcfbe6beba7a0ace2</Property>
+        <Property Name="Size">40, 53</Property>
+        <Property Name="Location">25, 35</Property>
+        <Property Name="SymbolConfiguration">8;16;SCU;;;SwitchIgnition;1;;;-1;;;Value;;;0</Property>
+        <Property Name="ImageFile">bitmap\ControlIgnition.bmp</Property>
+        <Property Name="TransparentColor">White</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="Epsilon">0</Property>
+        <Property Name="Increment">1</Property>
+        <Property Name="StartValue">0</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;2&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;</Property>
+        <Property Name="SwitchValuesVT">1;2;0/Lower/0;1/Lower/1</Property>
+        <Property Name="SwitchValues">1;2;0;1</Property>
+        <Property Name="SwitchValuesRx">1;2;0;1</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.SwitchControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X117ed652e2791e4f5deb866e908cafe6943b" ControlName="Switch / Indicator 1">
+        <Property Name="Name">X117ed652e2791e4f5deb866e908cafe6943b</Property>
+        <Property Name="Size">50, 94</Property>
+        <Property Name="Location">91, 14</Property>
+        <Property Name="SymbolConfiguration">8;16;EMS;;;EngineRunningWheel;1;;;-1;;;Value;;;0</Property>
+        <Property Name="ImageFile">bitmap\ControlMotor.bmp</Property>
+        <Property Name="ReadOnlyControl">True</Property>
+        <Property Name="TabIndex">1</Property>
+        <Property Name="Epsilon">0</Property>
+        <Property Name="Increment">1</Property>
+        <Property Name="StartValue">0</Property>
+        <Property Name="StateCnt">16</Property>
+        <Property Name="SwitchValuesVTXml">&lt;Version&gt;2&lt;/Version&gt;&lt;Count&gt;16&lt;/Count&gt;&lt;RxValue&gt;0&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;0&lt;/TxValue&gt;&lt;RxValue&gt;1&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;1&lt;/TxValue&gt;&lt;RxValue&gt;2&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;2&lt;/TxValue&gt;&lt;RxValue&gt;3&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;3&lt;/TxValue&gt;&lt;RxValue&gt;4&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;4&lt;/TxValue&gt;&lt;RxValue&gt;5&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;5&lt;/TxValue&gt;&lt;RxValue&gt;6&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;6&lt;/TxValue&gt;&lt;RxValue&gt;7&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;7&lt;/TxValue&gt;&lt;RxValue&gt;8&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;8&lt;/TxValue&gt;&lt;RxValue&gt;9&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;9&lt;/TxValue&gt;&lt;RxValue&gt;10&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;10&lt;/TxValue&gt;&lt;RxValue&gt;11&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;11&lt;/TxValue&gt;&lt;RxValue&gt;12&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;12&lt;/TxValue&gt;&lt;RxValue&gt;13&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;13&lt;/TxValue&gt;&lt;RxValue&gt;14&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;14&lt;/TxValue&gt;&lt;RxValue&gt;15&lt;/RxValue&gt;&lt;LowerUpper&gt;Lower&lt;/LowerUpper&gt;&lt;TxValue&gt;15&lt;/TxValue&gt;</Property>
+        <Property Name="SwitchValuesVT">1;16;0/Lower/0;1/Lower/1;2/Lower/2;3/Lower/3;4/Lower/4;5/Lower/5;6/Lower/6;7/Lower/7;8/Lower/8;9/Lower/9;10/Lower/10;11/Lower/11;12/Lower/12;13/Lower/13;14/Lower/14;15/Lower/15</Property>
+        <Property Name="SwitchValues">1;16;0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15</Property>
+        <Property Name="SwitchValuesRx">1;16;0;1;2;3;4;5;6;7;8;9;10;11;12;13;14;15</Property>
+      </Object>
+      <Property Name="Name">X6df80301ecc2ae425de8c17e818377b8934c</Property>
+      <Property Name="Size">162, 121</Property>
+      <Property Name="Location">10, 5</Property>
+      <Property Name="BackColor">Window</Property>
+      <Property Name="Text">Ignition</Property>
+      <Property Name="TabIndex">4</Property>
+      <Property Name="UseWindowsStyle">False</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">426, 270</Property>
+    <Property Name="Location">0, 0</Property>
+    <Property Name="BackColor">255, 255, 255, 255</Property>
+  </Object>
+</Panel>

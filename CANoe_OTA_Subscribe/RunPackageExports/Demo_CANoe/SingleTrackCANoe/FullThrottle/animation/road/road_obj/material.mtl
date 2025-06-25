@@ -1,0 +1,31 @@
+# DYNA4 road material file
+hash:8e4c96399aad69727309fee70306d67c
+
+newmtl None
+Ka 1 0 0
+Kd 1 1 1
+Ks 0 0 0
+Ns 350
+
+newmtl road
+Ka 1 1 1
+Kd 0.5 0.5 0.5
+Ks 0 0 0
+Ns 350
+map_Ka grid.jpg
+map_Kd grid.jpg
+
+newmtl mu_spot
+Ka 1 1 1
+Kd 0.5 0.5 0.5
+Ks 0 0 0
+map_Ka road1.jpg
+map_Kd road1.jpg
+
+newmtl ramp
+Ka 1 1 1
+Kd 0.5 0.5 0.5
+Ks 0 0 0
+map_Ka road2.jpg
+map_Kd road2.jpg
+

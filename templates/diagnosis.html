@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>진단하기</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+
+        .diagnosis-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            width: 600px;
+            text-align: center;
+        }
+
+        .diagnosis-box h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .diagnosis-box button {
+            width: 80%;
+            height: 80px;
+            font-size: 22px;
+            margin: 20px auto;
+            display: block;
+            cursor: pointer;
+        }
+
+        .home-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #333;
+            background: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background 0.2s;
+        }
+
+        .home-link:hover {
+            background: #eaeaea;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            max-height: 70%;
+            overflow-y: auto;
+        }
+
+        .popup h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .popup button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+<a href="/" class="home-link">🏠 홈으로</a>
+<div class="diagnosis-box">
+    <h2>진단 메뉴</h2>
+    <button onclick="requestDiagnosis()">차량 진단</button>
+    <button onclick="showECUPopup()">강제구동</button>
+    <!-- <button onclick="sendRequest('/version')">업데이트 버전확인</button> -->
+</div>
+
+<!-- ECU 팝업 -->
+<div id="popup-overlay" class="popup-overlay" style="display:none;" onclick="closePopup()"></div>
+<div id="popup" class="popup" style="display:none;">
+    <h3>ECU 강제구동</h3>
+    <div style="display: flex; gap: 30px;">
+        <!-- 좌측: ECU 리스트 -->
+        <div id="ecu-list" style="flex: 1; text-align: left;"></div>
+        <!-- 우측: ON/OFF 선택 -->
+        <div style="flex: 1;">
+            <p><strong>상태 선택</strong></p>
+            <label><input type="radio" name="cmd" value="1" checked> ON</label><br>
+            <label><input type="radio" name="cmd" value="0"> OFF</label>
+        </div>
+    </div>
+    <!-- 우측 하단: 강제구동 버튼 -->
+    <div style="text-align: right; margin-top: 20px;">
+        <button onclick="sendForceCommand()">강제구동하기</button>
+    </div>
+</div>
+
+<!-- 진단 결과 팝업 -->
+<div id="diagnosis-overlay" class="popup-overlay" style="display:none;" onclick="closeDiagnosisPopup()"></div>
+<div id="diagnosis-popup" class="popup" style="display:none;">
+    <h3>진단 결과</h3>
+    <div id="diagnosis-content"></div>
+    <div style="text-align: right; margin-top: 15px;">
+        <button onclick="closeDiagnosisPopup()">닫기</button>
+    </div>
+</div>
+
+
+<script>
+const targetServer = "http://192.168.162.8:50000";
+let selectedECU = null;  // 선택된 ECU ID 저장
+
+// const ws = new WebSocket("ws://172.20.10.2:8000/ws");
+
+// ws.onopen = () => {
+//     console.log("✅ WebSocket 연결 성공");
+// };
+
+// ws.onmessage = (event) => {
+//     const message = event.data;
+//     console.log("📩 알림 수신:", message);
+
+//     // 브라우저 알림 권한 확인 및 요청
+//     if (Notification.permission === "granted") {
+//         new Notification("🚨 CAN 알림", { body: message });
+//     } else if (Notification.permission !== "denied") {
+//         Notification.requestPermission().then(permission => {
+//             if (permission === "granted") {
+//                 new Notification("🚨 CAN 알림", { body: message });
+//             }
+//         });
+//     }
+// };
+
+// ws.onerror = (err) => {
+//     console.error("❌ WebSocket 오류:", err);
+// };
+
+function requestDiagnosis() {
+    fetch(`${targetServer}/logs`)
+        .then(response => {
+            if (!response.ok) throw new Error("진단 요청 실패");
+            return response.text();
+        })
+        .then(data => {
+            if (data.status != "success") {
+                //alert("수신 실패: " + data.message);
+                alert("수신 성공!");
+                return;
+            }
+
+            const container = document.getElementById("diagnosis-content");
+            container.innerHTML = "";
+
+            data.sections.forEach(section => {
+                const div = document.createElement("div");
+                div.style.marginBottom = "20px";
+                div.style.padding = "10px";
+                div.style.border = "1px solid #ccc";
+                div.style.borderRadius = "8px";
+                div.style.whiteSpace = "pre-wrap";
+                div.style.backgroundColor = "#f9f9f9";
+                div.textContent = section;
+                container.appendChild(div);
+            });
+
+            document.getElementById("diagnosis-overlay").style.display = "block";
+            document.getElementById("diagnosis-popup").style.display = "block";
+        })
+        .catch(error => {
+            alert("오류 발생: " + error.message);
+        });
+}
+
+// function requestDiagnosis() {
+//     fetch(`${targetServer}/static/logs_output.txt`)
+//         .then(response => {
+//             if (!response.ok) throw new Error("진단 로그 파일 요청 실패");
+//             return response.text();
+//         })
+//         .then(text => {
+//             const container = document.getElementById("diagnosis-content");
+//             container.innerHTML = "";
+
+//             const div = document.createElement("div");
+//             div.style.marginBottom = "20px";
+//             div.style.padding = "10px";
+//             div.style.border = "1px solid #ccc";
+//             div.style.borderRadius = "8px";
+//             div.style.whiteSpace = "pre-wrap";
+//             div.style.backgroundColor = "#f9f9f9";
+//             div.textContent = text;
+
+//             container.appendChild(div);
+
+//             document.getElementById("diagnosis-overlay").style.display = "block";
+//             document.getElementById("diagnosis-popup").style.display = "block";
+//         })
+//         .catch(error => {
+//             alert("오류 발생: " + error.message);
+//         });
+// }
+
+function closeDiagnosisPopup() {
+    document.getElementById("diagnosis-popup").style.display = "none";
+    document.getElementById("diagnosis-overlay").style.display = "none";
+}
+
+// function sendRequest(endpoint) {
+//     fetch(`${targetServer}${endpoint}`)
+//         .then(response => {
+//             if (!response.ok) throw new Error("네트워크 오류");
+//             return response.text();
+//         })
+//         .then(data => {
+//             alert(`요청 성공: ${data}`);
+//         })
+//         .catch(error => {
+//             alert(`요청 실패: ${error}`);
+//         });
+// }
+
+function sendRequest(endpoint) {
+    fetch(`${targetServer}${endpoint}`)
+        .then(response => {
+            if (!response.ok) throw new Error("네트워크 오류");
+            return response.text();  // 필요시 .json()으로 교체
+        })
+        .then(data => {
+            alert(`요청 성공:\n${data}`);
+        })
+        .catch(error => {
+            alert(`요청 실패: ${error}`);
+        });
+}
+
+function showECUPopup() {
+    const ecuList = [
+        { name: "EMS", id: "0x740" },
+        // { name: "TCU", id: "0x741" },
+        // { name: "SCU", id: "0x742" },
+        { name: "IEB", id: "0x744" },
+        // { name: "R-MDPS", id: "0x745" },
+        // { name: "BCM", id: "0x747" },
+        // { name: "Front Console Switch", id: "0x750" },
+        // { name: "MFSW", id: "0x751" },
+        // { name: "CLUSTER", id: "0x752" },
+        { name: "LAMP_UNIT", id: "0x753" },
+        // { name: "SEAT_UNIT", id: "0x754" },
+        { name: "MOOD_LP", id: "0x755" },
+        { name: "ADAS", id: "0x761" },
+    ];
+
+    selectedECU = null;
+    const ecuListContainer = document.getElementById("ecu-list");
+    ecuListContainer.innerHTML = "";
+
+    ecuList.forEach(ecu => {
+        const btn = document.createElement("button");
+        btn.textContent = `${ecu.name}`;
+        btn.style.margin = "5px 0";
+        btn.style.width = "100%";
+        // btn.onclick = () => {
+        //     selectedECU = ecu.id;
+        //     // 선택된 버튼만 강조
+        //     Array.from(ecuListContainer.children).forEach(b => b.style.background = "");
+        //     btn.style.background = "#d0f0ff";
+        // };
+        btn.onclick = () => {
+            selectedECU = ecu.id;
+            Array.from(ecuListContainer.children).forEach(b => b.style.backgroundColor = "");  // background → backgroundColor
+            btn.style.backgroundColor = "#d0f0ff";
+        };
+        ecuListContainer.appendChild(btn);
+    });
+
+    document.getElementById("popup-overlay").style.display = "block";
+    document.getElementById("popup").style.display = "block";
+}
+
+function sendForceCommand() {
+    if (!selectedECU) {
+        alert("ECU를 선택해주세요.");
+        return;
+    }
+    const cmd = document.querySelector('input[name="cmd"]:checked').value;
+    sendRequest(`/force?ecuid=${selectedECU}&cmd=${cmd}`);
+    closePopup();
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("popup-overlay").style.display = "none";
+}
+</script>
+</body>
+</html>

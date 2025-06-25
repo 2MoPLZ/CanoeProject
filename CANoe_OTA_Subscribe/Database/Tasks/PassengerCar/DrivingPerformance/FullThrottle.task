@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="ASCII"?>
+<de.tesis.dynaware.simproject:Task xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:de.tesis.dynaware.simproject="http:///de/tesis/dynaware/simproject/tasks/model.ecore" name="FullThrottle" description="Full throttle maneuver" userInterfaceID="" layout="DrivingPerformance\FullThrottle.lyt" image="FullThrottle.jpg"/>

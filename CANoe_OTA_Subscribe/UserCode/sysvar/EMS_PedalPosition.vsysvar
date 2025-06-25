@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<systemvariables version="4">
+  <namespace name="" comment="" interface="">
+    <namespace name="EMS" comment="" interface="">
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="EMS_Battery_voltage" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="GearState" comment="" bitcount="32" isSigned="true" encoding="65001" type="int">
+        <valuetable name="Custom" definesMinMax="false">
+          <valuetableentry value="0" lowerBound="0" upperBound="0" description="P" displayString="P" />
+          <valuetableentry value="1" lowerBound="1" upperBound="1" description="D" displayString="D" />
+        </valuetable>
+      </variable>
+      <variable anlyzLocal="2" readOnly="false" valueSequence="false" unit="" name="PedalPosition" comment="" bitcount="32" isSigned="true" encoding="65001" type="int" />
+    </namespace>
+  </namespace>
+</systemvariables>

@@ -1,0 +1,747 @@
+<object-stream>
+  <de.tesis.dynaware.simproject.resultmanagement.MetaData>
+    <generalProperties class="linked-hash-map">
+      <entry>
+        <string>jobID</string>
+        <string>1746511361222</string>
+      </entry>
+      <entry>
+        <string>jobDate</string>
+        <date>2025-05-06 06:02:41.222 UTC</date>
+      </entry>
+      <entry>
+        <string>executionType</string>
+        <string>DYNA4 Run Package Export</string>
+      </entry>
+      <entry>
+        <string>executionMode</string>
+        <string>Scenario Execution</string>
+      </entry>
+      <entry>
+        <string>projectName</string>
+        <string>Demo_CANoe_Interfacing</string>
+      </entry>
+      <entry>
+        <string>simulationTarget</string>
+        <string>CANoe</string>
+      </entry>
+      <entry>
+        <string>modelConfigurationName</string>
+        <string>SingleTrackCANoe</string>
+      </entry>
+      <entry>
+        <string>modelConfigurationProjectPath</string>
+        <string>BasicVehicleDynamics/SingleTrackCANoe.modelconfiguration</string>
+      </entry>
+      <entry>
+        <string>modelName</string>
+        <string>SingleTrackCANoe.slx</string>
+      </entry>
+      <entry>
+        <string>modelDataName</string>
+        <string>SingleTrack</string>
+      </entry>
+      <entry>
+        <string>modelDataProjectPath</string>
+        <string>BasicVehicleDynamics/SingleTrack.modeldata</string>
+      </entry>
+      <entry>
+        <string>scenarioName</string>
+        <string>RaceTrackBarcelona_CircuitDeCatalunya</string>
+      </entry>
+      <entry>
+        <string>scenarioProjectPath</string>
+        <string>PassengerCar/Handling/RaceTrackBarcelona_CircuitDeCatalunya.scenario</string>
+      </entry>
+      <entry>
+        <string>resultDataSelectionName</string>
+        <string>HandlingCourse</string>
+      </entry>
+      <entry>
+        <string>resultDataSelectionProjectPath</string>
+        <string>HandlingCourse.m</string>
+      </entry>
+    </generalProperties>
+    <dyna4Version>9.1.1</dyna4Version>
+    <assemblyList>
+      <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+        <blockName>Animation</blockName>
+        <fileName>(none)</fileName>
+        <filePath></filePath>
+        <children class="linked-list">
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Animation3</blockName>
+            <fileName>Default.m</fileName>
+            <filePath>cms:/$(database)/AnimationDatabase/Default/AnimationModules/Animation3/Default.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>AnimationContent</blockName>
+            <fileName>MultiGauge.m</fileName>
+            <filePath>cms:/$(database)/AnimationDatabase/Default/AnimationModules/AnimationContentGeneric/MultiGauge.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+        </children>
+      </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+      <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+        <blockName>ControlUnits</blockName>
+        <fileName>(none)</fileName>
+        <filePath></filePath>
+        <children class="linked-list">
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>StateSensors</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list">
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>InertialMeasurementUnit</blockName>
+                <fileName>VehicleReferencePoint.m</fileName>
+                <filePath>cms:/$(database)/ControlUnitsDatabase/PassengerCar/StateSensorModules/InertialMeasurementUnit/VehicleReferencePoint.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+            </children>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>ADAS</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list"/>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>LCU</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list"/>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>VCU</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list"/>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+        </children>
+      </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+      <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+        <blockName>Trailer</blockName>
+        <fileName>(none)</fileName>
+        <filePath></filePath>
+        <children class="linked-list"/>
+      </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+      <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+        <blockName>Vehicle</blockName>
+        <fileName>(none)</fileName>
+        <filePath></filePath>
+        <children class="linked-list">
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>Auxiliaries</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list">
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>Alternator</blockName>
+                <fileName>Basic.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/AuxiliariesModules/Alternator/Basic.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>PermanentMagnetDCMotor</blockName>
+                <fileName>Basic.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/AuxiliariesModules/PermanentMagnetDCMotor/Basic.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>StarterControl</blockName>
+                <fileName>Basic.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/AuxiliariesModules/StarterControl/Basic.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>VoltageRegulator</blockName>
+                <fileName>Basic.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/AuxiliariesModules/VoltageRegulator/Basic.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>GeneratorReferenceVoltage</blockName>
+                <fileName>14V.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/LookupTableModules/ConstantVoltage/14V.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+            </children>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>Engine</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list">
+              <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+                <blockName>EngineControlUnit</blockName>
+                <fileName>(none)</fileName>
+                <filePath></filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                <children class="linked-list">
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>AcceleratorPedalCharacteristic</blockName>
+                    <fileName>Basic.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/BasicEngineControlModules/AcceleratorPedalCharacteristic/Basic.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>IdleSpeedController</blockName>
+                    <fileName>IdleSpeed_680rpm.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/BasicEngineControlModules/IdleSpeedController/IdleSpeed_680rpm.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>FuelCutoff</blockName>
+                    <fileName>MaxSpeed_6685rpm.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/BasicEngineControlModules/FuelCutoff/MaxSpeed_6685rpm.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>EngineLoadSignalCalculation</blockName>
+                    <fileName>Basic.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/BasicEngineControlModules/EngineLoadSignalCalculation/Basic.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                </children>
+              </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+              <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+                <blockName>EnginePhysics</blockName>
+                <fileName>(none)</fileName>
+                <filePath></filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                <children class="linked-list">
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>TabledEngineTorque</blockName>
+                    <fileName>SedanTabledEngineTorque_SI_TC_MPI_I4.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/EngineLookupTableModules/TabledEngineTorque/SedanTabledEngineTorque_SI_TC_MPI_I4.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>TabledFuelConsumption</blockName>
+                    <fileName>SedanTabledFuelConsumption_SI_TC_MPI_I4.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/EngineLookupTableModules/TabledFuelConsumption/SedanTabledFuelConsumption_SI_TC_MPI_I4.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                </children>
+              </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            </children>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>Drivetrain</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list">
+              <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+                <blockName>DrivetrainControlUnit</blockName>
+                <fileName>(none)</fileName>
+                <filePath></filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                <children class="linked-list">
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>TransmissionControlUnit</blockName>
+                    <fileName>6Speed_SI.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/TransmissionControlModules/TransmissionControlUnit/6Speed_SI.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                </children>
+              </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+              <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+                <blockName>DrivetrainPhysics</blockName>
+                <fileName>(none)</fileName>
+                <filePath></filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                <children class="linked-list">
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>LossFreeFourWheelDrivetrain</blockName>
+                    <fileName>4WD_Manual_6Speed_RatioSpan6p3.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/DrivetrainModules/LossFreeFourWheelDrivetrain/4WD_Manual_6Speed_RatioSpan6p3.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                </children>
+              </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            </children>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>DriverInformationVehicle</blockName>
+            <fileName>Basic.m</fileName>
+            <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/DriverInformationModules/DriverInformationVehicle/Basic.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>ElectricalSystem</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list">
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>LowVoltageBatteryVoltage</blockName>
+                <fileName>14V.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/LookupTableModules/ConstantVoltage/14V.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>LowVoltageBatteryInitialSOC</blockName>
+                <fileName>70percent.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/LookupTableModules/ConstantSOC/70percent.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+            </children>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>Chassis</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list">
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>SingleTrack</blockName>
+                <fileName>CompactVan.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/ReducedChassisModules/SingleTrack/CompactVan.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+            </children>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>WheelSystem</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list">
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>FrontLeft.Wheel</blockName>
+                <fileName>SedanWheel.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/WheelSystemModules/Wheel/SedanWheel.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>FrontRight.Wheel</blockName>
+                <fileName>SedanWheel.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/WheelSystemModules/Wheel/SedanWheel.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>RearLeft.Wheel</blockName>
+                <fileName>SedanWheel.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/WheelSystemModules/Wheel/SedanWheel.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+              <de.tesis.dynaware.simproject.resultmanagement.Data>
+                <blockName>RearRight.Wheel</blockName>
+                <fileName>SedanWheel.m</fileName>
+                <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/WheelSystemModules/Wheel/SedanWheel.m</filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+              </de.tesis.dynaware.simproject.resultmanagement.Data>
+              <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+                <blockName>FrontLeft.Tire</blockName>
+                <fileName>(none)</fileName>
+                <filePath></filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                <children class="linked-list">
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>TabledTireForces</blockName>
+                    <fileName>225_60_R15.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/ReducedTireModules/TabledTireForces/225_60_R15.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                </children>
+              </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+              <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+                <blockName>FrontRight.Tire</blockName>
+                <fileName>(none)</fileName>
+                <filePath></filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                <children class="linked-list">
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>TabledTireForces</blockName>
+                    <fileName>225_60_R15.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/ReducedTireModules/TabledTireForces/225_60_R15.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                </children>
+              </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+              <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+                <blockName>RearLeft.Tire</blockName>
+                <fileName>(none)</fileName>
+                <filePath></filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                <children class="linked-list">
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>TabledTireForces</blockName>
+                    <fileName>225_60_R15.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/ReducedTireModules/TabledTireForces/225_60_R15.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                </children>
+              </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+              <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+                <blockName>RearRight.Tire</blockName>
+                <fileName>(none)</fileName>
+                <filePath></filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                <children class="linked-list">
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>TabledTireForces</blockName>
+                    <fileName>225_60_R15.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/ReducedTireModules/TabledTireForces/225_60_R15.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                </children>
+              </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            </children>
+            <configurations class="linked-list">
+              <string>ChassisType.v = Vehicle</string>
+              <string>NumberOfAxles.v = 2</string>
+            </configurations>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>BrakeSystem</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list">
+              <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+                <blockName>BrakeSystemPhysics</blockName>
+                <fileName>(none)</fileName>
+                <filePath></filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                <children class="linked-list">
+                  <de.tesis.dynaware.simproject.resultmanagement.Data>
+                    <blockName>TabledBrakeHydraulics</blockName>
+                    <fileName>MainBrakePressure_200bar.m</fileName>
+                    <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/BrakeSystemModules/TabledBrakeHydraulics/MainBrakePressure_200bar.m</filePath>
+                    <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                  </de.tesis.dynaware.simproject.resultmanagement.Data>
+                </children>
+              </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+              <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+                <blockName>BrakeSystemControlUnit</blockName>
+                <fileName>(none)</fileName>
+                <filePath></filePath>
+                <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+                <children class="linked-list"/>
+              </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            </children>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>AnimationContentVehicle</blockName>
+            <fileName>VW_Golf_Sportsvan_2015_noForces.m</fileName>
+            <filePath>cms:/$(database)/VehicleDatabase/PassengerCar/AnimationModules/AnimationContentVehicle/VW_Golf_Sportsvan_2015_noForces.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>CoolingSystem</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list"/>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+            <blockName>VehicleRoadInfo</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+            <children class="linked-list"/>
+          </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>GeneralSettings</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+        </children>
+      </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+      <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+        <blockName>SimulationControl</blockName>
+        <fileName>(none)</fileName>
+        <filePath></filePath>
+        <children class="linked-list"/>
+      </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+      <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+        <blockName>Environment</blockName>
+        <fileName>(none)</fileName>
+        <filePath></filePath>
+        <children class="linked-list">
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>AmbientConditions</blockName>
+            <fileName>StandardConditions.m</fileName>
+            <filePath>cms:/$(database)/EnvironmentDatabase/Basics/EnvironmentModules/AmbientConditions/StandardConditions.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Road.HorizontalLayout</blockName>
+            <fileName>RaceTrackBarcelona_CircuitDeCatalunya.m</fileName>
+            <filePath>cms:/$(database)/EnvironmentDatabase/Basics/RoadModules/3DRoad/HorizontalLayout/RaceTrackBarcelona_CircuitDeCatalunya.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Road.HeightProfile</blockName>
+            <fileName>Flat.m</fileName>
+            <filePath>cms:/$(database)/EnvironmentDatabase/Basics/RoadModules/3DRoad/HeightProfile/Flat.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Road.SurfaceProfile</blockName>
+            <fileName>Flat8_NoCenterLaneMark.m</fileName>
+            <filePath>cms:/$(database)/EnvironmentDatabase/Basics/RoadModules/3DRoad/SurfaceProfile/Flat8_NoCenterLaneMark.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>AnimationContent</blockName>
+            <fileName>Sunny_1.m</fileName>
+            <filePath>cms:/$(database)/EnvironmentDatabase/Basics/AnimationModules/AnimationContentEnvironment/Sunny_1.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Road.RoadSigns</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Road.ReferencePath</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Road.AnimationContent3DRoad</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Road.AnimationContentTerrain</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>AdditionalRoadElevation</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>RoadFrictionScaling</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>WindImpact</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+        </children>
+        <configurations class="linked-list">
+          <string>RoadType.v = 3D road</string>
+        </configurations>
+      </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+      <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+        <blockName>Traffic</blockName>
+        <fileName>(none)</fileName>
+        <filePath></filePath>
+        <children class="linked-list"/>
+      </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+      <de.tesis.dynaware.simproject.resultmanagement.Assembly>
+        <blockName>VehicleControl</blockName>
+        <fileName>(none)</fileName>
+        <filePath></filePath>
+        <children class="linked-list">
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>LateralControl.Maneuver</blockName>
+            <fileName>CourseDrive.m</fileName>
+            <filePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/ManeuverControlModules/LateralManeuver/CourseDrive.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>LateralControl.ControlSystems.PathControl</blockName>
+            <fileName>SmoothDriverCurveCutting.m</fileName>
+            <filePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/LateralControllerModules/PathControl/Standard/SmoothDriverCurveCutting.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>LongitudinalControl.Maneuver</blockName>
+            <fileName>CourseDrive.m</fileName>
+            <filePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/ManeuverControlModules/LongitudinalManeuver/CourseDrive.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>LongitudinalControl.ControlSystems.SpeedControl</blockName>
+            <fileName>Sedan.m</fileName>
+            <filePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/LongitudinalControllerModules/SpeedControl/Sedan.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>LongitudinalControl.ControlSystems.ShiftControl</blockName>
+            <fileName>HandlingCourse.m</fileName>
+            <filePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/LongitudinalControllerModules/ShiftControl/HandlingCourse.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>LongitudinalControl.ReferenceSpeedComputation</blockName>
+            <fileName>Medium.m</fileName>
+            <filePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/LongitudinalControllerModules/ReferenceSpeedComputation/Standard/Medium.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Miscellaneous.TemperatureControl</blockName>
+            <fileName>DefaultTemperatures.m</fileName>
+            <filePath>cms:/$(database)/VehicleControlDatabase/PassengerCar/MiscellaneousControlModules/TemperatureControl/DefaultTemperatures.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>InitialPosition</blockName>
+            <fileName>S0_Q0.m</fileName>
+            <filePath>cms:/$(database)/VehicleControlDatabase/Basics/InitialConditionsModules/InitialPosition/S0_Q0.m</filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>LongitudinalControl.ControlSystems.AccelerationControl</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>LongitudinalControl.ControlSystems.UserDefinedControl</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Miscellaneous.BrakeHydraulicsControl</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Miscellaneous.EngineControl</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Miscellaneous.SuspensionTestRigControl</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>Miscellaneous.UserDefinedControl</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>LateralControl.ControlSystems.CurvatureControl</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+          <de.tesis.dynaware.simproject.resultmanagement.Data>
+            <blockName>LateralControl.ControlSystems.UserDefinedControl</blockName>
+            <fileName>(none)</fileName>
+            <filePath></filePath>
+            <parent class="de.tesis.dynaware.simproject.resultmanagement.Assembly" reference="../../.."/>
+          </de.tesis.dynaware.simproject.resultmanagement.Data>
+        </children>
+      </de.tesis.dynaware.simproject.resultmanagement.Assembly>
+    </assemblyList>
+    <systemProperties class="linked-hash-map"/>
+    <dyna4Plugins class="linked-hash-map"/>
+    <systemInfoMap class="linked-hash-map">
+      <entry>
+        <string>Host System</string>
+        <linked-hash-map>
+          <entry>
+            <string>Host Name</string>
+            <string>DE17001PC</string>
+          </entry>
+          <entry>
+            <string>Operating System</string>
+            <string>Windows 11</string>
+          </entry>
+          <entry>
+            <string>User Name</string>
+            <string>vimpndshared7</string>
+          </entry>
+        </linked-hash-map>
+      </entry>
+      <entry>
+        <string>DYNA4 System</string>
+        <linked-hash-map>
+          <entry>
+            <string>DYNA4 Studio Server Edition</string>
+            <string>9.1.1</string>
+          </entry>
+          <entry>
+            <string>DYNA4 Studio</string>
+            <string>9.1.1</string>
+          </entry>
+          <entry>
+            <string>DYNA4 Studio .Engine Model Blockset</string>
+            <string>9.1.1</string>
+          </entry>
+          <entry>
+            <string>DYNA4 Studio .Vehicle Model Blockset</string>
+            <string>9.1.1</string>
+          </entry>
+        </linked-hash-map>
+      </entry>
+      <entry>
+        <string>MATLAB System</string>
+        <linked-hash-map>
+          <entry>
+            <string>MATLAB</string>
+            <string>9.11</string>
+          </entry>
+          <entry>
+            <string>MATLAB Coder</string>
+            <string>5.3</string>
+          </entry>
+          <entry>
+            <string>Simulink</string>
+            <string>10.4</string>
+          </entry>
+          <entry>
+            <string>Simulink Coder</string>
+            <string>9.6</string>
+          </entry>
+          <entry>
+            <string>Vector CANoe MATLAB Integration Package</string>
+            <string>9.0.1</string>
+          </entry>
+          <entry>
+            <string>Vector DYNA4</string>
+            <string>9.1.1</string>
+          </entry>
+          <entry>
+            <string>Vector DYNA4 Engine Model Blockset</string>
+            <string>9.1.1</string>
+          </entry>
+          <entry>
+            <string>Vector DYNA4 Vehicle Model Blockset</string>
+            <string>9.1.1</string>
+          </entry>
+          <entry>
+            <string>MATLAB Java Runtime</string>
+            <string>1.8.0_202-b08</string>
+          </entry>
+        </linked-hash-map>
+      </entry>
+    </systemInfoMap>
+    <hostSystemInfoMap class="linked-hash-map" reference="../systemInfoMap/entry/linked-hash-map"/>
+    <dyna4SystemInfoMap class="linked-hash-map" reference="../systemInfoMap/entry[2]/linked-hash-map"/>
+    <matlabSystemInfoMap class="linked-hash-map" reference="../systemInfoMap/entry[3]/linked-hash-map"/>
+  </de.tesis.dynaware.simproject.resultmanagement.MetaData>
+</object-stream>

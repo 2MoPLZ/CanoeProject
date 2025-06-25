@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Panel" ControlName="BatteryPanel">
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X2c209ec8ed0a3e4c23eb11be72cba5ad11bc" ControlName="Group Box 6">
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X42fe33a8e3d0ee41adeb2e5e20f9dc4f6b40" ControlName="Track Bar 12">
+        <Property Name="Name">X42fe33a8e3d0ee41adeb2e5e20f9dc4f6b40</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 26</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;EMS;;;EMS_Battery_voltage;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X9044a374e7da4e4b02e9907eea6897f40941" ControlName="Track Bar 11">
+        <Property Name="Name">X9044a374e7da4e4b02e9907eea6897f40941</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 56</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">1</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;EMS;;;EMS_Battery;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Property Name="Name">X2c209ec8ed0a3e4c23eb11be72cba5ad11bc</Property>
+      <Property Name="Size">129, 100</Property>
+      <Property Name="Location">285, 5</Property>
+      <Property Name="Text">EMS 배터리 전압/잔량</Property>
+      <Property Name="TabIndex">6</Property>
+      <Property Name="UseWindowsStyle">False</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X766094e2e57d5e4e2ceaff5e554fc8809fc5" ControlName="Group Box 5">
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X3ac46db0e9bfee42adea574ed382401d2efe" ControlName="Track Bar 10">
+        <Property Name="Name">X3ac46db0e9bfee42adea574ed382401d2efe</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 56</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;BCM;;;Cluster_Battery;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xa389d5f2e7752e480be9160e68170dde2cd8" ControlName="Track Bar 9">
+        <Property Name="Name">Xa389d5f2e7752e480be9160e68170dde2cd8</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 26</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">1</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;BCM;;;Cluster_Battery_voltage;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Property Name="Name">X766094e2e57d5e4e2ceaff5e554fc8809fc5</Property>
+      <Property Name="Size">134, 100</Property>
+      <Property Name="Location">285, 111</Property>
+      <Property Name="Text">CLUSTER 배터리 전압/잔량</Property>
+      <Property Name="TabIndex">5</Property>
+      <Property Name="UseWindowsStyle">False</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X6ebe2901ec224e436fe99bfedafb43cdcb1b" ControlName="Group Box 4">
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X9d345a0fea1aae47ddeb979ee2988d8bfc62" ControlName="Track Bar 8">
+        <Property Name="Name">X9d345a0fea1aae47ddeb979ee2988d8bfc62</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 56</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;BCM;;;FSW_Battery;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X5baff49ae6ae4e443eeb464e439b2c3ea265" ControlName="Track Bar 7">
+        <Property Name="Name">X5baff49ae6ae4e443eeb464e439b2c3ea265</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 26</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">1</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;BCM;;;FSW_Battery_voltage;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Property Name="Name">X6ebe2901ec224e436fe99bfedafb43cdcb1b</Property>
+      <Property Name="Size">134, 100</Property>
+      <Property Name="Location">145, 111</Property>
+      <Property Name="Text">FSW 배터리 전압/잔량</Property>
+      <Property Name="TabIndex">4</Property>
+      <Property Name="UseWindowsStyle">False</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X10bc152ce54d2e492ceb75aef8d9abb20a01" ControlName="Group Box 3">
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X3f9daf55e60eae4244e93fbe778889834d6e" ControlName="Track Bar 6">
+        <Property Name="Name">X3f9daf55e60eae4244e93fbe778889834d6e</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 56</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;BCM;;;MOOD_LP_Battery;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X11f48612e85f2e4d66e91c4e4341a74aed94" ControlName="Track Bar 5">
+        <Property Name="Name">X11f48612e85f2e4d66e91c4e4341a74aed94</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 26</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">1</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;BCM;;;MOOD_LP_Battery_voltage;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Property Name="Name">X10bc152ce54d2e492ceb75aef8d9abb20a01</Property>
+      <Property Name="Size">134, 100</Property>
+      <Property Name="Location">145, 5</Property>
+      <Property Name="Text">MOOD 배터리 전압/잔량</Property>
+      <Property Name="TabIndex">3</Property>
+      <Property Name="UseWindowsStyle">False</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X41077373e35d2e44f9e9ceae5b5b125fe224" ControlName="Group Box 2">
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X748608ffe2549e4bfeea7e6e2eb40b045814" ControlName="Track Bar 4">
+        <Property Name="Name">X748608ffe2549e4bfeea7e6e2eb40b045814</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 56</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;BCM;;;ADAS_Battery;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xfa7ac84eeb5f3e4d9eeabb6e31a6d80a743c" ControlName="Track Bar 3">
+        <Property Name="Name">Xfa7ac84eeb5f3e4d9eeabb6e31a6d80a743c</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 26</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">1</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;BCM;;;ADAS_Battery_voltage;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Property Name="Name">X41077373e35d2e44f9e9ceae5b5b125fe224</Property>
+      <Property Name="Size">134, 100</Property>
+      <Property Name="Location">5, 111</Property>
+      <Property Name="Text">ADAS 배터리 전압/잔량</Property>
+      <Property Name="TabIndex">2</Property>
+      <Property Name="UseWindowsStyle">False</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.GroupBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="Xe08a8f4ee319be4f6ce8bc5e38a8b73533fc" ControlName="Group Box 1">
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X9c72dd66ef31de4161eb1aee3ae8ebc5dc19" ControlName="Track Bar 2">
+        <Property Name="Name">X9c72dd66ef31de4161eb1aee3ae8ebc5dc19</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 56</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">2</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;BCM;;;Battery;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Object Type="Vector.CANalyzer.Panels.Design.TrackBarControl, Vector.CANalyzer.Panels.CommonControls, Version=18.0.150.0, Culture=neutral, PublicKeyToken=null" Name="X282f5364e78b6e425de9f39ef8fef17aa346" ControlName="Track Bar 1">
+        <Property Name="Name">X282f5364e78b6e425de9f39ef8fef17aa346</Property>
+        <Property Name="Size">124, 24</Property>
+        <Property Name="Location">5, 26</Property>
+        <Property Name="TickStyle">None</Property>
+        <Property Name="TabIndex">1</Property>
+        <Property Name="MaximumDouble">100</Property>
+        <Property Name="MaximumSize">100000, 24</Property>
+        <Property Name="Maximum">100</Property>
+        <Property Name="SymbolConfiguration">8;16;BCM;;;Battery_voltage;1;;;-1;;;Value;;;0</Property>
+      </Object>
+      <Property Name="Name">Xe08a8f4ee319be4f6ce8bc5e38a8b73533fc</Property>
+      <Property Name="Size">134, 100</Property>
+      <Property Name="Location">5, 5</Property>
+      <Property Name="Text">전체 배터리 전압/잔량</Property>
+      <Property Name="TabIndex">1</Property>
+      <Property Name="UseWindowsStyle">False</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">422, 219</Property>
+    <Property Name="Location">0, 0</Property>
+    <Property Name="BackColor">255, 255, 255, 255</Property>
+  </Object>
+</Panel>

@@ -1,0 +1,105 @@
+/*@!Encoding:1252*/
+/*
+ * DYNA4_Functions.cin
+ *
+ * This include provides functions, that can be used to control the DYNA4 simulation.
+ *
+ * This file has been prepared for DYNA4 R9 SP1. Don't use with different versions!
+ *
+ * Copyright 2020-2024, Vector Informatik GmbH - All right reserved
+ *
+ */
+
+export long DYNA4LoadScenario(char scenarioFolderPath[])
+{
+  char UserFiles[1024];
+  long res;
+  sysSetVariableInt("AnimationProjectLauncher","Status",255);
+  sysSetVariableInt("AnimationProjectLauncher","TriggerAnimationProjectLauncher",255);
+  sysSetVariableString("DYNA4","UserFileAbsPath", scenarioFolderPath);
+  testWaitForSysVar(sysvar::DYNA4::UserFileNames,1000);
+  sysGetVariableString(sysvar::DYNA4::UserFileNames,UserFiles,elcount(UserFiles));
+  res = strstr_regex(UserFiles, ".*\\.dat");
+  if (res != -1)
+  {
+    return 1;
+  }
+  else
+  {
+    return -1;
+  }  
+}
+
+export void DYNA4WaitForScenarioLoad(int waitForAnimationProjectLoad)
+{
+  if (waitForAnimationProjectLoad == 1) {
+  // use animation status to see, that project is loaded
+    testWaitForSignalMatch(sysvar::AnimationProjectLauncher::Status,4,100000);
+  }
+  else {
+    // use the call to animation laucher to see, that file sync, dat file assignment, ... is over
+    testWaitForSignalMatch(sysvar::AnimationProjectLauncher::TriggerAnimationProjectLauncher,0,10000);
+  }
+}
+
+export void DYNA4WaitForScenarioEnd()
+{
+  char stateVTraceVariable[1024];
+  
+  sysGetVariableString(sysvar::DYNA4::GlobalDyna4RootNodeName, stateVTraceVariable, elcount(stateVTraceVariable));
+  strncat(stateVTraceVariable, "::state_v_trace",  elcount(stateVTraceVariable));
+
+  // wait shortly to make sure the state set was reset from previous simulations
+  testWaitForTimeout(250);
+  testWaitForSignalMatch(lookupSysvarFloat(stateVTraceVariable), 8.0, 1000000);
+}
+
+export long DYNA4IsScenarioFinished()
+{
+  char resetVariable[1024];
+  char stateVTraceVariable[1024];
+  double value;
+  double stateVTraceValue;
+  
+  sysGetVariableString(sysvar::DYNA4::GlobalDyna4RootNodeName, resetVariable, elcount(resetVariable));
+  strncat(resetVariable, "::Parameters::SimulationControl::DYNA4_Reset",  elcount(resetVariable));
+  value = sysGetVariableFloat(resetVariable, "Value");
+
+  sysGetVariableString(sysvar::DYNA4::GlobalDyna4RootNodeName, stateVTraceVariable, elcount(stateVTraceVariable));
+  strncat(stateVTraceVariable, "::state_v_trace",  elcount(stateVTraceVariable));
+  stateVTraceValue = sysGetVariableFloat(stateVTraceVariable, "Value");
+  
+  if (value == 1.0) {
+    // simulation should be started when calling this function
+    return -1;
+  }
+  if (stateVTraceValue == 8.0) {
+    // state_v_trace == 8.0 indicates, that the DYNA4 scenario length is reached
+    return 1;
+  }
+  else
+  {
+    // scenario is still running
+    return 0;
+  }
+}
+
+export void DYNA4StartScenario()
+{
+  char resetVariable[1024];
+  
+  sysGetVariableString(sysvar::DYNA4::GlobalDyna4RootNodeName, resetVariable, elcount(resetVariable));
+  strncat(resetVariable, "::Parameters::SimulationControl::DYNA4_Reset",  elcount(resetVariable));
+  
+  sysSetVariableFloat(resetVariable, "Value", 0);
+}
+
+export void DYNA4StopScenario()
+{
+  char resetVariable[1024];
+  
+  sysGetVariableString(sysvar::DYNA4::GlobalDyna4RootNodeName, resetVariable, elcount(resetVariable));
+  strncat(resetVariable, "::Parameters::SimulationControl::DYNA4_Reset",  elcount(resetVariable));
+  
+  sysSetVariableFloat(resetVariable, "Value", 1);
+}

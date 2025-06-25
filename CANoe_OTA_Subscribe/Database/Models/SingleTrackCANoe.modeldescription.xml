@@ -1,0 +1,1802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelDescription version="9.1.1" name="SingleTrackCANoe">
+  <Component name="SimulationControl">
+    <blockName>SimulationControl</blockName>
+    <simulinkPath>SingleTrackCANoe/SimulationControl</simulinkPath>
+    <componentGroup>SimulationControl</componentGroup>
+    <useComponentGroupAsName>true</useComponentGroupAsName>
+    <scenarioComponent>true</scenarioComponent>
+    <storeAssemblyInRootFolder>true</storeAssemblyInRootFolder>
+  </Component>
+  <Component name="Animation3">
+    <blockName>Animation</blockName>
+    <simulinkPath>SingleTrackCANoe/SimulationModel/Animation</simulinkPath>
+    <componentGroup>Animation</componentGroup>
+    <useComponentGroupAsName>true</useComponentGroupAsName>
+    <Module name="AnimationModules/Animation3">
+      <blockName>Animation3</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Animation/Animation3</simulinkPath>
+    </Module>
+    <Module name="AnimationModules/AnimationContentGeneric">
+      <blockName>AnimationContent</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Animation/AnimationContent</simulinkPath>
+    </Module>
+  </Component>
+  <Component name="BasicControlUnit">
+    <blockName>ControlUnits</blockName>
+    <simulinkPath>SingleTrackCANoe/SimulationModel/ControlUnits</simulinkPath>
+    <componentGroup>ControlUnits</componentGroup>
+    <useComponentGroupAsName>true</useComponentGroupAsName>
+    <Subcomponent name="NoADASControl">
+      <blockName>ADAS</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/ControlUnits/ADAS</simulinkPath>
+      <componentGroup>ADAS</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+    </Subcomponent>
+    <Subcomponent name="BasicLightControl">
+      <blockName>LCU</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/ControlUnits/LCU</simulinkPath>
+      <componentGroup>LCU</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+    </Subcomponent>
+    <Subcomponent name="InertialMeasurementUnit">
+      <blockName>StateSensors</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/ControlUnits/StateSensors</simulinkPath>
+      <componentGroup>StateSensors</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+      <Module name="StateSensorModules/InertialMeasurementUnit">
+        <blockName>InertialMeasurementUnit</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/ControlUnits/StateSensors/InertialMeasurementUnit</simulinkPath>
+      </Module>
+    </Subcomponent>
+    <Subcomponent name="ConventionalVehicleControl">
+      <blockName>VCU</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/ControlUnits/VCU</simulinkPath>
+      <componentGroup>VCU</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+    </Subcomponent>
+  </Component>
+  <Component name="Environment">
+    <blockName>Environment</blockName>
+    <simulinkPath>SingleTrackCANoe/SimulationModel/Environment</simulinkPath>
+    <configurations>
+      <key>RoadType</key>
+      <value name="RoadType">
+        <comment>Road type</comment>
+        <selection>Proving ground</selection>
+        <availableSelection>Proving ground</availableSelection>
+        <availableSelection>3D road</availableSelection>
+        <availableSelection>OpenDRIVE road</availableSelection>
+      </value>
+    </configurations>
+    <componentGroup>Environment</componentGroup>
+    <defaultFunction>dm_dflt_environment</defaultFunction>
+    <useComponentGroupAsName>true</useComponentGroupAsName>
+    <scenarioComponent>true</scenarioComponent>
+    <storeAssemblyInRootFolder>true</storeAssemblyInRootFolder>
+    <Subcomponent name="Road">
+      <blockName>Road</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road</simulinkPath>
+      <Module name="RoadModules/3DRoad/ProvingGround">
+        <blockName>ProvingGround</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road/Road/ProvingGround</simulinkPath>
+      </Module>
+      <Module name="RoadModules/3DRoad/HorizontalLayout">
+        <blockName>HorizontalLayout</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road/Road/HorizontalLayout</simulinkPath>
+      </Module>
+      <Module name="RoadModules/3DRoad/HeightProfile">
+        <blockName>HeightProfile</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road/Road/HeightProfile</simulinkPath>
+      </Module>
+      <Module name="RoadModules/3DRoad/SurfaceProfile">
+        <blockName>SurfaceProfile</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road/Road/SurfaceProfile</simulinkPath>
+      </Module>
+      <Module name="RoadModules/3DRoad/RoadSigns">
+        <blockName>RoadSigns</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road/Road/RoadSigns</simulinkPath>
+      </Module>
+      <Module name="RoadModules/3DRoad/ReferencePath">
+        <blockName>ReferencePath</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road/Road/ReferencePath</simulinkPath>
+      </Module>
+      <Module name="RoadModules/3DRoad/OpenDRIVE">
+        <blockName>OpenDRIVE</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road/Road/OpenDRIVE</simulinkPath>
+      </Module>
+      <Module name="RoadModules/3DRoad/AnimationContentProvingGround">
+        <blockName>AnimationContentProvingGround</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road/Road/AnimationContentProvingGround</simulinkPath>
+      </Module>
+      <Module name="RoadModules/3DRoad/AnimationContent3DRoad">
+        <blockName>AnimationContent3DRoad</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road/Road/AnimationContent3DRoad</simulinkPath>
+      </Module>
+      <Module name="RoadModules/3DRoad/AnimationContentOpenDRIVE">
+        <blockName>AnimationContentOpenDRIVE</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road/Road/AnimationContentOpenDRIVE</simulinkPath>
+      </Module>
+      <Module name="RoadModules/3DRoad/AnimationContentTerrain">
+        <blockName>AnimationContentTerrain</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/Road/Road/AnimationContentTerrain</simulinkPath>
+      </Module>
+    </Subcomponent>
+    <Module name="EnvironmentModules/AdditionalRoadElevation">
+      <blockName>AdditionalRoadElevation</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/AdditionalRoadElevation</simulinkPath>
+    </Module>
+    <Module name="EnvironmentModules/AmbientConditions">
+      <blockName>AmbientConditions</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/AmbientConditions</simulinkPath>
+    </Module>
+    <Module name="AnimationModules/AnimationContentEnvironment">
+      <blockName>AnimationContent</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/AnimationContent</simulinkPath>
+    </Module>
+    <Module name="EnvironmentModules/RoadFrictionScaling">
+      <blockName>RoadFrictionScaling</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/RoadFrictionScaling</simulinkPath>
+    </Module>
+    <Module name="EnvironmentModules/WindImpact">
+      <blockName>WindImpact</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Environment/WindImpact</simulinkPath>
+    </Module>
+  </Component>
+  <Component name="NoTraffic">
+    <blockName>Traffic</blockName>
+    <simulinkPath>SingleTrackCANoe/SimulationModel/Traffic</simulinkPath>
+    <componentGroup>Traffic</componentGroup>
+    <useComponentGroupAsName>true</useComponentGroupAsName>
+    <scenarioComponent>true</scenarioComponent>
+  </Component>
+  <Component name="NoTrailer">
+    <blockName>Trailer</blockName>
+    <simulinkPath>SingleTrackCANoe/SimulationModel/Trailer</simulinkPath>
+    <componentGroup>Trailer</componentGroup>
+    <storeAssemblyInRootFolder>true</storeAssemblyInRootFolder>
+  </Component>
+  <Component name="Vehicle">
+    <blockName>Vehicle</blockName>
+    <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle</simulinkPath>
+    <componentGroup>Vehicle</componentGroup>
+    <defaultFunction>dm_dflt_vehicle</defaultFunction>
+    <useComponentGroupAsName>true</useComponentGroupAsName>
+    <storeAssemblyInRootFolder>true</storeAssemblyInRootFolder>
+    <Subcomponent name="RegularAuxiliaries">
+      <blockName>Auxiliaries</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Auxiliaries</simulinkPath>
+      <componentGroup>Auxiliaries</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+      <Module name="AuxiliariesModules/Alternator">
+        <blockName>Alternator</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Auxiliaries/Generator/Alternator</simulinkPath>
+      </Module>
+      <Module name="AuxiliariesModules/VoltageRegulator">
+        <blockName>VoltageRegulator</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Auxiliaries/Generator/VoltageRegulator</simulinkPath>
+      </Module>
+      <Module name="LookupTableModules/ConstantVoltage">
+        <blockName>GeneratorReferenceVoltage</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Auxiliaries/SimpleEnergyManagement/GeneratorReferenceVoltage</simulinkPath>
+      </Module>
+      <Module name="AuxiliariesModules/PermanentMagnetDCMotor">
+        <blockName>PermanentMagnetDCMotor</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Auxiliaries/Starter/PermanentMagnetDCMotor</simulinkPath>
+      </Module>
+      <Module name="AuxiliariesModules/StarterControl">
+        <blockName>StarterControl</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Auxiliaries/Starter/StarterControl</simulinkPath>
+      </Module>
+    </Subcomponent>
+    <Subcomponent name="BrakeSystem_NoControl">
+      <blockName>BrakeSystem</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/BrakeSystem</simulinkPath>
+      <componentGroup>BrakeSystem</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+      <Subcomponent name="NoControl">
+        <blockName>BrakeSystemControlUnit</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/BrakeSystem/BrakeSystemControlUnit</simulinkPath>
+        <componentGroup>BrakeSystemControlUnit</componentGroup>
+        <useComponentGroupAsName>true</useComponentGroupAsName>
+      </Subcomponent>
+      <Subcomponent name="BasicBrakeHydraulics">
+        <blockName>BrakeSystemPhysics</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/BrakeSystem/BrakeSystemPhysics</simulinkPath>
+        <componentGroup>BrakeSystemPhysics</componentGroup>
+        <useComponentGroupAsName>true</useComponentGroupAsName>
+        <Module name="BrakeSystemModules/TabledBrakeHydraulics">
+          <blockName>TabledBrakeHydraulics</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/BrakeSystem/BrakeSystemPhysics/TabledBrakeHydraulics</simulinkPath>
+        </Module>
+      </Subcomponent>
+    </Subcomponent>
+    <Subcomponent name="SingleTrackChassis">
+      <blockName>Chassis</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Chassis</simulinkPath>
+      <componentGroup>Chassis</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+      <Module name="ReducedChassisModules/SingleTrack">
+        <blockName>SingleTrack</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Chassis/SingleTrack</simulinkPath>
+      </Module>
+    </Subcomponent>
+    <Subcomponent name="NoCoolingSystem">
+      <blockName>CoolingSystem</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/CoolingSystem</simulinkPath>
+      <componentGroup>CoolingSystem</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+    </Subcomponent>
+    <Subcomponent name="LossFreeFourWheelDrivetrain">
+      <blockName>Drivetrain</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Drivetrain</simulinkPath>
+      <componentGroup>Drivetrain</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+      <Subcomponent name="BasicTransmissionControl">
+        <blockName>DrivetrainControlUnit</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Drivetrain/DrivetrainControlUnit</simulinkPath>
+        <componentGroup>DrivetrainControlUnit</componentGroup>
+        <useComponentGroupAsName>true</useComponentGroupAsName>
+        <Module name="TransmissionControlModules/TransmissionControlUnit">
+          <blockName>TransmissionControlUnit</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Drivetrain/DrivetrainControlUnit/TransmissionControlUnit/TransmissionControlUnit</simulinkPath>
+        </Module>
+      </Subcomponent>
+      <Subcomponent name="LossFreeFourWheelDrivetrainPhysics">
+        <blockName>DrivetrainPhysics</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Drivetrain/DrivetrainPhysics</simulinkPath>
+        <componentGroup>DrivetrainPhysics</componentGroup>
+        <useComponentGroupAsName>true</useComponentGroupAsName>
+        <Module name="DrivetrainModules/LossFreeFourWheelDrivetrain">
+          <blockName>LossFreeFourWheelDrivetrain</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Drivetrain/DrivetrainPhysics/LossFreeFourWheelDrivetrain</simulinkPath>
+        </Module>
+      </Subcomponent>
+    </Subcomponent>
+    <Subcomponent name="ConstantVoltageElectricalSystem">
+      <blockName>ElectricalSystem</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/ElectricalSystem</simulinkPath>
+      <componentGroup>ElectricalSystem</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+      <Module name="LookupTableModules/ConstantSOC">
+        <blockName>LowVoltageBatteryInitialSOC</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/ElectricalSystem/LowVoltageBatteryInitialSOC</simulinkPath>
+      </Module>
+      <Module name="LookupTableModules/ConstantVoltage">
+        <blockName>LowVoltageBatteryVoltage</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/ElectricalSystem/LowVoltageBatteryVoltage</simulinkPath>
+      </Module>
+    </Subcomponent>
+    <Subcomponent name="IdealizedMapEngine_BasicControl">
+      <blockName>Engine</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Engine</simulinkPath>
+      <componentGroup>Engine</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+      <Subcomponent name="BasicControl">
+        <blockName>EngineControlUnit</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Engine/EngineControlUnit</simulinkPath>
+        <componentGroup>EngineControlUnit</componentGroup>
+        <useComponentGroupAsName>true</useComponentGroupAsName>
+        <Module name="BasicEngineControlModules/FuelCutoff">
+          <blockName>FuelCutoff</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Engine/EngineControlUnit/FuelCutoff</simulinkPath>
+        </Module>
+        <Module name="BasicEngineControlModules/IdleSpeedController">
+          <blockName>IdleSpeedController</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Engine/EngineControlUnit/IdleSpeedController</simulinkPath>
+        </Module>
+        <Module name="BasicEngineControlModules/AcceleratorPedalCharacteristic">
+          <blockName>AcceleratorPedalCharacteristic</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Engine/EngineControlUnit/IntendedEngineLoad/AccPedalCharacteristic/AcceleratorPedalCharacteristic</simulinkPath>
+        </Module>
+        <Module name="BasicEngineControlModules/EngineLoadSignalCalculation">
+          <blockName>EngineLoadSignalCalculation</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Engine/EngineControlUnit/IntendedEngineLoad/EngLoadSignalCalculation/EngineLoadSignalCalculation</simulinkPath>
+        </Module>
+      </Subcomponent>
+      <Subcomponent name="IdealizedMapEnginePhysics">
+        <blockName>EnginePhysics</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Engine/EnginePhysics</simulinkPath>
+        <componentGroup>EnginePhysics</componentGroup>
+        <useComponentGroupAsName>true</useComponentGroupAsName>
+        <Module name="EngineLookupTableModules/TabledEngineTorque">
+          <blockName>TabledEngineTorque</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Engine/EnginePhysics/TabledEngineTorque</simulinkPath>
+        </Module>
+        <Module name="EngineLookupTableModules/TabledFuelConsumption">
+          <blockName>TabledFuelConsumption</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/Engine/EnginePhysics/TabledFuelConsumption</simulinkPath>
+        </Module>
+      </Subcomponent>
+    </Subcomponent>
+    <Subcomponent name="VehicleRoadInfo">
+      <blockName>VehicleRoadInfo</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/VehicleRoadInfo</simulinkPath>
+      <componentGroup>VehicleRoadInfo</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+    </Subcomponent>
+    <Subcomponent name="TabledTire_WheelSystem">
+      <blockName>WheelSystem</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem</simulinkPath>
+      <componentGroup>WheelSystem</componentGroup>
+      <useComponentGroupAsName>true</useComponentGroupAsName>
+      <Subcomponent name="FrontLeft">
+        <blockName>FrontLeftWheelSystem</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/FrontLeftWheelSystem</simulinkPath>
+        <Subcomponent name="TabledTire">
+          <blockName>Tire</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/FrontLeftWheelSystem/Tire</simulinkPath>
+          <componentGroup>Tire</componentGroup>
+          <Module name="ReducedTireModules/TabledTireForces">
+            <blockName>TabledTireForces</blockName>
+            <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/FrontLeftWheelSystem/Tire/TabledTireForces</simulinkPath>
+          </Module>
+        </Subcomponent>
+        <Module name="WheelSystemModules/Wheel">
+          <blockName>Wheel</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/FrontLeftWheelSystem/Wheel</simulinkPath>
+        </Module>
+      </Subcomponent>
+      <Subcomponent name="FrontRight">
+        <blockName>FrontRightWheelSystem</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/FrontRightWheelSystem</simulinkPath>
+        <Subcomponent name="TabledTire">
+          <blockName>Tire</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/FrontRightWheelSystem/Tire</simulinkPath>
+          <componentGroup>Tire</componentGroup>
+          <Module name="ReducedTireModules/TabledTireForces">
+            <blockName>TabledTireForces</blockName>
+            <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/FrontRightWheelSystem/Tire/TabledTireForces</simulinkPath>
+          </Module>
+        </Subcomponent>
+        <Module name="WheelSystemModules/Wheel">
+          <blockName>Wheel</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/FrontRightWheelSystem/Wheel</simulinkPath>
+        </Module>
+      </Subcomponent>
+      <Subcomponent name="RearLeft">
+        <blockName>RearLeftWheelSystem</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/RearLeftWheelSystem</simulinkPath>
+        <Subcomponent name="TabledTire">
+          <blockName>Tire</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/RearLeftWheelSystem/Tire</simulinkPath>
+          <componentGroup>Tire</componentGroup>
+          <Module name="ReducedTireModules/TabledTireForces">
+            <blockName>TabledTireForces</blockName>
+            <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/RearLeftWheelSystem/Tire/TabledTireForces</simulinkPath>
+          </Module>
+        </Subcomponent>
+        <Module name="WheelSystemModules/Wheel">
+          <blockName>Wheel</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/RearLeftWheelSystem/Wheel</simulinkPath>
+        </Module>
+      </Subcomponent>
+      <Subcomponent name="RearRight">
+        <blockName>RearRightWheelSystem</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/RearRightWheelSystem</simulinkPath>
+        <Subcomponent name="TabledTire">
+          <blockName>Tire</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/RearRightWheelSystem/Tire</simulinkPath>
+          <componentGroup>Tire</componentGroup>
+          <Module name="ReducedTireModules/TabledTireForces">
+            <blockName>TabledTireForces</blockName>
+            <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/RearRightWheelSystem/Tire/TabledTireForces</simulinkPath>
+          </Module>
+        </Subcomponent>
+        <Module name="WheelSystemModules/Wheel">
+          <blockName>Wheel</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/WheelSystem/RearRightWheelSystem/Wheel</simulinkPath>
+        </Module>
+      </Subcomponent>
+    </Subcomponent>
+    <Module name="GeneralSettings">
+      <blockName>GeneralSettings</blockName>
+      <simulinkPath></simulinkPath>
+    </Module>
+    <Module name="AnimationModules/AnimationContentVehicle">
+      <blockName>AnimationContentVehicle</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/AnimationContentVehicle</simulinkPath>
+    </Module>
+    <Module name="DriverInformationModules/DriverInformationVehicle">
+      <blockName>DriverInformationVehicle</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/Vehicle/DriverInformationVehicle</simulinkPath>
+    </Module>
+  </Component>
+  <Component name="VehicleControl">
+    <blockName>VehicleControl</blockName>
+    <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl</simulinkPath>
+    <componentGroup>VehicleControl</componentGroup>
+    <defaultFunction>dm_dflt_vehiclecontrol</defaultFunction>
+    <useComponentGroupAsName>true</useComponentGroupAsName>
+    <scenarioComponent>true</scenarioComponent>
+    <storeAssemblyInRootFolder>true</storeAssemblyInRootFolder>
+    <Subcomponent name="LongitudinalControl">
+      <blockName>LongitudinalControl</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LongitudinalControl</simulinkPath>
+      <Subcomponent name="ControlSystems">
+        <blockName>ControlSystems</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LongitudinalControl/ControlSystems</simulinkPath>
+        <Module name="LongitudinalControllerModules/ShiftControl">
+          <blockName>ShiftControl</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LongitudinalControl/ControlSystems/ShiftControl</simulinkPath>
+        </Module>
+        <Module name="LongitudinalControllerModules/SpeedControl">
+          <blockName>SpeedControl</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LongitudinalControl/ControlSystems/SpeedControl</simulinkPath>
+        </Module>
+        <Module name="LongitudinalControllerModules/AccelerationControl">
+          <blockName>AccelerationControl</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LongitudinalControl/ControlSystems/Longitudinal Controller/Acceleration Control/AccelerationControl</simulinkPath>
+        </Module>
+        <Module name="LongitudinalControllerModules/UserDefinedLongitudinalControl">
+          <blockName>UserDefinedControl</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LongitudinalControl/ControlSystems/Longitudinal Controller/User-defined Control/UserDefinedControl</simulinkPath>
+        </Module>
+      </Subcomponent>
+      <Module name="ManeuverControlModules/LongitudinalManeuver">
+        <blockName>Maneuver</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LongitudinalControl/ControlSystemsPreprocessor/Maneuver</simulinkPath>
+      </Module>
+      <Module name="LongitudinalControllerModules/ReferenceSpeedComputation">
+        <blockName>ReferenceSpeedComputation</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LongitudinalControl/ControlSystemsPreprocessor/ReferenceSpeedComputation</simulinkPath>
+        <subdirectories>Basic</subdirectories>
+        <subdirectories>Standard</subdirectories>
+      </Module>
+    </Subcomponent>
+    <Subcomponent name="Miscellaneous">
+      <blockName>Miscellaneous</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/Miscellaneous</simulinkPath>
+      <Module name="MiscellaneousControlModules/BrakeHydraulicsControl">
+        <blockName>BrakeHydraulicsControl</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/Miscellaneous/BrakeHydraulicsControl</simulinkPath>
+      </Module>
+      <Module name="MiscellaneousControlModules/EngineControl">
+        <blockName>EngineControl</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/Miscellaneous/EngineControl</simulinkPath>
+      </Module>
+      <Module name="MiscellaneousControlModules/SuspensionTestRigControl">
+        <blockName>SuspensionTestRigControl</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/Miscellaneous/SuspensionTestRigControl</simulinkPath>
+      </Module>
+      <Module name="MiscellaneousControlModules/TemperatureControl">
+        <blockName>TemperatureControl</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/Miscellaneous/TemperatureControl</simulinkPath>
+      </Module>
+      <Module name="MiscellaneousControlModules/UserDefinedControl">
+        <blockName>UserDefinedControl</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/Miscellaneous/UserDefinedControl</simulinkPath>
+      </Module>
+    </Subcomponent>
+    <Subcomponent name="LateralControl">
+      <blockName>Enabled LateralControl</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LateralControl/Enabled LateralControl</simulinkPath>
+      <Subcomponent name="ControlSystems">
+        <blockName>ControlSystems</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LateralControl/Enabled LateralControl/ControlSystems</simulinkPath>
+        <Module name="LateralControllerModules/CurvatureControl">
+          <blockName>CurvatureControl</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LateralControl/Enabled LateralControl/ControlSystems/Control Systems Parameters/CurvatureControl</simulinkPath>
+          <subdirectories>Basic</subdirectories>
+          <subdirectories>Standard</subdirectories>
+        </Module>
+        <Module name="LateralControllerModules/PathControl">
+          <blockName>PathControl</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LateralControl/Enabled LateralControl/ControlSystems/Control Systems Parameters/PathControl</simulinkPath>
+          <subdirectories>Basic</subdirectories>
+          <subdirectories>Standard</subdirectories>
+        </Module>
+        <Module name="LateralControllerModules/UserDefinedLateralControl">
+          <blockName>UserDefinedControl</blockName>
+          <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LateralControl/Enabled LateralControl/ControlSystems/Lateral Controller/User-Defined Control/UserDefinedControl</simulinkPath>
+        </Module>
+      </Subcomponent>
+      <Module name="ManeuverControlModules/LateralManeuver">
+        <blockName>Maneuver</blockName>
+        <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/LateralControl/Enabled LateralControl/ControlSystemsPreprocessor/Maneuver</simulinkPath>
+      </Module>
+    </Subcomponent>
+    <Module name="InitialConditionsModules/InitialPosition">
+      <blockName>InitialPosition</blockName>
+      <simulinkPath>SingleTrackCANoe/SimulationModel/VehicleControl/InitialConditions/InitialPosition</simulinkPath>
+    </Module>
+  </Component>
+  <Signal name="CTRL.AdditionalRoadElevation.AddLatRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.AddLongRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.ExternalAddLatRoadSlopeEnforced" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.ExternalAddLatRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.ExternalAddLongRoadSlopeEnforced" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.ExternalAddLongRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.FrontLeftAddLatRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.FrontLeftAddLongRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.FrontLeftAddRoadElev[m]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.FrontRightAddLatRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.FrontRightAddLongRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.FrontRightAddRoadElev[m]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.LocalRoadSysSwitch[0;1]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.RearLeftAddLatRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.RearLeftAddLongRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.RearLeftAddRoadElev[m]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.RearRightAddLatRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.RearRightAddLongRoadSlope[-]" width="1"/>
+  <Signal name="CTRL.AdditionalRoadElevation.RearRightAddRoadElev[m]" width="1"/>
+  <Signal name="CTRL.EnvironmentalConditions.AirDensity[kg/m**3]" width="1"/>
+  <Signal name="CTRL.EnvironmentalConditions.AmbTemp[K]" width="1"/>
+  <Signal name="CTRL.EnvironmentalConditions.FrontLeftFrictionScaling[0_2]" width="1"/>
+  <Signal name="CTRL.EnvironmentalConditions.FrontRightFrictionScaling[0_2]" width="1"/>
+  <Signal name="CTRL.EnvironmentalConditions.RearLeftFrictionScaling[0_2]" width="1"/>
+  <Signal name="CTRL.EnvironmentalConditions.RearRightFrictionScaling[0_2]" width="1"/>
+  <Signal name="CTRL.EnvironmentalConditions.WindDirection[rad]" width="1"/>
+  <Signal name="CTRL.EnvironmentalConditions.WindSpd[m/s]" width="1"/>
+  <Signal name="CTRL.InitialPosition.InitialPitch[rad]" width="1"/>
+  <Signal name="CTRL.InitialPosition.InitialPositionX(WorldSys)[m]" width="1"/>
+  <Signal name="CTRL.InitialPosition.InitialPositionY(WorldSys)[m]" width="1"/>
+  <Signal name="CTRL.InitialPosition.InitialPositionZ(WorldSys)[m]" width="1"/>
+  <Signal name="CTRL.InitialPosition.InitialRoll[rad]" width="1"/>
+  <Signal name="CTRL.InitialPosition.InitialYaw[rad]" width="1"/>
+  <Signal name="CTRL.LateralControl.LateralPhase[-]" width="1"/>
+  <Signal name="CTRL.LateralControl.LeftIndicator[0;1]" width="1"/>
+  <Signal name="CTRL.LateralControl.RefCurvEnforced" width="1"/>
+  <Signal name="CTRL.LateralControl.RefCurv[1/m]" width="1"/>
+  <Signal name="CTRL.LateralControl.RefLaneEnforced" width="1"/>
+  <Signal name="CTRL.LateralControl.RefLane[-]" width="1"/>
+  <Signal name="CTRL.LateralControl.RefLatPosEnforced" width="1"/>
+  <Signal name="CTRL.LateralControl.RefLatPos[m]" width="1"/>
+  <Signal name="CTRL.LateralControl.RefPathEnforced" width="1"/>
+  <Signal name="CTRL.LateralControl.RefPath[-]" width="1"/>
+  <Signal name="CTRL.LateralControl.RightIndicator[0;1]" width="1"/>
+  <Signal name="CTRL.LateralControl.SteeringWheelAng[rad]" width="1"/>
+  <Signal name="CTRL.LateralControl.SteeringWheelTrq[Nm]" width="1"/>
+  <Signal name="CTRL.LateralControl.UserDefinedRefValueEnforced" width="1"/>
+  <Signal name="CTRL.LateralControl.UserDefinedRefValue[-]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.ABSSwitch[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.ACCRefSpd[m/s]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.ACCSwitch[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.AEBSwitch[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.ASRRequestSwitch[0;2]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.ASRTrq[Nm]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.AccPedalPos[0_1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.BrakePedalPos[0_1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.BrakeSwitch[1;3]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.ClutchPos[0_1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.DayRunningLight[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.DriverInfo.ConventionalVehicleSwitch[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.DriverInfo.MeanEngDragTrq[Nm]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.DriverInfo.MeanEngMaxTrq[Nm]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.DriverInfo.ThirtyPercentAccPedalEngTrq[Nm]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.DriverInfo.VCUFullAccPedalTrq[Nm]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.DriverInfo.VCUTorqueRatio[-]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.DriverInfo.VCUZeroAccPedalTrq[Nm]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.ESCSwitch[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.EngRunPermission[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.FogLampFront[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.FogLampRear[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.FrontDifferentialLock[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.FrontLeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.FrontRightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.Handbrake[0_1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.HighBeamLight[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.IgnitionSwitch[0;3]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.InitialEngineSpeed[rad/s]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.InitialGear[-4;20]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.InitialSpeed[m/s]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.IntendedEngTrqActive[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.IntendedEngTrq[Nm]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.KickdownSwitch[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.LongitudinalPhase[-]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.LowBeamLight[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.MSRRequestSwitch[0;2]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.MSRTrq[Nm]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.MainBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.ManualGear[-4;20]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.MaxGear[-4;20]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.MinGear[-4;20]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.ParkingLock[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.Rear2DifferentialLock[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.Rear2LeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.Rear2RightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.Rear3DifferentialLock[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.Rear3LeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.Rear3RightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.RearDifferentialLock[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.RearLeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.RearRightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.RefAccEnforced" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.RefAcc[m/s**2]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.RefSpdEnforced" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.RefSpd[m/s]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.ShiftingProgramSelection[-]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.StarterSwitch[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.TrailerFrontLeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.TrailerFrontRightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.TrailerRear2LeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.TrailerRear2RightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.TrailerRear3LeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.TrailerRear3RightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.TrailerRearLeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.TrailerRearRightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.TransferCaseLock[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.TransmissionLoad[0_1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.UserDefinedRefValueEnforced" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.UserDefinedRefValue[-]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.VCUIntendedMainBrakePressActive[0;1]" width="1"/>
+  <Signal name="CTRL.LongitudinalControl.VCUIntendedMainBrakePress[Pa]" width="1"/>
+  <Signal name="CTRL.TireCondition.FrontLeftRelInflPress[Pa]" width="1"/>
+  <Signal name="CTRL.TireCondition.FrontRightRelInflPress[Pa]" width="1"/>
+  <Signal name="CTRL.TireCondition.RearLeftRelInflPress[Pa]" width="1"/>
+  <Signal name="CTRL.TireCondition.RearRightRelInflPress[Pa]" width="1"/>
+  <Signal name="CTRL.UserDefinedPhaseTermination.UserDefinedPhaseTermination10[-]" width="1"/>
+  <Signal name="CTRL.UserDefinedPhaseTermination.UserDefinedPhaseTermination1[-]" width="1"/>
+  <Signal name="CTRL.UserDefinedPhaseTermination.UserDefinedPhaseTermination2[-]" width="1"/>
+  <Signal name="CTRL.UserDefinedPhaseTermination.UserDefinedPhaseTermination3[-]" width="1"/>
+  <Signal name="CTRL.UserDefinedPhaseTermination.UserDefinedPhaseTermination4[-]" width="1"/>
+  <Signal name="CTRL.UserDefinedPhaseTermination.UserDefinedPhaseTermination5[-]" width="1"/>
+  <Signal name="CTRL.UserDefinedPhaseTermination.UserDefinedPhaseTermination6[-]" width="1"/>
+  <Signal name="CTRL.UserDefinedPhaseTermination.UserDefinedPhaseTermination7[-]" width="1"/>
+  <Signal name="CTRL.UserDefinedPhaseTermination.UserDefinedPhaseTermination8[-]" width="1"/>
+  <Signal name="CTRL.UserDefinedPhaseTermination.UserDefinedPhaseTermination9[-]" width="1"/>
+  <Signal name="CTRL.VehicleLights.BrakeLightState[0;1]" width="1"/>
+  <Signal name="CTRL.VehicleLights.DayRunningLightState[0;1]" width="1"/>
+  <Signal name="CTRL.VehicleLights.FogLampFrontState[0;1]" width="1"/>
+  <Signal name="CTRL.VehicleLights.FogLampRearState[0;1]" width="1"/>
+  <Signal name="CTRL.VehicleLights.HighBeamLightState[0;1]" width="1"/>
+  <Signal name="CTRL.VehicleLights.LeftIndicatorState[0;1]" width="1"/>
+  <Signal name="CTRL.VehicleLights.LowBeamLightState[0;1]" width="1"/>
+  <Signal name="CTRL.VehicleLights.ReversingLampState[0;1]" width="1"/>
+  <Signal name="CTRL.VehicleLights.RightIndicatorState[0;1]" width="1"/>
+  <Signal name="ControlUnits.ADAS.LongitudinalControlIntervention[0;1]" width="1"/>
+  <Signal name="ControlUnits.ADAS.PrioritizedADASControl.LimitsActive[0;1]" width="1"/>
+  <Signal name="ControlUnits.ADAS.PrioritizedADASControl.LowerLimitBrakePress[Pa]" width="1"/>
+  <Signal name="ControlUnits.ADAS.PrioritizedADASControl.LowerLimitTrq[Nm]" width="1"/>
+  <Signal name="ControlUnits.ADAS.PrioritizedADASControl.UpperLimitTrq[Nm]" width="1"/>
+  <Signal name="ControlUnits.LCU.VehicleLights.BrakeLightState[0;1]" width="1"/>
+  <Signal name="ControlUnits.LCU.VehicleLights.DayRunningLightState[0;1]" width="1"/>
+  <Signal name="ControlUnits.LCU.VehicleLights.FogLampFrontState[0;1]" width="1"/>
+  <Signal name="ControlUnits.LCU.VehicleLights.FogLampRearState[0;1]" width="1"/>
+  <Signal name="ControlUnits.LCU.VehicleLights.HighBeamLightState[0;1]" width="1"/>
+  <Signal name="ControlUnits.LCU.VehicleLights.LeftIndicatorState[0;1]" width="1"/>
+  <Signal name="ControlUnits.LCU.VehicleLights.LowBeamLightState[0;1]" width="1"/>
+  <Signal name="ControlUnits.LCU.VehicleLights.ReversingLampState[0;1]" width="1"/>
+  <Signal name="ControlUnits.LCU.VehicleLights.RightIndicatorState[0;1]" width="1"/>
+  <Signal name="ControlUnits.StateSensors.IMU.Acc_wrt_WorldSys(SensorSys)[m/s**2]" width="3"/>
+  <Signal name="ControlUnits.StateSensors.IMU.GeographicalCoordinates.Altitude[m]" width="1"/>
+  <Signal name="ControlUnits.StateSensors.IMU.GeographicalCoordinates.Latitude[deg]" width="1"/>
+  <Signal name="ControlUnits.StateSensors.IMU.GeographicalCoordinates.Longitude[deg]" width="1"/>
+  <Signal name="ControlUnits.StateSensors.IMU.Pos(WorldSys)[m]" width="3"/>
+  <Signal name="ControlUnits.StateSensors.IMU.RotAcc_wrt_WorldSys(SensorSys)[rad/s**2]" width="3"/>
+  <Signal name="ControlUnits.StateSensors.IMU.RotVel_wrt_WorldSys(SensorSys)[rad/s]" width="3"/>
+  <Signal name="ControlUnits.StateSensors.IMU.Vel_wrt_WorldSys(SensorSys)[m/s]" width="3"/>
+  <Signal name="ControlUnits.VCU.DriverInfo.ConventionalVehicleSwitch[0;1]" width="1"/>
+  <Signal name="ControlUnits.VCU.DrivingState[-]" width="1"/>
+  <Signal name="ControlUnits.VCU.EngRunPermission[0;1]" width="1"/>
+  <Signal name="ControlUnits.VCU.IntendedEngTrqActive[0;1]" width="1"/>
+  <Signal name="ControlUnits.VCU.IntendedEngTrq[Nm]" width="1"/>
+  <Signal name="ControlUnits.VCU.IntendedMainBrakePressActive[0;1]" width="1"/>
+  <Signal name="ControlUnits.VCU.IntendedMainBrakePress[Pa]" width="1"/>
+  <Signal name="ControlUnits.VCU.TransmissionLoad[0_1]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.AddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.AddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.FrontLeftAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.FrontLeftAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.FrontLeftAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.FrontRightAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.FrontRightAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.FrontRightAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.LocalRoadSysSwitch[0;1]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear2LeftAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear2LeftAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear2LeftAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear2RightAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear2RightAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear2RightAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear3LeftAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear3LeftAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear3LeftAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear3RightAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear3RightAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.Rear3RightAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.RearLeftAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.RearLeftAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.RearLeftAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.RearRightAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.RearRightAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.RearRightAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerFrontLeftAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerFrontLeftAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerFrontLeftAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerFrontRightAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerFrontRightAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerFrontRightAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear2LeftAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear2LeftAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear2LeftAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear2RightAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear2RightAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear2RightAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear3LeftAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear3LeftAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear3LeftAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear3RightAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear3RightAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRear3RightAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRearLeftAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRearLeftAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRearLeftAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRearRightAddLatRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRearRightAddLongRoadSlope[-]" width="1"/>
+  <Signal name="Environment.AdditionalRoadElevation.TrailerRearRightAddRoadElev[m]" width="1"/>
+  <Signal name="Environment.AmbientConditions.AirDensity[kg/m**3]" width="1"/>
+  <Signal name="Environment.AmbientConditions.AmbPress[Pa]" width="1"/>
+  <Signal name="Environment.AmbientConditions.AmbTemp[K]" width="1"/>
+  <Signal name="Environment.AmbientConditions.RelAirHumidity[0_100]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.FrontLeftFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.FrontRightFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.Rear2LeftFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.Rear2RightFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.Rear3LeftFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.Rear3RightFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.RearLeftFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.RearRightFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.RoadFrictionScalingAbscissa" width="2"/>
+  <Signal name="Environment.RoadFrictionScaling.RoadFrictionScalingPhase[-]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.Scheduler.scheduler_phasectrl_v.pos[-]" type="EXPERT" width="1">
+    <comment>position of current phase</comment>
+  </Signal>
+  <Signal name="Environment.RoadFrictionScaling.TrailerFrontLeftFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.TrailerFrontRightFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.TrailerRear2LeftFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.TrailerRear2RightFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.TrailerRear3LeftFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.TrailerRear3RightFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.TrailerRearLeftFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.RoadFrictionScaling.TrailerRearRightFrictionScaling[0_2]" width="1"/>
+  <Signal name="Environment.WindImpact.Scheduler.scheduler_phasectrl_v.pos[-]" type="EXPERT" width="1">
+    <comment>position of current phase</comment>
+  </Signal>
+  <Signal name="Environment.WindImpact.WindDirection[rad]" width="1"/>
+  <Signal name="Environment.WindImpact.WindSpd[m/s]" width="1"/>
+  <Signal name="SimulationControl.SimulationTime[s]" type="EXPERT" width="1">
+    <comment>SimulationTime</comment>
+  </Signal>
+  <Signal name="SimulationControl.TurnaroundTime[ms]" type="EXPERT" width="1">
+    <comment>TurnaroundTime</comment>
+  </Signal>
+  <Signal name="Vehicle.Auxiliaries.GeneratorCurr[A]" width="1"/>
+  <Signal name="Vehicle.Auxiliaries.GeneratorInrt[kgm^2]" width="1"/>
+  <Signal name="Vehicle.Auxiliaries.GeneratorTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Auxiliaries.StarterCurr[A]" width="1"/>
+  <Signal name="Vehicle.Auxiliaries.StarterInrt[kgm**2]" width="1"/>
+  <Signal name="Vehicle.Auxiliaries.StarterTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemControlUnitInfo.ControlUnit" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemControlUnitInfo.WheelBrakePressActive[0;1]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemPhysics.FrontLeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemPhysics.FrontRightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemPhysics.MainBrakePress[Pa]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemPhysics.MaxMainBrakePress[Pa]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemPhysics.Rear2LeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemPhysics.Rear2RightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemPhysics.Rear3LeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemPhysics.Rear3RightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemPhysics.RearLeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemPhysics.RearRightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="Vehicle.BrakeSystem.BrakeSystemPhysics.WheelBrakePressSource[-]" width="1"/>
+  <Signal name="Vehicle.Chassis.Aerodynamics.LatAeroDragArea[m**2]" width="1"/>
+  <Signal name="Vehicle.Chassis.Aerodynamics.LatAeroDragCoeff[-]" width="1"/>
+  <Signal name="Vehicle.Chassis.Aerodynamics.LongAeroDragArea[m**2]" width="1"/>
+  <Signal name="Vehicle.Chassis.Aerodynamics.LongAeroDragCoeff[-]" width="1"/>
+  <Signal name="Vehicle.Chassis.EngineBody.Pos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.EngineBody.RotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.InnerWheelTrack[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.InnerTirePos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.InnerTirePos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.InnerTireVel_wrt_WorldSys(VehSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.TireDefl[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.TirePos(AxleSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.TirePos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.TirePos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.TireVel_wrt_WorldSys(VehSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.WheelCenterPos" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.WheelCenterPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.WheelCenterRot(VehSys)[rad]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.WheelRotAxis(VehSys)[-]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.WheelRotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.LeftWheelSystem.WheelRotVel_wrt_WorldSys(VehSys)[rad/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.InnerTirePos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.InnerTirePos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.InnerTireVel_wrt_WorldSys(VehSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.TireDefl[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.TirePos(AxleSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.TirePos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.TirePos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.TireVel_wrt_WorldSys(VehSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.WheelCenterPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.WheelCenterPos[-]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.WheelCenterRot(VehSys)[rad]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.WheelRotAxis(VehSys)[-]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.WheelRotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.RightWheelSystem.WheelRotVel_wrt_WorldSys(VehSys)[rad/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.Steering.FrontSteeringRatio[-]" width="1"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.Steering.MaxLeftSteeringWheelAng[rad]" width="1"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.Steering.MaxRightSteeringWheelAng[rad]" width="1"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.Steering.SteeringWheelAng[rad]" width="1"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.Steering.SteeringWheelInclAng[rad]" width="1"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.Steering.SteeringWheelPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.Steering.SteeringWheelTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Chassis.FrontAxle.WheelTrack[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.HitchPosition.FrontHitchPos[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.HitchPosition.PivotSwitch[-]" width="1"/>
+  <Signal name="Vehicle.Chassis.HitchPosition.RearBodySwitch[0;1]" width="1"/>
+  <Signal name="Vehicle.Chassis.HitchPosition.RearHitchPos[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.HitchPosition.RearLeftDrawbarJointPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.HitchPosition.RearLeftDrawbarJointPos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.HitchPosition.RearRightDrawbarJointPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.HitchPosition.RearRightDrawbarJointPos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.MountedBody.Pos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.MountedBody.RotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.ObjectProperties.AccBBC_WorldSys[m/s^2]" width="3">
+    <comment>Acceleration of object BBC, measured in world coordinates [m/s^2]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.AccRearAxle_VehicleSys[m/s^2]" width="3">
+    <comment>Acceleration of center of (last) rear axle, measured in vehicle coordinates [m/s^2]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.AccRearAxle_WorldSys[m/s^2]" width="3">
+    <comment>Acceleration of center of (last) rear axle, measured in world coordinates [m/s^2]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.Acc_WorldSys[m/s^2]" width="3">
+    <comment>Acceleration of object reference point (center of front axle), measured in world coordinates [m/s^2]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.BBCToFrontAxle_VehicleSys[m]" width="3">
+    <comment>Vector from center of bounding box to center of front axle [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.BBCToRearAxle_VehicleSys[m]" width="3">
+    <comment>Vector from center of bounding box to center of (last) rear axle [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.BasePolygon_BBCSys[m]" width="32">
+    <comment>Base polygon points in 2D, measured in bounding box center (BBC) coordinates [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.BrakeLightState" width="1">
+    <comment>State of the low brake light.</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.ClassificationType" width="1">
+    <comment>Traffic object classification type [-] according to OSI standard</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.CollisionRadius[m]" width="1">
+    <comment>Collision radius [m], maximum distance of bounding polygon points from geometrical center</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.DayRunningLightState" width="1">
+    <comment>State of the day running light.</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.DetectionQualityFactor" width="1">
+    <comment>Signal quality factor for traffic object detection with idealized traffic sensor [0_1] 
+(this value is passed to the traffic sensor and offers the possibility to postprocess the sensor's output signals with custom functionality which has to be implemented by the user)</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.DistanceReferenceToFront[m]" width="1">
+    <comment>Distance from reference to front of bounding box [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.DistanceReferenceToTop[m]" width="1">
+    <comment>Distance from reference to top of bounding box [m], positive if upwards</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.DriverID" width="1">
+    <comment>Driver ID [-]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.Height[m]" width="1">
+    <comment>Height of object [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.HighBeamLightState" width="1">
+    <comment>State of the high beam light.</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.LaneID" width="1">
+    <comment>Lane ID [-]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.LeftIndicatorLightState" width="1">
+    <comment>State of the left indicator.</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.Length[m]" width="1">
+    <comment>Length of object [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.LowBeamLightState" width="1">
+    <comment>State of the low beam light.</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.NormalVector_WorldSys" width="3">
+    <comment>Unit normal vector of reference system, measured in world coordinates [-]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.NumberOfBasePolygonPoints" width="1">
+    <comment>Number of relevant base polygon points [-]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.NumberOfBoundingPoints" width="1">
+    <comment>Number of relevant bounding polygon points [-]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.NumberOfWheels" width="1">
+    <comment>Number of wheels [-]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.ObjectID" width="1">
+    <comment>Unique ID of traffic object [-]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.ObjectType" width="1">
+    <comment>Traffic object type [0;4]
+0: Traffic object not used
+1: Vehicle
+2: Bike
+3: Pedestrian
+4: Static object</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.PitchAng[rad]" width="1">
+    <comment>Pitch angle [rad]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.PolygonPointMatrix_WorldSys[m]" width="48">
+    <comment>Bounding polygon points, measured in world coordinates [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.PosBBC_WorldSys[m]" width="3">
+    <comment>Geometrical center of bounding box polygon (BBC), measured in world coordinates [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.PosRearAxle_WorldSys[m]" width="3">
+    <comment>Position of center of (last) rear axle, measured in world coordinates [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.Pos_WorldSys[m]" width="3">
+    <comment>Position of object reference point (center of front axle), measured in world coordinates [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.RightIndicatorLightState" width="1">
+    <comment>State of the right indicator.</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.RoadAngle[rad]" width="1">
+    <comment>Road angle [rad]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.RoadID" width="1">
+    <comment>Road ID [-]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.RoadQ[m]" width="1">
+    <comment>Road q-coordinate [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.RoadS[m]" width="1">
+    <comment>Road s-coordinate [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.RoadTangentXY" width="2">
+    <comment>Road tangent x/y-components [-]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.RollAng[rad]" width="1">
+    <comment>Roll angle [rad]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.RotAcc_WorldSys[rad/s^2]" width="3">
+    <comment>Rotational acceleration [rad/s^2] of object w.r.t. world system, measured in world coordinates</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.RotVel_WorldSys[rad/s]" width="3">
+    <comment>Rotational velocity [rad/s] of object w.r.t. world system, measured in world coordinates</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.SteeringAng[rad]" width="1">
+    <comment>Steering angle [rad]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.UpdateTime[s]" width="1">
+    <comment>Time stamp of last update step of object properties [s]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.VelBBC_WorldSys[m/s]" width="3">
+    <comment>Velocity of object BBC, measured in world coordinates [m/s]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.VelRearAxle_VehicleSys[m/s]" width="3">
+    <comment>Velocity of center of (last) rear axle, measured in vehicle coordinates [m/s]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.VelRearAxle_WorldSys[m/s]" width="3">
+    <comment>Velocity of center of (last) rear axle, measured in world coordinates [m/s]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.Vel_WorldSys[m/s]" width="3">
+    <comment>Velocity of object reference point (center of front axle), measured in world coordinates [m/s]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.Width[m]" width="1">
+    <comment>Width of object [m]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.ObjectProperties.YawAng[rad]" width="1">
+    <comment>Yaw angle [rad]</comment>
+  </Signal>
+  <Signal name="Vehicle.Chassis.Rear2Axle.InnerWheelTrack[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.Rear2Axle.LeftWheelSystem.WheelCenterPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.Rear2Axle.LeftWheelSystem.WheelRotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.Rear2Axle.RightWheelSystem.WheelCenterPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.Rear2Axle.RightWheelSystem.WheelRotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.Rear2Axle.WheelTrack[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.Rear3Axle.InnerWheelTrack[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.Rear3Axle.LeftWheelSystem.WheelCenterPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.Rear3Axle.LeftWheelSystem.WheelRotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.Rear3Axle.RightWheelSystem.WheelCenterPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.Rear3Axle.RightWheelSystem.WheelRotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.Rear3Axle.WheelTrack[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.RearAxle.InnerWheelTrack[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.InnerTirePos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.InnerTirePos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.InnerTireVel_wrt_WorldSys(VehSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.TireDefl[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.TirePos(AxleSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.TirePos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.TirePos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.TireVel_wrt_WorldSys(VehSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.WheelCenterPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.WheelCenterPos[-]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.WheelCenterRot(VehSys)[rad]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.WheelRotAxis(VehSys)[-]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.WheelRotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.RearAxle.LeftWheelSystem.WheelRotVel_wrt_WorldSys(VehSys)[rad/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.InnerTirePos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.InnerTirePos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.InnerTireVel_wrt_WorldSys(VehSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.TireDefl[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.TirePos(AxleSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.TirePos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.TirePos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.TireVel_wrt_WorldSys(VehSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.WheelCenterPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.WheelCenterPos[-]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.WheelCenterRot(VehSys)[rad]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.WheelRotAxis(VehSys)[-]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.WheelRotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.RearAxle.RightWheelSystem.WheelRotVel_wrt_WorldSys(VehSys)[rad/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearAxle.WheelTrack[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.RearBody.PivotPoint(RefSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearBody.PivotRotAng(VehSys)[rad]" width="1"/>
+  <Signal name="Vehicle.Chassis.RearBody.PivotRotVel(VehSys)[rad/s]" width="1"/>
+  <Signal name="Vehicle.Chassis.RearBody.Pos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.RearBody.RotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.Turntable.FrontLeftDrawbarJointPos(TurntableSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.Turntable.FrontLeftDrawbarJointPos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.Turntable.FrontRightDrawbarJointPos(TurntableSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.Turntable.FrontRightDrawbarJointPos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.Turntable.PivotPoint(RefSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.Turntable.PivotRotAng(VehSys)[rad]" width="1"/>
+  <Signal name="Vehicle.Chassis.Turntable.PivotRotVel(VehSys)[rad/s]" width="1"/>
+  <Signal name="Vehicle.Chassis.Turntable.Pos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.Turntable.RotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.ABCCoeffDrivingResistFrc(VehSys)[N]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.AbsVel[m/s]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.Acc(WorldSys)[m/s**2]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.Acc_wrt_WorldSys(VehSys)[m/s**2]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.AddRotMatrix[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.AeroFrc(VehSys)[N]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.CoGAbsVel[m/s]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.CoGAcc(WorldSys)[m/s**2]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.CoGAcc_wrt_WorldSys(VehSys)[m/s**2]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.CoGPos(VehSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.CoGVel(WorldSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.CoGVel_wrt_WorldSys(VehSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.CoGYawInrt(VehSys)[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.FrontRearWheelBase[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.FrontWheelLongPos(VehSys)[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.NumberOfAxles[-]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.OverallMass[kg]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.PitchAng[rad]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.PitchRate[rad/s]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.Pos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.PosAxleSys(WorldSys)" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.Rear2Rear3WheelBase[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.RearRear2WheelBase[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.RollAng[rad]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.RollRate[rad/s]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.RotAcc_wrt_WorldSys(VehSys)[rad/s**2]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.RotMatrix(WorldSys)[-]" width="9"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.RotVel_wrt_WorldSys(VehSys)[rad/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.SideSlipAng[rad]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.TraveledDist[m]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.Vel(WorldSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.Vel_wrt_WorldSys(VehSys)[m/s]" width="3"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.YawAng[rad]" width="1"/>
+  <Signal name="Vehicle.Chassis.VehicleBody.YawRate[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainControlUnit.TransmissionControlUnit.ASRRequestSwitch[0;2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainControlUnit.TransmissionControlUnit.ASRTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainControlUnit.TransmissionControlUnit.AutomatedManualClutchPos[0_1]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainControlUnit.TransmissionControlUnit.GearTarget[-4;20]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainControlUnit.TransmissionControlUnit.Gear[-4;20]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainControlUnit.TransmissionControlUnit.LockUpClutchPos[0_1]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainControlUnit.TransmissionControlUnit.MSRRequestSwitch[0;2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainControlUnit.TransmissionControlUnit.MSRTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Clutch.Pos[0_1]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Clutch.Trq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.DrivetrainStates.FrontAxleIsDriven[0;1]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.DrivetrainStates.NumberofDrivenWheels[-]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.DrivetrainStates.RearAxleIsDriven[0;1]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.EngAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.EngSpd[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontDifferential.TrqDistributionFac[0_1]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontLeftShaft.AddInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontLeftShaft.DerivativeOfTrq_wrt_RotAng[Nm/rad]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontLeftShaft.DerivativeOfTrq_wrt_WheelSpd[Nm/(rad/s)]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontLeftShaft.FrictionTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontLeftShaft.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontLeftShaft.RotSpdDifferentialOut[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontLeftShaft.Trq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontRightShaft.AddInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontRightShaft.DerivativeOfTrq_wrt_RotAng[Nm/rad]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontRightShaft.DerivativeOfTrq_wrt_WheelSpd[Nm/(rad/s)]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontRightShaft.FrictionTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontRightShaft.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontRightShaft.RotSpdDifferentialOut[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.FrontRightShaft.Trq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2LeftShaft.AddInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2LeftShaft.DerivativeOfTrq_wrt_RotAng[Nm/rad]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2LeftShaft.DerivativeOfTrq_wrt_WheelSpd[Nm/(rad/s)]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2LeftShaft.FrictionTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2LeftShaft.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2LeftShaft.RotSpdDifferentialOut[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2LeftShaft.Trq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2RightShaft.AddInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2RightShaft.DerivativeOfTrq_wrt_RotAng[Nm/rad]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2RightShaft.DerivativeOfTrq_wrt_WheelSpd[Nm/(rad/s)]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2RightShaft.FrictionTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2RightShaft.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2RightShaft.RotSpdDifferentialOut[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear2RightShaft.Trq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3LeftShaft.AddInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3LeftShaft.DerivativeOfTrq_wrt_RotAng[Nm/rad]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3LeftShaft.DerivativeOfTrq_wrt_WheelSpd[Nm/(rad/s)]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3LeftShaft.FrictionTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3LeftShaft.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3LeftShaft.RotSpdDifferentialOut[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3LeftShaft.Trq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3RightShaft.AddInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3RightShaft.DerivativeOfTrq_wrt_RotAng[Nm/rad]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3RightShaft.DerivativeOfTrq_wrt_WheelSpd[Nm/(rad/s)]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3RightShaft.FrictionTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3RightShaft.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3RightShaft.RotSpdDifferentialOut[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Rear3RightShaft.Trq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearDifferential.TrqDistributionFac[0_1]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearLeftShaft.AddInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearLeftShaft.DerivativeOfTrq_wrt_RotAng[Nm/rad]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearLeftShaft.DerivativeOfTrq_wrt_WheelSpd[Nm/(rad/s)]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearLeftShaft.FrictionTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearLeftShaft.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearLeftShaft.RotSpdDifferentialOut[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearLeftShaft.Trq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearRightShaft.AddInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearRightShaft.DerivativeOfTrq_wrt_RotAng[Nm/rad]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearRightShaft.DerivativeOfTrq_wrt_WheelSpd[Nm/(rad/s)]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearRightShaft.FrictionTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearRightShaft.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearRightShaft.RotSpdDifferentialOut[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.RearRightShaft.Trq[Nm]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.TotalRatio[-]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.TransferCase.TrqDistributionFac[0_1]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Transmission.GearChangeTimeConst[s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Transmission.Gear[-4;20]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Transmission.InSpd[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Transmission.NumFwdGears[-]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Transmission.OutSpd[rad/s]" width="1"/>
+  <Signal name="Vehicle.Drivetrain.DrivetrainPhysics.Transmission.Type[-]" width="1"/>
+  <Signal name="Vehicle.ElectricalSystem.GeneratorVoltage[V]" width="1"/>
+  <Signal name="Vehicle.ElectricalSystem.LowVoltageBattery.LowVoltageBatterySOC[0_1]" width="1"/>
+  <Signal name="Vehicle.ElectricalSystem.LowVoltageBattery.LowVoltageBatteryVoltage[V]" width="1"/>
+  <Signal name="Vehicle.ElectricalSystem.StarterVoltage[V]" width="1"/>
+  <Signal name="Vehicle.Engine.EngineControlUnit.EngFuelCutoff[0;1]" width="1"/>
+  <Signal name="Vehicle.Engine.EngineControlUnit.EngIdleSpd[rad/s]" width="1"/>
+  <Signal name="Vehicle.Engine.EngineControlUnit.EngLoadSignal[0_1]" width="1"/>
+  <Signal name="Vehicle.Engine.EngineControlUnit.EngRunPermission[0;1]" width="1"/>
+  <Signal name="Vehicle.Engine.EngineControlUnit.LowerEngTrqLimit[Nm]" width="1"/>
+  <Signal name="Vehicle.Engine.EngineControlUnit.LowerEngTrqSwitch[0;2]" width="1"/>
+  <Signal name="Vehicle.Engine.EngineControlUnit.MaxEngSpd[rad/s]" width="1"/>
+  <Signal name="Vehicle.Engine.EngineControlUnit.StarterSwitch[0;1]" width="1"/>
+  <Signal name="Vehicle.Engine.EngineControlUnit.UpperEngTrqLimit[Nm]" width="1"/>
+  <Signal name="Vehicle.Engine.EngineControlUnit.UpperEngTrqSwitch[0;2]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.EngTrq[Nm]" type="EXPERT" width="1">
+    <comment>engine torque</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.FuelSystem.AvgFuelConsumEu[l/100km]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.FuelSystem.AvgFuelConsumUs[mpg]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.FuelSystem.CurrFuelConsumEu[l/100km]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.FuelSystem.CurrFuelConsumUs[mpg]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.FuelSystem.Efficiency[-]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.FuelSystem.FuelDensity[kg/m**3]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.FuelSystem.FuelMassFlow[kg/s]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.FuelSystem.FuelMass[kg]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.IndicatedTrq[Nm]" type="EXPERT" width="1">
+    <comment>indicated torque</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.MeanEngFrictionTrq[Nm]" type="EXPERT" width="1">
+    <comment>engine friction torque</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.MeanEngMaxTrq[Nm]" type="EXPERT" width="1">
+    <comment>current engine maximum torque</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.CrankAng[rad]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.DerivativeOfEngTrq_wrt_CrankAng[Nm/rad]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.DerivativeOfEngTrq_wrt_EngSpd[Nm/(rad/s)]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.EngInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.EngPow[W]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.EngTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.IndicatedTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.MeanEngDragTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.MeanEngFrictionTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.MeanEngMaxTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.MeanEngTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.MeanIndicatedTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.ThirtyPercentAccPedalEngTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.Mechanics.UnrestrictedEngTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.UnrestrictedEngTrq[Nm]" type="EXPERT" width="1">
+    <comment>unrestricted engine torque, i.e. virtual engine torque without ASR/MSR influence</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.ValidityStatus.ValidRangeExceededFlags[-]" width="1"/>
+  <Signal name="Vehicle.Engine.EnginePhysics.eng_cmds.in_load[0_1]" type="EXPERT" width="1">
+    <comment>simulink interface: load signal</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.eng_cmds.in_nmot[rad/s]" type="EXPERT" width="1">
+    <comment>simulink interface: engine speed</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.eng_ctrl.asr_request[0;1]" type="EXPERT" width="1">
+    <comment>flag for engine controller ASR request</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.eng_ctrl.asr_torque[Nm]" type="EXPERT" width="1">
+    <comment>engine controller ASR requested torque</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.eng_ctrl.msr_request[0;1]" type="EXPERT" width="1">
+    <comment>flag for engine controller MSR request</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.eng_ctrl.msr_torque[Nm]" type="EXPERT" width="1">
+    <comment>engine controller MSR requested torque</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.engine_v.medium_torque[Nm]" type="EXPERT" width="1">
+    <comment>current engine torque at 30% load</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.ext_eng.in_mmot[Nm]" type="EXPERT" width="1">
+    <comment>external engine torque</comment>
+  </Signal>
+  <Signal name="Vehicle.Engine.EnginePhysics.ext_eng.in_mmot_sw[-]" type="EXPERT" width="1">
+    <comment>external switch engine torque : 1 = switch internal torque off (use only external inputs)</comment>
+  </Signal>
+  <Signal name="Vehicle.VehicleDriverInfo.AccPedalPos[0_1]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.CoGPosX(VehSys)[m]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.EngCtrlDerivativeGain[-]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.EngCtrlIntegralGain[-]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.EngCtrlProportionalGain[-]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.EngInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.FrontAxleLatStiff[N/rad]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.FrontRearWheelBase[m]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.FrontSteeringRatio[-]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.FrontTireUnloadedRadius[m]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.FullAccPedalTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.LongAeroDragCoeff[-]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.MaxDeceleration[m/s**2]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.MaxLeftSteeringWheelAng[rad]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.MaxMainBrakePress[Pa]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.MaxRightSteeringWheelAng[rad]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.NumFwdGears[-]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.OverallMass[kg]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.RearAxleLatStiff[N/rad]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.RearTireUnloadedRadius[m]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.SumBrakeTrqPressRatio[m**3]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.SumMaxRollingResistanceTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.SumWheelRotAxisInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.ThirtyPercentAccPedalTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.TorqueRatio[-]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.TransmissionType[-]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.UseFrontAxleLatStiff[-]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.UseRearAxleLatStiff[-]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.YawInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.ZeroAccPedalTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.VehicleDriverInfo.nShiftECU[rad/s]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.LaneCurvature[1/m]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.LaneID[-]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RoadAngle[rad]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RoadCurvature[1/m]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RoadFriction[-]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RoadQ[m]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RoadRoughness[-]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RoadS[m]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RoadSlopeLat[-]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RoadSlopeLong[-]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RoadSurfaceType[-]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RoadTangentXY[-]" width="2"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RoadZ[m]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RouteClosed[-]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.RouteLength[m]" width="1"/>
+  <Signal name="Vehicle.VehicleRoadInfo.TrackID[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.BoreSpd(ContactSys)[rad/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.CamberAng(ContactSys)[rad]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.CircumferentialTrq_wrt_WheelRotAxis[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.ContactPatchLength[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.ContactPatchWidth[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.ContactPointFrc(ContactSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.ContactPointPos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.ContactPointPos_wrt_WheelCenter(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.ContactPointTrq(ContactSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.CorneringStiff[N]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.DynamicRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.IsOffroad[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.LatSpd(ContactSys)[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.LatUnitVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.LocalContactPoints(WorldSys)[m]" width="12"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.LongFrcLeverArm_wrt_WheelRotAxis[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.LongSpd(ContactSys)[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.LongUnitVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.MaxRollResistTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.NumberOfLocalContactPoints[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.RimRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.RoadFrictionScalingCoeff[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.RoadIncl(WorldSys)[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.RoadNormalVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.RoadSlope(WorldSys)[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.RoadType[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.Tire.Contact.ctctstate_v.s0[m]" type="EXPERT" width="1">
+    <comment>initial value for road reference point iteration</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.Tire.Contact.ctctstate_v.sign_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of sign-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.Tire.Contact.ctctstate_v.surf_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of surf-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.Tire.Contact.ctctstate_v.xy_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of xy-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.Tire.Contact.ctctstate_v.z_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of z-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.Tire.Contact.ctcttyre_v.mueloc[0_1]" type="EXPERT" width="1">
+    <comment>scaling for friction coefficient</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.TireDeflSpd[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.TireDefl[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.UnloadedRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.VertStiff[N/m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.WheelCenterFrc(VehSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Tire.Width[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.BlockingState[0;1]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.BrakeTrqPressRatio[m**3]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.BrakeTrq[Nm]" type="EXPERT" width="1">
+    <comment>actual brake blocking torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.DerivativeOfDriveShaftTrq_wrt_RotAcc[Nm/(rad/s**2)]" type="EXPERT" width="1">
+    <comment>derivative of drive shaft torque versus drive shaft rotational acceleration</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.DriveBrakeTrq_wrt_WheelRotAxis(VehSys)[Nm]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.DriveShaftTwistAng[rad]" type="EXPERT" width="1">
+    <comment>twist angle of drive shaft</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.DriveShaftTwistSpd[rad/s]" type="EXPERT" width="1">
+    <comment>twist speed of drive shaft</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.KinematicWheelActiveFlag[0;1]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.RotAng[rad]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.RotAxisInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.RotSpd[rad/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.TotalResistanceTorque[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.VehBodyReplacementInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.ext_wheel.in_cbrm[-]" type="EXPERT" width="1">
+    <comment>external constant for driver braking torque calculations</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.ext_wheel.in_m_brake[Nm]" type="EXPERT" width="1">
+    <comment>external brake torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.ext_wheel.in_m_brake_sw[-]" type="EXPERT" width="1">
+    <comment>external switch brake torque:  1 = switch internal brake torque off (use only external inputs)</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.ext_wheel.in_m_drive[Nm]" type="EXPERT" width="1">
+    <comment>external drive torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontLeft.Wheel.ext_wheel.in_m_drive_sw[-]" type="EXPERT" width="1">
+    <comment>external switch drive torque:  1 = switch internal drive torque off (use only external inputs)</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.BoreSpd(ContactSys)[rad/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.CamberAng(ContactSys)[rad]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.CircumferentialTrq_wrt_WheelRotAxis[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.ContactPatchLength[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.ContactPatchWidth[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.ContactPointFrc(ContactSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.ContactPointPos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.ContactPointPos_wrt_WheelCenter(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.ContactPointTrq(ContactSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.CorneringStiff[N]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.DynamicRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.IsOffroad[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.LatSpd(ContactSys)[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.LatUnitVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.LocalContactPoints(WorldSys)[m]" width="12"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.LongFrcLeverArm_wrt_WheelRotAxis[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.LongSpd(ContactSys)[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.LongUnitVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.MaxRollResistTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.NumberOfLocalContactPoints[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.RimRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.RoadFrictionScalingCoeff[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.RoadIncl(WorldSys)[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.RoadNormalVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.RoadSlope(WorldSys)[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.RoadType[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.Tire.Contact.ctctstate_v.s0[m]" type="EXPERT" width="1">
+    <comment>initial value for road reference point iteration</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.Tire.Contact.ctctstate_v.sign_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of sign-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.Tire.Contact.ctctstate_v.surf_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of surf-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.Tire.Contact.ctctstate_v.xy_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of xy-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.Tire.Contact.ctctstate_v.z_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of z-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.Tire.Contact.ctcttyre_v.mueloc[0_1]" type="EXPERT" width="1">
+    <comment>scaling for friction coefficient</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.TireDeflSpd[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.TireDefl[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.UnloadedRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.VertStiff[N/m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.WheelCenterFrc(VehSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Tire.Width[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.BlockingState[0;1]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.BrakeTrqPressRatio[m**3]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.BrakeTrq[Nm]" type="EXPERT" width="1">
+    <comment>actual brake blocking torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.DerivativeOfDriveShaftTrq_wrt_RotAcc[Nm/(rad/s**2)]" type="EXPERT" width="1">
+    <comment>derivative of drive shaft torque versus drive shaft rotational acceleration</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.DriveBrakeTrq_wrt_WheelRotAxis(VehSys)[Nm]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.DriveShaftTwistAng[rad]" type="EXPERT" width="1">
+    <comment>twist angle of drive shaft</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.DriveShaftTwistSpd[rad/s]" type="EXPERT" width="1">
+    <comment>twist speed of drive shaft</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.KinematicWheelActiveFlag[0;1]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.RotAng[rad]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.RotAxisInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.RotSpd[rad/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.TotalResistanceTorque[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.VehBodyReplacementInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.ext_wheel.in_cbrm[-]" type="EXPERT" width="1">
+    <comment>external constant for driver braking torque calculations</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.ext_wheel.in_m_brake[Nm]" type="EXPERT" width="1">
+    <comment>external brake torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.ext_wheel.in_m_brake_sw[-]" type="EXPERT" width="1">
+    <comment>external switch brake torque:  1 = switch internal brake torque off (use only external inputs)</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.ext_wheel.in_m_drive[Nm]" type="EXPERT" width="1">
+    <comment>external drive torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.FrontRight.Wheel.ext_wheel.in_m_drive_sw[-]" type="EXPERT" width="1">
+    <comment>external switch drive torque:  1 = switch internal drive torque off (use only external inputs)</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.BoreSpd(ContactSys)[rad/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.CamberAng(ContactSys)[rad]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.CircumferentialTrq_wrt_WheelRotAxis[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.ContactPatchLength[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.ContactPatchWidth[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.ContactPointFrc(ContactSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.ContactPointPos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.ContactPointPos_wrt_WheelCenter(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.ContactPointTrq(ContactSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.CorneringStiff[N]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.DynamicRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.IsOffroad[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.LatSpd(ContactSys)[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.LatUnitVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.LocalContactPoints(WorldSys)[m]" width="12"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.LongFrcLeverArm_wrt_WheelRotAxis[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.LongSpd(ContactSys)[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.LongUnitVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.MaxRollResistTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.NumberOfLocalContactPoints[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.RimRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.RoadFrictionScalingCoeff[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.RoadIncl(WorldSys)[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.RoadNormalVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.RoadSlope(WorldSys)[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.RoadType[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.Tire.Contact.ctctstate_v.s0[m]" type="EXPERT" width="1">
+    <comment>initial value for road reference point iteration</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.Tire.Contact.ctctstate_v.sign_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of sign-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.Tire.Contact.ctctstate_v.surf_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of surf-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.Tire.Contact.ctctstate_v.xy_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of xy-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.Tire.Contact.ctctstate_v.z_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of z-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.Tire.Contact.ctcttyre_v.mueloc[0_1]" type="EXPERT" width="1">
+    <comment>scaling for friction coefficient</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.TireDeflSpd[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.TireDefl[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.UnloadedRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.VertStiff[N/m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.WheelCenterFrc(VehSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Tire.Width[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.BlockingState[0;1]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.BrakeTrqPressRatio[m**3]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.BrakeTrq[Nm]" type="EXPERT" width="1">
+    <comment>actual brake blocking torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.DerivativeOfDriveShaftTrq_wrt_RotAcc[Nm/(rad/s**2)]" type="EXPERT" width="1">
+    <comment>derivative of drive shaft torque versus drive shaft rotational acceleration</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.DriveBrakeTrq_wrt_WheelRotAxis(VehSys)[Nm]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.DriveShaftTwistAng[rad]" type="EXPERT" width="1">
+    <comment>twist angle of drive shaft</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.DriveShaftTwistSpd[rad/s]" type="EXPERT" width="1">
+    <comment>twist speed of drive shaft</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.KinematicWheelActiveFlag[0;1]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.RotAng[rad]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.RotAxisInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.RotSpd[rad/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.TotalResistanceTorque[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.VehBodyReplacementInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.ext_wheel.in_cbrm[-]" type="EXPERT" width="1">
+    <comment>external constant for driver braking torque calculations</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.ext_wheel.in_m_brake[Nm]" type="EXPERT" width="1">
+    <comment>external brake torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.ext_wheel.in_m_brake_sw[-]" type="EXPERT" width="1">
+    <comment>external switch brake torque:  1 = switch internal brake torque off (use only external inputs)</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.ext_wheel.in_m_drive[Nm]" type="EXPERT" width="1">
+    <comment>external drive torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearLeft.Wheel.ext_wheel.in_m_drive_sw[-]" type="EXPERT" width="1">
+    <comment>external switch drive torque:  1 = switch internal drive torque off (use only external inputs)</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.BoreSpd(ContactSys)[rad/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.CamberAng(ContactSys)[rad]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.CircumferentialTrq_wrt_WheelRotAxis[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.ContactPatchLength[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.ContactPatchWidth[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.ContactPointFrc(ContactSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.ContactPointPos(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.ContactPointPos_wrt_WheelCenter(WorldSys)[m]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.ContactPointTrq(ContactSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.CorneringStiff[N]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.DynamicRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.IsOffroad[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.LatSpd(ContactSys)[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.LatUnitVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.LocalContactPoints(WorldSys)[m]" width="12"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.LongFrcLeverArm_wrt_WheelRotAxis[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.LongSpd(ContactSys)[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.LongUnitVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.MaxRollResistTrq[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.NumberOfLocalContactPoints[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.RimRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.RoadFrictionScalingCoeff[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.RoadIncl(WorldSys)[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.RoadNormalVector(WorldSys)[-]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.RoadSlope(WorldSys)[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.RoadType[-]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.Tire.Contact.ctctstate_v.s0[m]" type="EXPERT" width="1">
+    <comment>initial value for road reference point iteration</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.Tire.Contact.ctctstate_v.sign_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of sign-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.Tire.Contact.ctctstate_v.surf_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of surf-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.Tire.Contact.ctctstate_v.xy_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of xy-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.Tire.Contact.ctctstate_v.z_seg_ind[-]" type="EXPERT" width="1">
+    <comment>segment index of z-layout</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.Tire.Contact.ctcttyre_v.mueloc[0_1]" type="EXPERT" width="1">
+    <comment>scaling for friction coefficient</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.TireDeflSpd[m/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.TireDefl[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.UnloadedRadius[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.VertStiff[N/m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.WheelCenterFrc(VehSys)[N]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Tire.Width[m]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.BlockingState[0;1]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.BrakeTrqPressRatio[m**3]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.BrakeTrq[Nm]" type="EXPERT" width="1">
+    <comment>actual brake blocking torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.DerivativeOfDriveShaftTrq_wrt_RotAcc[Nm/(rad/s**2)]" type="EXPERT" width="1">
+    <comment>derivative of drive shaft torque versus drive shaft rotational acceleration</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.DriveBrakeTrq_wrt_WheelRotAxis(VehSys)[Nm]" width="3"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.DriveShaftTwistAng[rad]" type="EXPERT" width="1">
+    <comment>twist angle of drive shaft</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.DriveShaftTwistSpd[rad/s]" type="EXPERT" width="1">
+    <comment>twist speed of drive shaft</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.KinematicWheelActiveFlag[0;1]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.RotAcc[rad/s**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.RotAng[rad]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.RotAxisInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.RotSpd[rad/s]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.TotalResistanceTorque[Nm]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.VehBodyReplacementInrt[kg*m**2]" width="1"/>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.ext_wheel.in_cbrm[-]" type="EXPERT" width="1">
+    <comment>external constant for driver braking torque calculations</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.ext_wheel.in_m_brake[Nm]" type="EXPERT" width="1">
+    <comment>external brake torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.ext_wheel.in_m_brake_sw[-]" type="EXPERT" width="1">
+    <comment>external switch brake torque:  1 = switch internal brake torque off (use only external inputs)</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.ext_wheel.in_m_drive[Nm]" type="EXPERT" width="1">
+    <comment>external drive torque</comment>
+  </Signal>
+  <Signal name="Vehicle.WheelSystem.RearRight.Wheel.ext_wheel.in_m_drive_sw[-]" type="EXPERT" width="1">
+    <comment>external switch drive torque:  1 = switch internal drive torque off (use only external inputs)</comment>
+  </Signal>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.Circuit1PressReliefValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.Circuit1PumpSignal[0_1]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.Circuit1ReversingValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.Circuit2PressReliefValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.Circuit2PumpSignal[0_1]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.Circuit2ReversingValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.FrontLeftInletValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.FrontLeftOutletValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.FrontRightInletValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.FrontRightOutletValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.RearLeftInletValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.RearLeftOutletValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.RearRightInletValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.BrakeHydraulicsControl.RearRightOutletValveCurr[A]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.AftercoolerOutAirTemp[K]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.EngTrq[Nm]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.ExhaustCamOffsetAng[rad]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.FuelMass[kg]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.IgnitionAng[rad]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.InjectionAngMain[rad]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.InjectionAngPost1[rad]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.InjectionAngPost2[rad]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.InjectionAngPre[rad]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.InjectionMassMain[kg]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.InjectionMassPost1[kg]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.InjectionMassPost2[kg]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.InjectionMassPre[kg]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.IntakeCamOffsetAng[rad]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.Load[0_1]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.RefEngSpd[rad/s]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.RelativeOpeningEGRValve[0_1]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.ThrottleMassFlow[kg/s]" width="1"/>
+  <Signal name="VehicleControl.EngineControl.ThrottlePos[0_1]" width="1"/>
+  <Signal name="VehicleControl.InitialConditions.InitialPitch[rad]" width="1"/>
+  <Signal name="VehicleControl.InitialConditions.InitialPositionX(WorldSys)[m]" width="1"/>
+  <Signal name="VehicleControl.InitialConditions.InitialPositionY(WorldSys)[m]" width="1"/>
+  <Signal name="VehicleControl.InitialConditions.InitialPositionZ(WorldSys)[m]" width="1"/>
+  <Signal name="VehicleControl.InitialConditions.InitialRoll[rad]" width="1"/>
+  <Signal name="VehicleControl.InitialConditions.InitialYaw[rad]" width="1"/>
+  <Signal name="VehicleControl.LateralControl.LateralPhase[-]" width="1"/>
+  <Signal name="VehicleControl.LateralControl.LeftIndicator[0;1]" width="1"/>
+  <Signal name="VehicleControl.LateralControl.RightIndicator[0;1]" width="1"/>
+  <Signal name="VehicleControl.LateralControl.SteeringWheelAng[rad]" width="1"/>
+  <Signal name="VehicleControl.LateralControl.SteeringWheelInputSwitch[-]" width="1"/>
+  <Signal name="VehicleControl.LateralControl.SteeringWheelTrq[Nm]" width="1"/>
+  <Signal name="VehicleControl.LateralControl.TargetInformation.PathAng[rad]" width="1"/>
+  <Signal name="VehicleControl.LateralControl.TargetInformation.PathCurv[1/m]" width="1"/>
+  <Signal name="VehicleControl.LateralControl.TargetInformation.TargetAimPos[m]" width="2"/>
+  <Signal name="VehicleControl.LateralControl.TargetInformation.TargetPos[m]" width="3"/>
+  <Signal name="VehicleControl.LateralControl.UserDefined1[-]" width="1"/>
+  <Signal name="VehicleControl.LateralControl.UserDefined2[-]" width="1"/>
+  <Signal name="VehicleControl.LateralControl.UserDefinedRefValue[-]" width="1"/>
+  <Signal name="VehicleControl.LateralManeuver.Scheduler.scheduler_phasectrl_v.pos[-]" type="EXPERT" width="1">
+    <comment>position of current phase</comment>
+  </Signal>
+  <Signal name="VehicleControl.LongitudinalControl.ABSSwitch[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.ACCRefSpd[m/s]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.ACCSwitch[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.AEBSwitch[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.AccPedalPos[0_1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.AutomaticGearRange.MaxGear[-4;20]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.AutomaticGearRange.MinGear[-4;20]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.BrakePedalPos[0_1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.BrakeSwitch[1;3]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.ClutchPos[0_1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.DayRunningLight[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.ESCSwitch[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.FogLampFront[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.FogLampRear[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.FrontDifferentialLock[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.FrontLeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.FrontRightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.Handbrake[0_1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.HighBeamLight[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.IgnitionSwitch[0;3]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.InitialEngineSpeed[rad/s]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.InitialGear[-4;20]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.InitialSpeed[m/s]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.IntendedEngTrq[Nm]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.KickdownSwitch[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.LongitudinalPhase[-]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.LowBeamLight[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.MainBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.ManualGear[-4;20]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.ParkingLock[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.Rear2DifferentialLock[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.Rear2LeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.Rear2RightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.Rear3DifferentialLock[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.Rear3LeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.Rear3RightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.RearDifferentialLock[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.RearLeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.RearRightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.RefAcc[m/s**2]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.RefSpd[m/s]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.ShiftingProgramSelection[-]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.TrailerFrontLeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.TrailerFrontRightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.TrailerRear2LeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.TrailerRear2RightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.TrailerRear3LeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.TrailerRear3RightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.TrailerRearLeftWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.TrailerRearRightWheelBrakePress[Pa]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.TransferCaseLock[0;1]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.UserDefined1[-]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.UserDefined2[-]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalControl.UserDefinedRefValue[-]" width="1"/>
+  <Signal name="VehicleControl.LongitudinalManeuver.Scheduler.scheduler_phasectrl_v.pos[-]" type="EXPERT" width="1">
+    <comment>position of current phase</comment>
+  </Signal>
+  <Signal name="VehicleControl.SuspensionTestRigControl.ClampSwitch[0;1]" width="1"/>
+  <Signal name="VehicleControl.TemperatureControl.CoolantTemp[K]" width="1"/>
+  <Signal name="VehicleControl.TemperatureControl.ElecMotorTemp[K]" width="1"/>
+  <Signal name="VehicleControl.TemperatureControl.FrontDifferentialTemp[K]" width="1"/>
+  <Signal name="VehicleControl.TemperatureControl.GearStageTemp[K]" width="1"/>
+  <Signal name="VehicleControl.TemperatureControl.GeneratorTemp[K]" width="1"/>
+  <Signal name="VehicleControl.TemperatureControl.Rear2DifferentialTemp[K]" width="1"/>
+  <Signal name="VehicleControl.TemperatureControl.Rear3DifferentialTemp[K]" width="1"/>
+  <Signal name="VehicleControl.TemperatureControl.RearDifferentialTemp[K]" width="1"/>
+  <Signal name="VehicleControl.TemperatureControl.RearTransferCaseTemp[K]" width="1"/>
+  <Signal name="VehicleControl.TemperatureControl.TransferCaseTemp[K]" width="1"/>
+  <Signal name="VehicleControl.TemperatureControl.TransmissionTemp[K]" width="1"/>
+  <Signal name="VehicleControl.UserDefinedControl.UserDefined1[-]" width="1"/>
+  <Signal name="VehicleControl.UserDefinedControl.UserDefined2[-]" width="1"/>
+  <SignalAccess>
+    <SignalSource accessId="CTRL.AdditionalRoadElevation.ExternalAddLatRoadSlopeEnforced" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.AdditionalRoadElevation.ExternalAddLatRoadSlopeEnforced"/>
+    <SignalSource accessId="CTRL.AdditionalRoadElevation.ExternalAddLongRoadSlopeEnforced" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.AdditionalRoadElevation.ExternalAddLongRoadSlopeEnforced"/>
+    <SignalSource accessId="CTRL.LateralControl.RefCurvEnforced" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.LateralControl.RefCurvEnforced"/>
+    <SignalSource accessId="CTRL.LateralControl.RefLane" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.LateralControl.RefLane[-]"/>
+    <SignalSource accessId="CTRL.LateralControl.RefLaneEnforced" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.LateralControl.RefLaneEnforced"/>
+    <SignalSource accessId="CTRL.LateralControl.RefLatPosEnforced" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.LateralControl.RefLatPosEnforced"/>
+    <SignalSource accessId="CTRL.LateralControl.RefPathEnforced" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.LateralControl.RefPathEnforced"/>
+    <SignalSource accessId="CTRL.LateralControl.UserDefinedRefValueEnforced" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.LateralControl.UserDefinedRefValueEnforced"/>
+    <SignalSource accessId="CTRL.LongitudinalControl.RefAcc" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.LongitudinalControl.RefAcc[m//s**2]"/>
+    <SignalSource accessId="CTRL.LongitudinalControl.RefAccEnforced" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.LongitudinalControl.RefAccEnforced"/>
+    <SignalSource accessId="CTRL.LongitudinalControl.RefSpd" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.LongitudinalControl.RefSpd[m//s]"/>
+    <SignalSource accessId="CTRL.LongitudinalControl.RefSpdEnforced" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.LongitudinalControl.RefSpdEnforced"/>
+    <SignalSource accessId="CTRL.LongitudinalControl.UserDefinedRefValueEnforced" blockPath="SimulationModel/SwitchBoard/__SRC__CTRL.CTRL.LongitudinalControl.UserDefinedRefValueEnforced"/>
+    <SignalModifier accessId="CTRL.EnvironmentalConditions.WindDirection" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.EnvironmentalConditions.WindDirection[rad]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.EnvironmentalConditions.WindSpd" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.EnvironmentalConditions.WindSpd[m//s]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LateralControl.LeftIndicator" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LateralControl.LeftIndicator[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LateralControl.RightIndicator" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LateralControl.RightIndicator[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LateralControl.SteeringWheelAng" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LateralControl.SteeringWheelAng[rad]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LateralControl.SteeringWheelTrq" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LateralControl.SteeringWheelTrq[Nm]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.ABSSwitch" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.ABSSwitch[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.ACCRefSpd" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.ACCRefSpd[m//s]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.ACCSwitch" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.ACCSwitch[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.AEBSwitch" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.AEBSwitch[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.AccPedalPos" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.AccPedalPos[0_1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.BrakePedalPos" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.BrakePedalPos[0_1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.ClutchPos" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.ClutchPos[0_1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.DayRunningLight" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.DayRunningLight[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.ESCSwitch" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.ESCSwitch[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.FogLampFront" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.FogLampFront[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.FogLampRear" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.FogLampRear[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.FrontDifferentialLock" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.FrontDifferentialLock[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.HighBeamLight" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.HighBeamLight[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.IgnitionSwitch" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.IgnitionSwitch[0;3]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.KickdownSwitch" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.KickdownSwitch[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.LowBeamLight" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.LowBeamLight[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.ManualGear" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.ManualGear[-4;20]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.MaxGear" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.MaxGear[-4;20]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.MinGear" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.MinGear[-4;20]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.RearDifferentialLock" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.RearDifferentialLock[0;1]___UNIQUE_1"/>
+    <SignalModifier accessId="CTRL.LongitudinalControl.ShiftingProgramSelection" blockPath="SimulationModel/SwitchBoard/__TDS__CTRL.CTRL.LongitudinalControl.ShiftingProgramSelection[-]___UNIQUE_1"/>
+  </SignalAccess>
+</ModelDescription>

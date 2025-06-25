@@ -1,0 +1,366 @@
+﻿/*@!Encoding:65001*/
+// 이론상 추가로 필요한 UDS
+// 0x10 0x02: Diagnostic Session Control
+// 0x27 0x01: Security Access - Request Seed
+// 0x27 0x02 + KEY: Send Key
+// 0x11 0x01: ECU Reset
+
+variables
+{
+  message 0x000 ISOTP_MSG;
+  msTimer OTATimer;     //스케쥴링에 사용
+  int64 OTASchedule;
+  int userApproval = 0;
+  int VDCApproval = 0;
+  int inSchedule = 0;
+  int currentOTAStatus = 0;
+  enum OTAStatus {
+    OTA_IDLE,
+    OTA_CHECKING_INFLUENCE,
+    OTA_MAKING_SCHEDULE,
+    OTA_CHECKING_SCHEDULE,
+    OTA_CHECKING_CAR,
+    OTA_WRITING_ECU,
+    OTA_DONE,
+    OTA_ROLLBACK
+  };
+  enum targetIdx {
+    ADAS,
+    MOOD_LP,
+    FrontConsoleSwitch
+  };
+  int currentTargetIdx = -1;
+  char targetName[3][20]={"ADAS","MOOD_LP","FrontConsoleSwitch"};
+  int targetTX[3] = {0x761,0x755,0x750};
+  int targetRX[3] = {0x769,0x75D,0x758};
+  
+  char file_path[50] = "C:/TEAM_2_OTA/VUM/firmware";
+  char file_name[50];
+  char downloadData[4098];
+  int downloadSize = 0;
+}
+
+on key '1'{
+  currentOTAStatus = OTA_CHECKING_INFLUENCE; 
+  OTAStateMachine();
+}
+
+///////////////////////////////////////////////////////////
+//개별 ECU의 OTA를 위한 함수들
+//정상 플로우: 
+//  (OTA 타겟 파일이 다 있을 때)
+//  1. 타겟 파일 존재여부 확인
+//  2. 버전 비교(미구현)
+//  3. OTA 영향 분석 및 스케쥴 설정(미구현)
+//  4. 사용자에게 동의 얻기(미구현)
+//    4-1. 동의를 얻는 데 실패했다면 스케쥴 다시 설정 후 재동의(미구현)
+//  5. (스케쥴된 시간에)차량 상태 확인
+//  6. OTA 대상 ECU에 Write
+//  7. 부트플래그 변경 및 ECU리셋 명령(미구현)
+//    7-1. 부팅 실패 시 전체 ECU 롤백(미구현)
+//  8. OTA 결과를 VDC로 전송(미구현)
+//  9. OTA 결과를 사용자에게 전송(미구현)
+///////////////////////////////////////////////////////////
+
+void getUserApproval(){
+  message 0x316 userCheckRequest;
+  
+  OTASchedule+=1000;
+  userCheckRequest.byte(0)=OTASchedule&0xFF00000000000000LL;
+  userCheckRequest.byte(1)=OTASchedule&0x00FF000000000000LL;
+  userCheckRequest.byte(2)=OTASchedule&0x0000FF0000000000LL;
+  userCheckRequest.byte(3)=OTASchedule&0x000000FF00000000LL;
+  userCheckRequest.byte(4)=OTASchedule&0x00000000FF000000LL;
+  userCheckRequest.byte(5)=OTASchedule&0x0000000000FF0000LL;
+  userCheckRequest.byte(6)=OTASchedule&0x000000000000FF00LL;
+  userCheckRequest.byte(7)=OTASchedule&0x00000000000000FFLL;
+  output(userCheckRequest);
+}
+
+void getCarApproval(){
+  message msg_vum_vdc_check msg;
+  msg.byte(0)=0x01;
+  output(msg);
+}
+
+void OTAStateMachine(){
+  int i;
+  switch(currentOTAStatus){
+    case OTA_IDLE:
+      write("currentOTAStatus:(0)IDLE");
+      break;
+    case OTA_CHECKING_INFLUENCE:
+      write("currentOTAStatus:(1)Checking Influence");
+      getCarApproval();
+      break;
+    case OTA_MAKING_SCHEDULE:
+      write("currentOTAStatus:(2)Making Schedule");
+      OTASchedule=timeNowInt64();
+      currentOTAStatus=OTA_CHECKING_SCHEDULE;
+      OTAStateMachine();
+      break;
+    case OTA_CHECKING_SCHEDULE:
+      write("currentOTAStatus:(3)Checking Schedule");
+      getUserApproval();
+      break;
+    case OTA_CHECKING_CAR:
+      write("currentOTAStatus:(4)Checking Car Status");
+      getCarApproval();
+      break;
+    case OTA_WRITING_ECU:
+      write("currentOTAStatus:(5)Writing ECU");
+      writeECU();
+      break;
+    case OTA_DONE:
+      write("currentOTAStatus:(6)OTA_DONE");
+      //결과 전송
+      currentOTAStatus = OTA_IDLE;
+      break;
+    case OTA_ROLLBACK:
+      write("currentOTAStatus:(7)Rollback");
+      break;
+  }
+}
+
+
+int checkUpdate(int idx){//대상이 OTA 타겟 ECU인지 종합적으로 확인 및 영향 분석
+  dword fd;
+  int currentVersion;
+  int targetVersion;
+  int result;
+  byte tmp[1];
+  setFilePath(file_path,0); //read
+  snprintf(file_name,50,"%s.txt",targetName[idx]);
+  fd = openFileRead(file_name, 1);
+  
+  if (fileGetBinaryBlock(tmp,1,fd) == 0){
+    result = 0;
+  }
+  else {
+    //버전 비교 : 미구현
+    currentVersion = 1;
+    targetVersion = 2;
+    //
+    if(currentVersion<targetVersion){
+      result = 1;
+    }
+    else{
+      result = 0;
+    }
+  }
+  fileClose(fd);
+  write("checkUpdate-%s: %d",targetName[idx],result);
+  return result;
+}
+
+on message msg_file_update
+{
+  write("msg_file_update");
+  if(currentOTAStatus==OTA_IDLE){
+    currentOTAStatus = OTA_CHECKING_INFLUENCE; 
+    OTAStateMachine();
+  }
+  else{
+    write("OTA denied, OTA is now on progress");
+  }
+}
+
+on message msg_vdc_vum_status
+{
+  write("msg_vdc_vum_status:%d",this.sig_vdc_vum_status);
+  if(this.sig_vdc_vum_status==1){
+    //업데이트 불가능
+    write("Update denied by VDC");
+  }
+  else if(this.sig_vdc_vum_status==0){
+    //업데이트 가능
+    if(currentOTAStatus == OTA_CHECKING_CAR){
+     currentOTAStatus = OTA_WRITING_ECU;
+      OTAStateMachine();
+    }
+    else if(currentOTAStatus == OTA_CHECKING_INFLUENCE){
+     currentOTAStatus = OTA_MAKING_SCHEDULE; 
+      OTAStateMachine();
+    }
+  }
+}
+
+on message 0x432 //사용자의 승인
+{
+  if(this.byte(0)==0){//안돼
+    write("OTA Denied by User");
+    OTAStateMachine();
+  }
+  else{//돼
+    OTASchedule = timeNowInt64()+1000;
+    write("OTA Scheduled at %d",OTASchedule);
+    setTimer(OTATimer,1000);
+    currentOTAStatus = OTA_CHECKING_CAR;
+  }
+}
+
+on timer OTATimer
+{
+  write("OTA Timer Activated");
+  OTAStateMachine();
+}
+
+void writeECU(){
+  int i;
+  int res;
+  for(i=0;i<3;i++){
+    currentTargetIdx=i;
+    res = checkUpdate(i);
+   if(res==1){
+     fileToBuffer(i);
+     requestDownload();
+     transferData();
+     transferExit();
+   }
+  }
+  currentOTAStatus = OTA_DONE;
+}
+
+void fileToBuffer(int idx){
+  char line[256];
+  int filepos=0;
+  int len=0;
+  dword fd;                 //file descriptor handle
+  setFilePath(file_path,0); //read
+  snprintf(file_name,50,"%s.txt",targetName[idx]);
+  
+  fd = openFileRead(file_name, 0);
+  if (fd == -1)
+  {
+    write("파일 열기 실패");
+    return;
+  }
+  
+  downloadSize = 0;
+  while (fileGetStringSZ(line, elcount(line), fd) > 0)
+  {
+    int i;
+    len = strlen(line);
+    if (downloadSize + len >= elcount(downloadData))
+    {
+      write("버퍼 크기 초과!");
+      break;
+    }
+    for(i=0;i<len;i++){
+      downloadData[downloadSize++]=line[i];
+    }
+    downloadData[downloadSize++]='\n';
+  }
+  fileClose(fd);
+  write("%s/%s size: %d",file_path,file_name,downloadSize);
+}
+
+///////////////////////////////////////////////////////////
+//ISO-TP
+//싱글프레임, 멀티프레임 UDS 전달 및 플로우컨트롤(미구현)
+///////////////////////////////////////////////////////////
+
+void sendISOTP(dword target_address,byte data[], int len)
+{
+  int i;
+  int index;
+  int seqNum;
+  message 0x7DF outmsg;//브로드캐스트(사용안함)
+  
+  index = 0;
+  seqNum = 1;
+  ISOTP_MSG.id = target_address;
+  
+  if (len <= 7)//single frame
+  {
+
+    ISOTP_MSG.byte(0) = 0x00 | len;
+    for (i = 0; i < len; i++) ISOTP_MSG.byte(i+1) = data[i];
+    for (i = len + 1; i < 8; i++) ISOTP_MSG.byte(i) = 0x00;
+    ISOTP_MSG.dlc = len+1;
+    
+    output(ISOTP_MSG);
+  }
+  else//ff -> cf
+  {
+    ISOTP_MSG.byte(0) = 0x10 | ((len >> 8) & 0x0F);
+    ISOTP_MSG.byte(1) = len & 0xFF;
+    for (i = 0; i < 6; i++) ISOTP_MSG.byte(i+2) = data[index++];
+    ISOTP_MSG.dlc = len+2;
+    write("sendFF %d",target_address);
+    output(ISOTP_MSG);
+    
+    //flow control을 받은 다음 cf를 보내기 시작해야하는데, 그부분은 미구현. (flow control 없이 그냥 파일 전송)
+    while (index < len)
+    {
+      int rest;
+      int cfLen;
+      ISOTP_MSG.byte(0) = 0x20 | (seqNum & 0x0F);
+      rest = len - index;
+      cfLen = (rest >= 7) ? 7 : rest;
+
+      for (i = 0; i < cfLen; i++) ISOTP_MSG.byte(i+1) = data[index++];
+      
+      ISOTP_MSG.dlc = cfLen+1;
+      //write("sendCF %d",target_address);
+      output(ISOTP_MSG);
+
+      seqNum++;
+    }
+  }
+}
+
+///////////////////////////////////////////////////////////
+//파일 전달을 위한 UDS 서비스
+///////////////////////////////////////////////////////////
+on message 0x7E8  //UDS Request에 대한 응답 수신
+{
+  byte pci; 
+  byte sid;
+  int i;
+  
+  byte response[8];
+  byte fc[3];
+  byte sn;//sequence num
+  pci = this.byte(0);
+  sid = this.byte(1);
+  
+  //UDS를 까보고 그에 대한 동작을 수행해야 함(대표적으로 Flow Control)
+}
+
+
+void requestDownload(){//UDS,ISO-TP 기반 파일 다운로드 요청
+  byte msg[11];
+  msg[0] = 0x34;
+  msg[1] = 0x00;
+  msg[2] = 0x44; // 4-byte address + 4-byte length
+  msg[3] = 0x00;
+  msg[4] = 0x00;
+  msg[5] = 0x40;
+  msg[6] = 0x00; // address: 0x00004000
+  msg[7] = downloadSize&0xFF000000;
+  msg[8] = downloadSize&0x00FF0000;
+  msg[9] = downloadSize&0x0000FF00;
+  msg[10] = downloadSize&0x000000FF; // file length
+  sendISOTP(targetTX[currentTargetIdx],msg, 11);
+  write(">> Request Download");
+}
+
+void transferData(){//UDS,ISO-TP 기반 file transfer
+  byte msg[4098];
+  int i;
+  msg[0] = 0x36;
+  msg[1] = 0x01;
+  for (i = 0; i < downloadSize; i++)
+  {
+    msg[2 + i] = downloadData[i];
+  }
+  sendISOTP(targetTX[currentTargetIdx],msg, 2 + downloadSize);
+}
+
+void transferExit(){//UDS,ISO-TP 기반 파일 전송 종료
+  byte msg[2];
+  msg[0]=0x37;
+  sendISOTP(targetTX[currentTargetIdx],msg, 1);
+  write(">> Request Transfer Exit");
+}

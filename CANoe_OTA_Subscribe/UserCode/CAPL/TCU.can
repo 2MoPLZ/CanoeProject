@@ -1,0 +1,172 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  const int kDeltaT         = 10;           // sampling rate of engine
+  const double kDeltaTInSec = kDeltaT / 1000.0;
+  int IgnitionState = 0;       // 시동 상태 (0: 꺼짐, 1: 켜짐)
+  double gRPM;             // 입력된 RPM 값
+  int gGear;               // 현재 기어 (1~5)
+  double gSpeed;           // 차량 속도 (m/s)
+  double gEngSpeed;        // 엔진 회전수 (rev/sec)
+  double gForce;           // 추진력
+  int cruiseState;
+  
+  /*force 를 계산하기 위한 상수*/
+  double kAirFriction       = 0.6;          // F = kFriction*v*v
+  double kRollingFriction   = 100.0;        // Newton
+  double kMass = 800.0;    // 차량 질량 (kg)
+  
+  msTimer TCUSystemClockTimer;
+  
+  message P_CAN::msg_tcu_info tcuInfoMsg;
+  message P_CAN::msg_ieb_brake IEB_PCAN;
+}
+/*
+void gearDown()
+{
+  double gear = 0;
+  if (!@this) return;
+    
+  if($GearBoxInfo::Gear == 0)  return;
+
+  gear = $GearBoxInfo::Gear - 1;
+  $GearBoxInfo::Gear = gear;
+  @sysvar::PowerTrain::GearTextDisplay = gear;
+}
+
+vpod GearUp()
+{
+  double gear = 0;
+  if (!@this) return;
+  
+  if($GearBoxInfo::Gear == 5)  return; 
+
+  gear = $GearBoxInfo::Gear + 1;
+ 
+  $GearBoxInfo::Gear =  gear;
+  @sysvar::PowerTrain::GearTextDisplay = gear;
+}
+*/
+
+void SelectGearByspeed(double gSpeed)
+{
+  gSpeed = gSpeed * 1.6;
+  if(gSpeed >= 0.0 && gSpeed < 20.0) gGear = 1.0;
+  else if (gSpeed >= 20.0 && gSpeed < 30.0) gGear = 2.0;
+  else if (gSpeed >= 40.0 && gSpeed < 50.0) gGear = 3.0;
+  else if (gSpeed >= 60.0 && gSpeed < 70.0) gGear = 4.0;
+  else if (gSpeed >= 80.0 && gSpeed < 90.0) gGear = 5.0;
+  else if (gSpeed >= 100.0) gGear = 5.0; // 유지
+  @sysvar::TCU::GearState = gGear;
+}
+
+on timer TCUSystemClockTimer
+{
+  double ratio,gSpeed,power,frictionForce,brakeForce,accelerationForce ;
+  
+  setTimer(this, 10);  // 10ms
+  
+  
+  frictionForce = (kAirFriction*gSpeed*gSpeed) + ( 1.0 * gSpeed ) + kRollingFriction ;
+  //write("frictionForce %f", frictionForce);
+  //write("gGear %d", gGear);
+  
+  //브레이크를 위한 코드
+  if ($P_CAN::msg_ieb_brake::sig_ieb_brake == 1) 
+  {
+    brakeForce = 15000.0; //기존 10000.0
+    @DYNA4::Parameters::DYNA4_Signal_Access::CTRL::LongitudinalControl::BrakePedalPos::Value = 0.5;
+  }
+  else 
+  {
+    brakeForce = 0.0;
+    @DYNA4::Parameters::DYNA4_Signal_Access::CTRL::LongitudinalControl::BrakePedalPos::Value = 0;
+  }
+  
+  
+  accelerationForce = gForce - frictionForce - brakeForce;
+  if(gSpeed == 0 && $P_CAN::msg_ieb_brake::sig_ieb_brake == 1){
+    accelerationForce = 0;
+  }
+  
+  // workaround for error
+  if( accelerationForce != 0.0 ) 
+  { 
+    if(cruiseState == 1){
+     if($P_CAN::msg_ieb_brake::sig_ieb_brake == 1 || @sysvar::EMS::PedalPosition == 1){
+       gSpeed = gSpeed + (( accelerationForce / kMass) * kDeltaTInSec);  // oldSpeed = gSpeed;
+     }
+     else{
+       gSpeed = gSpeed;
+     }
+    }
+    else{
+      gSpeed = gSpeed + (( accelerationForce / kMass) * kDeltaTInSec);  // oldSpeed = gSpeed;
+    }
+  }
+  
+  //write("gSpeed %f", gSpeed);
+  // reset idle indicator
+  if( accelerationForce >= -1.0 ) 
+  {
+    //gPowerIdle = 0;
+  }
+  if (!IgnitionState || @EMS::GearState == P ) {
+    // 시동 꺼진 상태: 엔진/속도 모두 정지
+    gRPM = 0;
+    gSpeed = 0;
+    gEngSpeed = 0;
+    gForce = 0;
+  }
+  if (gSpeed<=0) gSpeed = 0.0;
+  SelectGearByspeed(gSpeed);
+  tcuInfoMsg.sig_speed = gSpeed * 1.6;
+  tcuInfoMsg.sig_gear_pos = @EMS::GearState;
+  tcuInfoMsg.sig_gear_shift = gGear;
+  output(tcuInfoMsg);
+}
+
+on message P_CAN::msg_engine_data
+{
+  gEngSpeed = this.sig_rpm ;
+  gForce = this.sig_engine_torque;
+  //write("gEngSpeed %f", gEngSpeed);
+  //write("gForce %f", gForce);
+}
+
+on message P_CAN::msg_fconsole_cruise
+{
+  write("check");
+  cruiseState = this.sig_cruise_state;
+}
+
+on sysvar_update sysvar::SCU::IgnitionState
+{
+  IgnitionState = @this;
+  if (IgnitionState) {
+    //write("ignition on");
+    cruiseState = 0;
+    SelectGearByspeed(gSpeed);
+    setTimer(TCUSystemClockTimer, 10);
+  } else {
+    gGear = 0;
+    @sysvar::TCU::GearState = 0;
+    cancelTimer(TCUSystemClockTimer);
+  }
+}
+
+on start
+{
+  IgnitionState = 0;
+  gRPM = 0;
+  gSpeed = 0;
+  gGear = 0;
+  @sysvar::TCU::GearState = 0;
+  @sysvar::DYNA4::Parameters::DYNA4_Signal_Access::CTRL::LongitudinalControl::AccPedalPos::Enable = 1;
+  @sysvar::DYNA4::Parameters::DYNA4_Signal_Access::CTRL::LongitudinalControl::BrakePedalPos::Enable = 1;
+}

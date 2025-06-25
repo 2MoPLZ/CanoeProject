@@ -1,0 +1,287 @@
+# DYNA4 road material file
+hash:667efcec8ebbeed53c4bb2a26765c653
+
+newmtl None
+Ka 1 0 0
+Kd 1 1 1
+Ks 0 0 0
+Ns 350
+
+newmtl Road_Type_1_1
+Ka 1 1 1
+Kd 0.5 0.5 0.5
+Ks 0 0 0
+Ns 350
+map_Ka road1.jpg
+map_Kd road1.jpg
+
+newmtl Road_Type_1_2
+Ka 1 1 1
+Kd 0.6 0.6 0.6
+Ks 0 0 0
+Ns 350
+map_Ka road1.jpg
+map_Kd road1.jpg
+
+newmtl Road_Type_1_3
+Ka 1 1 1
+Kd 0.7 0.7 0.7
+Ks 0 0 0
+Ns 350
+map_Ka road1.jpg
+map_Kd road1.jpg
+
+newmtl Road_Type_1_4
+Ka 1 1 1
+Kd 0.8 0.8 0.8
+Ks 0 0 0
+Ns 350
+map_Ka road1.jpg
+map_Kd road1.jpg
+
+newmtl Road_Type_1_5
+Ka 1 1 1
+Kd 0.9 0.9 0.9
+Ks 0 0 0
+Ns 350
+map_Ka road1.jpg
+map_Kd road1.jpg
+
+newmtl Road_Type_1_6
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+Ns 350
+map_Ka road1.jpg
+map_Kd road1.jpg
+
+newmtl Road_Type_2_1
+Ka 1 1 1
+Kd 0.5 0.5 0.5
+Ks 0 0 0
+Ns 350
+map_Ka road2.jpg
+map_Kd road2.jpg
+
+newmtl Road_Type_2_2
+Ka 1 1 1
+Kd 0.6 0.6 0.6
+Ks 0 0 0
+Ns 350
+map_Ka road2.jpg
+map_Kd road2.jpg
+
+newmtl Road_Type_2_3
+Ka 1 1 1
+Kd 0.7 0.7 0.7
+Ks 0 0 0
+Ns 350
+map_Ka road2.jpg
+map_Kd road2.jpg
+
+newmtl Road_Type_2_4
+Ka 1 1 1
+Kd 0.8 0.8 0.8
+Ks 0 0 0
+Ns 350
+map_Ka road2.jpg
+map_Kd road2.jpg
+
+newmtl Road_Type_2_5
+Ka 1 1 1
+Kd 0.9 0.9 0.9
+Ks 0 0 0
+Ns 350
+map_Ka road2.jpg
+map_Kd road2.jpg
+
+newmtl Road_Type_2_6
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+Ns 350
+map_Ka road2.jpg
+map_Kd road2.jpg
+
+newmtl Road_Type_3_1
+Ka 1 1 1
+Kd 0.5 0.5 0.5
+Ks 0 0 0
+Ns 350
+map_Ka road3.jpg
+map_Kd road3.jpg
+
+newmtl Road_Type_3_2
+Ka 1 1 1
+Kd 0.6 0.6 0.6
+Ks 0 0 0
+Ns 350
+map_Ka road3.jpg
+map_Kd road3.jpg
+
+newmtl Road_Type_3_3
+Ka 1 1 1
+Kd 0.7 0.7 0.7
+Ks 0 0 0
+Ns 350
+map_Ka road3.jpg
+map_Kd road3.jpg
+
+newmtl Road_Type_3_4
+Ka 1 1 1
+Kd 0.8 0.8 0.8
+Ks 0 0 0
+Ns 350
+map_Ka road3.jpg
+map_Kd road3.jpg
+
+newmtl Road_Type_3_5
+Ka 1 1 1
+Kd 0.9 0.9 0.9
+Ks 0 0 0
+Ns 350
+map_Ka road3.jpg
+map_Kd road3.jpg
+
+newmtl Road_Type_3_6
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+Ns 350
+map_Ka road3.jpg
+map_Kd road3.jpg
+
+newmtl Road_Type_4_1
+Ka 1 1 1
+Kd 0.5 0.5 0.5
+Ks 0 0 0
+Ns 350
+map_Ka road4.jpg
+map_Kd road4.jpg
+
+newmtl Road_Type_4_2
+Ka 1 1 1
+Kd 0.6 0.6 0.6
+Ks 0 0 0
+Ns 350
+map_Ka road4.jpg
+map_Kd road4.jpg
+
+newmtl Road_Type_4_3
+Ka 1 1 1
+Kd 0.7 0.7 0.7
+Ks 0 0 0
+Ns 350
+map_Ka road4.jpg
+map_Kd road4.jpg
+
+newmtl Road_Type_4_4
+Ka 1 1 1
+Kd 0.8 0.8 0.8
+Ks 0 0 0
+Ns 350
+map_Ka road4.jpg
+map_Kd road4.jpg
+
+newmtl Road_Type_4_5
+Ka 1 1 1
+Kd 0.9 0.9 0.9
+Ks 0 0 0
+Ns 350
+map_Ka road4.jpg
+map_Kd road4.jpg
+
+newmtl Road_Type_4_6
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+Ns 350
+map_Ka road4.jpg
+map_Kd road4.jpg
+
+newmtl Road_Type_5_1
+Ka 1 1 1
+Kd 0.5 0.5 0.5
+Ks 0 0 0
+Ns 350
+map_Ka road5.jpg
+map_Kd road5.jpg
+
+newmtl Road_Type_5_2
+Ka 1 1 1
+Kd 0.6 0.6 0.6
+Ks 0 0 0
+Ns 350
+map_Ka road5.jpg
+map_Kd road5.jpg
+
+newmtl Road_Type_5_3
+Ka 1 1 1
+Kd 0.7 0.7 0.7
+Ks 0 0 0
+Ns 350
+map_Ka road5.jpg
+map_Kd road5.jpg
+
+newmtl Road_Type_5_4
+Ka 1 1 1
+Kd 0.8 0.8 0.8
+Ks 0 0 0
+Ns 350
+map_Ka road5.jpg
+map_Kd road5.jpg
+
+newmtl Road_Type_5_5
+Ka 1 1 1
+Kd 0.9 0.9 0.9
+Ks 0 0 0
+Ns 350
+map_Ka road5.jpg
+map_Kd road5.jpg
+
+newmtl Road_Type_5_6
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+Ns 350
+map_Ka road5.jpg
+map_Kd road5.jpg
+
+newmtl Lanemarks_white
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+
+newmtl Lanemarks_yellow
+Ka 1 1 0
+Kd 1 1 0
+Ks 0 0 0
+
+newmtl Inner_lanemarks_textured
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+map_Ka InnerBottsDots.png
+map_Kd InnerBottsDots.png
+
+newmtl Left_lanemarks_textured
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+map_Ka LeftBottsDots.png
+map_Kd LeftBottsDots.png
+
+newmtl Right_lanemarks_textured
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+map_Ka RightBottsDots.png
+map_Kd RightBottsDots.png
+
+newmtl Bank_Slope
+Ka 1 1 1
+Kd 1 1 1
+Ks 0 0 0
+map_Ka road1.jpg
+map_Kd road1.jpg
+

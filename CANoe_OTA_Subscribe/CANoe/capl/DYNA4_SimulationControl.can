@@ -1,0 +1,65 @@
+/*@!Encoding:1252*/
+/*
+ * DYNA4_SimulationControl.can
+ *
+ * This test module writes the correct parameter file path to the
+ * related model parameter. Please configure, that the test module referencing this 
+ * CAPL file is executed on the system variable DYNA4::ChangeDataPath.
+ *
+ * This file has been prepared for DYNA4 R9 SP1. Don't use with different versions!
+ *
+ * Copyright 2020-2024, Vector Informatik GmbH - All right reserved
+ *
+ */
+includes
+{
+  // adapt your constants in the following include:
+  #include "DYNA4_Constants.cin"
+  // DYNA4 dataset API:
+  #include "DYNA4_Functions.cin"
+}
+
+variables
+{
+}
+
+on preStart
+{
+  char animationMdlPath[1024];
+  char modelName[256];
+    
+  // If the "GetSimulinkModelName" call isn't available just hardcode the model name, like:
+  // strncpy(modelName,"SingleTrackCANoe",elcount(modelName));
+  GetSimulinkModelName(modelName, elcount(modelName));
+  
+  strncpy(animationMdlPath, modelName, elcount(animationMdlPath));
+  strncat(animationMdlPath, "/",  elcount(animationMdlPath));
+  strncat(animationMdlPath, enabledSubsystemName,  elcount(animationMdlPath));
+  strncat(animationMdlPath, animationSubsystemName,  elcount(animationMdlPath));
+  
+  sysSetVariableString(sysvar::AnimationProjectLauncher::ModelBlockPath,animationMdlPath);
+  sysSetVariableString(sysvar::AnimationProjectLauncher::AnimationDataFileName,animationDataFileName);
+  sysSetVariableString(sysvar::DYNA4::GlobalDyna4RootNodeName,globalDyna4RootNodeName);
+  sysSetVariableString(sysvar::DYNA4::EnabledSubsystemName,enabledSubsystemName);
+  sysSetVariableInt(sysvar::DYNA4::isRunningOnRemoteKernel,isRunningOnRemoteKernel());
+    
+  // always start CANoe measurement with disabled simulation
+  DYNA4StopScenario();
+}
+
+void MainTest ()
+{
+  DYNA4StopScenario();
+  if (DYNA4LoadScenario("..\\RunPackageExports\\Demo_CANoe\\SingleTrackCANoe\\Roundabout_ODR") > 0)
+  {
+    write("DYNA4 scenario loaded.");
+    DYNA4WaitForScenarioLoad(0);
+    DYNA4StartScenario();
+    DYNA4WaitForScenarioEnd();
+    DYNA4StopScenario();
+  }
+  else
+  {
+    write("DYNA4 scenario from the given path could not be loaded.");
+  }
+}

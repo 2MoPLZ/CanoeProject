@@ -1,0 +1,29 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  msTimer loop;
+  message msg_rmdps_steer_angle msg_steer;
+}
+
+on start
+{
+  setTimerCyclic(loop, 50);
+  @sysvar::DYNA4::Parameters::DYNA4_Signal_Access::CTRL::LateralControl::SteeringWheelAng::Enable = 1;
+}
+
+on timer loop
+{
+  msg_steer.sig_steer_angle = @sysvar::RMDPS::SteerAngle;
+  @DYNA4::Parameters::DYNA4_Signal_Access::CTRL::LateralControl::SteeringWheelAng::Value = -(double)(@RMDPS::SteerAngle*(pi/180));
+  output(msg_steer);
+}
+
+on sysvar RMDPS::RMDPS_RESET
+{
+  @sysvar::RMDPS::SteerAngle = 0;
+}

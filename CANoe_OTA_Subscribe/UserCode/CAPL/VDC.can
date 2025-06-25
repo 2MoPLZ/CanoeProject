@@ -1,0 +1,751 @@
+﻿/*@!Encoding:65001*/
+includes
+{
+
+}
+
+
+
+variables
+{  
+  //-------------차량 일반 데이터----------
+  char combined_log_dir[100] = "C:/TEAM_2_OTA/VDC";
+  char combined_log_name[50] = "combined_log.txt"; //고정 이름
+  
+  struct general_data_t{
+    word dtc_count;
+    char dtc_list[256][8];
+    char dtc_time_list[256][9];
+    float battery_voltage;
+    float battery_level; //백분율
+  };
+  struct p_can_data_t{
+    byte ignition_on;
+    word speed; //p-can의 msg_tcu_info.sig_speed
+    char gearPosition;
+  };
+  struct vehicle_data_t{
+    struct general_data_t general_data;
+    struct p_can_data_t p_can_data;
+  };
+  
+  struct vehicle_data_t vehicle_data;
+  
+  char text_dtc_count[30] = "Total DTC Count";
+  char text_battery_voltage[30] = "Battery voltage";
+  char text_battery_level[30] = "Battery level";
+  
+  //------------도메인 진단 로그----------
+  char DDC_log_dir[100] = "C:/TEAM_2_OTA/VDC";
+  char DDC_log_file_name[50];
+    //진단로그 파일 이름 : "log_<dtc_Count+1>.txt"
+  //    snprintf(receiveFileName, 100,"log_%d.txt",
+  //            dtc_count+1
+  //            );
+  
+  //-------------VUM---------
+  char sw_info_file_dir[100];
+  char sw_info_file_name[50];
+  
+  
+  //-------------진단--------- -> cgw 파일로 갈 듯
+  enum ecuAddress{
+    addr_mood_lp = 0x755
+  };
+  
+  
+  //-----------파일 송수신
+  char tx_payload[4095];
+  int tx_payload_size;
+  
+  char tx_buffer[4098];
+  int tx_packet_size;
+  
+  char rx_payload[4095];
+  int rx_payload_size;
+  
+  char rx_buffer[4098];
+  int rx_packet_size;
+  
+  char buffer_temp[20];
+  char targetName[3][20]={"ADAS","MOOD_LP","FrontConsoleSwitch"};
+  int targetTX[3] = {0x761,0x755,0x750};
+  int targetRX[3] = {0x769,0x75D,0x758};
+  
+  char file_path_temp[100] = "C:/TEAM_2_OTA/VDC";
+  char file_name_temp[50] = "temp.txt";
+  
+  ///////////////
+  int rxIndex = 0;
+  int rxExpectedSN = 1;
+  int rxInProgress = 0;
+  
+  dword receive_fd;
+  
+  int currentService = 0;
+  //////////////
+  
+  message 0x000 ISOTP_MSG;
+}
+on stopMeasurement
+{
+  ////////////열려있는 모든 파일디스크립터 닫기
+  
+}
+
+on start
+{
+  write("vdc start");
+  
+  //DDC로그파일 파싱 및 DTC데이터 추출 테스트 - OK
+  //parseFailureLog(DDC_log_dir,"log_1.txt"); 
+  //parseFailureLog(DDC_log_dir,"log_2.txt");
+  //parseFailureLog(DDC_log_dir,"log_3.txt");
+  //makeTotalLog();
+  
+  //서버로 전송할 통합 로그파일 생성 테스트 - OK
+  //vehicle_data.general_data.dtc_count = 3;
+  //makeTotalLog(); test ok
+  
+  //커넥티비티로부터 메시지 수신 시 함수 정상 호출 테스트 - ok
+  
+  //VUM 업데이트 조건 확인 테스트 - ok
+  //업데이트 가능 케이스 - ok
+  //업데이트 불가능 케이스 - ok
+ 
+  //서버 요청 시 통합 로그파일 전송 테스트
+  //vehicle_data.general_data.dtc_count = 3;
+  
+}
+
+//UDS서비스를 통해 파일 전송
+void sendFile(dword target_address,char file_path[], char file_name[])
+{
+  //원래는 각각의 서비스 요청 후 응답 받은뒤에 넘어가는게 맞음, 일단 각 단계 사이사이에 적당한 딜레이 주는 방식 검토
+  
+  requestDownload(target_address);
+  
+  //파일 모든 내용 보낼 때까지 4095바이트씩 끊어서 반복
+  _sendFile(target_address,file_path,file_name);
+  
+  transferExit(target_address);
+}
+
+//4096바이트 이상인 파일을 쪼개서 보냄, 내부에서 transferData 서비스 사용하여 전송까지 처리
+void _sendFile(dword target_address,char file_path[], char file_name[])
+{
+  char line[256];
+  int filepos=0;
+  int len=0;
+  dword fd;                 //file descriptor handle
+  setFilePath(file_path,0); //read
+  
+  fd = openFileRead(file_name, 0);
+  if (fd == -1)
+  {
+    write("파일 열기 실패");
+    return;
+  }
+  
+  tx_payload_size = 0;
+  while (fileGetStringSZ(line, elcount(line), fd) > 0)
+  {
+    int i;
+    len = strlen(line);
+    if (tx_payload_size + len >= elcount(tx_payload))
+    {
+      transferData(target_address); 
+      tx_payload_size = 0; //송신 버퍼의 인덱스 0부터 다시 쓰기
+    }
+    for(i=0;i<len;i++){
+      tx_payload[tx_payload_size++]=line[i];
+    }
+    tx_payload[tx_payload_size++]='\n';
+  }
+  
+  //남은 파일 데이터 전송
+  if(tx_payload_size > 0)
+  {
+    transferData(target_address); 
+  }
+  
+  fileClose(fd);
+  write("%s/%s size: %d",file_path,file_name,tx_payload_size);
+}
+
+//파일 내용을 file_data[] 버퍼에 저장 ->4096바이트 이하인 경우 사용가능, 전송 기능 미포함
+void fileToBuffer(char file_path[], char file_name[]){
+  char line[256];
+  int filepos=0;
+  int len=0;
+  dword fd;                 //file descriptor handle
+  setFilePath(file_path,0); //read
+  
+  fd = openFileRead(file_name, 0);
+  if (fd == -1)
+  {
+    write("파일 열기 실패");
+    return;
+  }
+  
+  tx_payload_size = 0;
+  while (fileGetStringSZ(line, elcount(line), fd) > 0)
+  {
+    int i;
+    len = strlen(line);
+    if (tx_payload_size + len >= elcount(tx_payload))
+    {
+      write("버퍼 크기 초과!");
+      break;
+    }
+    for(i=0;i<len;i++){
+      tx_payload[tx_payload_size++]=line[i];
+    }
+    tx_payload[tx_payload_size++]='\n';
+  }
+  fileClose(fd);
+  write("%s/%s size: %d",file_path,file_name,tx_payload_size);
+}
+
+
+
+// 수신 메시지 핸들러 
+// ***************CAN ID를 ECU마다 다르게 수정해야 함*****************
+on message msg_vdc_diag_request  //vdc request id
+{
+  
+  byte pci; 
+  byte sid;
+  int i;
+  byte response[8];
+  byte sn;//sequence num
+  
+  pci = this.byte(0);
+  
+  // Single Frame
+  if ((pci & 0xF0) == 0x00)
+  {
+    rx_packet_size = pci & 0x0F;
+    sid = this.byte(1);
+
+    currentService = sid;
+    if(currentService == 0x37) //파일 수신 종료, fd 닫기
+    {
+      fileClose(receive_fd);
+      receivedFileCheckAndCopy();
+    }
+
+    write("VDC : >> UDS Request: SID = 0x%02X", sid);
+
+    //request에 대한 응답
+    tx_buffer[0] = sid + 0x40;
+    tx_buffer[1] = 0x00; // Dummy positive response data
+    //sendISOTP(0x768,2);
+
+    
+  }
+
+  // First Frame이 왔으면 응답후 CF 받기 시작
+  else if ((pci & 0xF0) == 0x10)
+  {
+    rx_packet_size = ((pci & 0x0F) << 8) | this.byte(1);
+    
+    rxIndex = 0;
+
+    for (i = 0; i < 6; i++)
+      rx_buffer[rxIndex++] = this.byte(i + 2);
+    
+    currentService = rx_buffer[0]; // SID
+    
+    rxExpectedSN = 1;
+    rxInProgress = 1;
+    
+    if(currentService == 0x34) //request download, fd 열기
+    {
+      setWritePath(file_path_temp);
+      receive_fd = openFileWrite(file_name_temp,0);
+    }
+    else if(currentService == 0x36) //file tramsfer
+    {
+      rx_payload_size = 0;
+    }
+    
+    write("VDC : >> First Frame SID = 0x%02X, total length = %d", currentService, rx_packet_size);
+
+    // FC (Flow Control) 응답 - 받을 블럭 크기랑 ST를 여기서 결정
+    tx_buffer[0]=0x30;
+    tx_buffer[1]=0x00;
+    tx_buffer[2]=0x00;
+    //sendISOTP(0x768,3);
+  }
+
+  // Consecutive Frame
+  else if ((pci & 0xF0) == 0x20)
+  {
+    byte sn;
+    int rest;
+    int copyLen;
+    sn = pci & 0x0F;
+
+    if (!rxInProgress) return;
+
+    if (sn != (rxExpectedSN & 0x0F))
+    {
+      write("VDC : !! SN mismatch. Expected %d, got %d", rxExpectedSN, sn);
+      rxInProgress = 0;
+      return;
+    }
+
+    rxExpectedSN++;
+
+    rest = rx_packet_size - rxIndex;
+    copyLen = (rest >= 7) ? 7 : rest;
+
+    for (i = 0; i < copyLen; i++)
+      rx_buffer[rxIndex++] = this.byte(i + 1);
+
+    if (rxIndex >= rx_packet_size)
+    {
+      tx_buffer[0]=0x03;
+      tx_buffer[1]=0x76;
+      tx_buffer[2]=0x01;
+      rxInProgress = 0;
+      write("VDC : >> Data reception complete. SID = 0x%02X", currentService);
+
+      if (currentService == 0x36)
+      {
+        //ddc가 보낸건지(첫 3글자가 DTC다.) vum이 보내는건지 구분해야됨
+        //일단 tempfile에 저장
+        bufferToFile(receive_fd);
+      }
+      // 전송 완료 응답 (0x36 → 0x76)
+      //sendISOTP(0x768,3);
+    }
+  }
+}
+
+//열려 있는 파일의 fd를 통해 rx버퍼 내용 복사, 파일 닫지 않음
+void bufferToFile(dword fd)
+{
+  int i;
+  
+  write("VDC : bufferTofile");
+  for(i=2; i<rx_packet_size;i++){
+    rx_payload[rx_payload_size++]=rx_buffer[i];
+  }
+  rx_payload[rx_payload_size]='\0';
+  
+  if(filePutString(rx_payload, rx_payload_size, fd) == 0)
+  {
+    write("VDC : file write err");
+  }
+}
+
+//temp.txt 내용을 보고 DDC로그 파일로 옮길지 SW버전 파일로 옮길지 판단
+void receivedFileCheckAndCopy()
+{
+  dword fd;
+  char buffer[256];
+  char buffer2[4];
+  int buffer_size = 256;
+  
+  //temp.txt 파일 열기
+  setFilePath(file_path_temp,0); //1: write, 0: read
+  fd = openFileWrite(file_name_temp, 2);
+  if(fd == 0)
+  {
+    write("VDC : temp.txt open failed");
+  }
+  
+  fileGetString(buffer,buffer_size,fd);
+  fileClose(fd);
+  
+  mbstrncpy(buffer2,buffer,3);
+  if(strncmp("DTC",buffer2,3) == 0)
+  {
+    snprintf(DDC_log_file_name,50,"log_%d.txt",vehicle_data.general_data.dtc_count+1);
+    copyFileFromTemp(DDC_log_dir,DDC_log_file_name);
+    parseFailureLog(DDC_log_dir,DDC_log_file_name);
+  }
+  else
+  {
+    copyFileFromTemp(sw_info_file_dir,sw_info_file_name);
+  }
+}
+
+//수신한 파일(temp.txt)를 원하는 경로와 이름으로 복사
+void copyFileFromTemp(char file_path[],char file_name[])
+{
+
+  int i;
+  char buffer[256];
+  dword buffer_size = 256;
+  
+  dword src_fd;
+  dword dest_fd;
+  
+  //src 파일 열기
+  setFilePath(file_path_temp,0); //1: write, 0: read
+  src_fd = openFileRead(file_name_temp, 0);
+  if(src_fd == 0)
+  {
+    write("VDC : temp.txt open failed");
+  }
+  
+  //dest 파일 열기
+  setFilePath(file_path,1); //1: write, 0: read
+  dest_fd = openFileWrite(file_name, 0);
+  if(dest_fd == 0)
+  {
+    write("VDC : %s.txt open failed",file_name);
+  }
+  
+  //파일 내용 복사하기
+  while(fileGetString(buffer,buffer_size,src_fd) != 0)
+  {
+    //write("read ddc logfile : %s",buffer); //for debug
+    filePutString(buffer,buffer_size,dest_fd);
+  }
+  
+  fileClose(src_fd);
+  fileClose(dest_fd);
+  write("VDC : complete copy from temp.txt to ddc log file");
+}
+
+// 전역 버퍼 rx_buffer에 있는 데이터를 파일로 저장 - 파일 전체 크기가 4094바이트 이하인 경우에만 사용 가능
+void saveToFile(char file_path[],char file_name[])
+{
+  dword fd;
+  int i;
+  
+  for(i=2; i<rx_packet_size;i++){
+    rx_payload[rx_payload_size++]=(char)rx_buffer[i];
+  }
+  rx_payload[rx_payload_size]='\0';
+  
+  setWritePath(file_path);
+  fd = openFileWrite(file_name,0);
+  if (fd == -1)
+  {
+    write("VDC : !! 파일 열기 실패: %s", file_name);
+    return;
+  }
+  filePutString(rx_payload, rx_payload_size, fd);
+  write("VDC : >> 파일 저장 성공:%d %s",rx_payload_size, file_name);
+  fileClose(fd);
+}
+
+///////////////////////////////////////////////////////////
+//ISO-TP
+//싱글프레임, 멀티프레임 UDS 전달 및 플로우컨트롤(미구현)
+///////////////////////////////////////////////////////////
+void sendISOTP(dword target_address, int len)
+{
+  int i;
+  int index;
+  int seqNum;
+  message 0x7DF outmsg;//브로드캐스트(사용안함)
+  
+  index = 0;
+  seqNum = 1;
+
+  write("VDC : sendISOTP, SID : %02X, SF : %02X",tx_buffer[0],tx_buffer[1]);
+  ISOTP_MSG.id = target_address;
+  
+  if (len <= 7)//single frame
+  {
+    write("VDC : ISOTP-single frame");
+    ISOTP_MSG.byte(0) = 0x00 | len;
+    for (i = 0; i < len; i++) ISOTP_MSG.byte(i+1) = tx_buffer[i];
+    for (i = len + 1; i < 8; i++) ISOTP_MSG.byte(i) = 0x00;
+    ISOTP_MSG.dlc = len+1;
+    
+    output(ISOTP_MSG);
+  }
+  else//ff -> cf
+  {
+    ISOTP_MSG.byte(0) = 0x10 | ((len >> 8) & 0x0F);
+    ISOTP_MSG.byte(1) = len & 0xFF;
+    write("VDC : ISOTP-first frame, byte 0,1: %02x,%02x",ISOTP_MSG.byte(0),ISOTP_MSG.byte(1));
+    for (i = 0; i < 6; i++) ISOTP_MSG.byte(i+2) = tx_buffer[index++];
+    ISOTP_MSG.dlc = len+2;
+    output(ISOTP_MSG);
+
+    //flow control을 받은 다음 cf를 보내기 시작해야하는데, 그부분은 미구현. (flow control 없이 그냥 파일 전송)
+    
+    //write("index:%d, len%d",index,len);
+    write("VDC : ISOTP-consecutive frame start");
+    while (index < len)
+    {
+      int rest;
+      int cfLen;
+      ISOTP_MSG.byte(0) = 0x20 | (seqNum & 0x0F);
+      //write("VDC : ISOTP-consecutive frame, seqNum: %d",seqNum);
+      
+      rest = len - index;
+      cfLen = (rest >= 7) ? 7 : rest;
+
+      for (i = 0; i < cfLen; i++) ISOTP_MSG.byte(i+1) = tx_buffer[index++];
+      
+      ISOTP_MSG.dlc = cfLen+1;
+      output(ISOTP_MSG);
+      seqNum++;
+    }
+  }
+  write("VDC : ISOTP-end");
+}
+
+///////////////////////////////////////////////////////////
+//파일 전달을 위한 UDS 서비스
+///////////////////////////////////////////////////////////
+void requestDownload(dword target_address){//UDS,ISO-TP 기반 파일 다운로드 요청
+  
+  tx_buffer[0] = 0x34;
+  tx_buffer[1] = 0x00;
+  tx_buffer[2] = 0x44; // 4-byte address + 4-byte length
+  tx_buffer[3] = 0x00;
+  tx_buffer[4] = 0x00;
+  tx_buffer[5] = 0x40;
+  tx_buffer[6] = 0x00; // address: 0x00004000
+  tx_buffer[7] = tx_payload_size&0xFF000000;
+  tx_buffer[8] = tx_payload_size&0x00FF0000;
+  tx_buffer[9] = tx_payload_size&0x0000FF00;
+  tx_buffer[10] = tx_payload_size&0x000000FF; // file length
+  
+  write("VDC : >> Request Download");
+  sendISOTP(target_address, 11);
+}
+
+void transferData(dword target_address){//UDS,ISO-TP 기반 file transfer
+  
+  int i;
+  tx_buffer[0] = 0x36;
+  tx_buffer[1] = 0x01;
+  write("transfer data. tx_payload_size=%d",tx_payload_size);
+  for (i = 0; i < tx_payload_size; i++)
+  {
+    tx_buffer[2 + i] = tx_payload[i];
+  }
+  write("VDC : >> Request Transfer data");
+  sendISOTP(target_address, 2 + tx_payload_size);
+}
+
+void transferExit(dword target_address){//UDS,ISO-TP 기반 파일 전송 종료
+  byte tx_buffer[1] = {0x37};
+  write("VDC : >> Request Transfer Exit");
+  sendISOTP(target_address, 1);
+}
+//////////////////////////////////////////////////////////////////////////
+
+// 로그파일 수신 후 고장코드 및 시간 추출, 첫 7글자
+int parseFailureLog(char filePath[], char fileName[])
+{
+  char buffer[20];
+  char temp_arr[20];
+  char hexString[10];
+  int pos;
+  dword fd;
+
+  setFilePath(filePath,0); //0: set path for read
+  fd = openFileRead(fileName, 0); //0: text mode, 1: binary mode
+  if (fd == 0xFFFFFFFF) {
+    write("VDC : 파일 열기 실패: %s", fileName);
+    return 0;
+  }
+
+  // --- DTC ---
+  fileGetString(buffer, 20, fd); //개행문자 읽거나 버퍼사이즈-1 만큼 읽어들이면 stop, 
+  pos = mbstrstr(buffer, ":")+1;
+  if (pos == -1) {
+    write("VDC : DTC 파싱 에러");
+  }
+  mbsubstr_cpy(vehicle_data.general_data.dtc_list[vehicle_data.general_data.dtc_count],buffer,pos,7);
+  vehicle_data.general_data.dtc_list[vehicle_data.general_data.dtc_count][7] = '\0';
+  
+  //----DTC occur time----
+  fileGetString(buffer, 20, fd); //개행문자 읽거나 버퍼사이즈-1 만큼 읽어들이면 stop, 
+  pos = mbstrstr(buffer, ":")+1;
+  if (pos == -1) {
+    write("VDC : DTC 발생 시각 파싱 에러");
+  }
+  mbsubstr_cpy(vehicle_data.general_data.dtc_time_list[vehicle_data.general_data.dtc_count],buffer,pos,8);
+  vehicle_data.general_data.dtc_time_list[vehicle_data.general_data.dtc_count][8] = '\0';
+  
+  fileClose(fd);
+  //write("파싱 성공: No.%d DTC=%s", vehicle_data.general_data.dtc_count, vehicle_data.general_data.dtc_list[vehicle_data.general_data.dtc_count]);
+  vehicle_data.general_data.dtc_count++;
+  
+  return 1;
+}
+
+
+///////서버 요청 처리(from connectivity) 
+on message msg_conn_vdc
+{
+  byte request;
+  request = this.byte(0);
+  
+  switch (request){
+    case 0x32: //로그파일 제공
+      provide_vehicle_log();
+      break;
+    case 0x3C: //소프트웨어 버전 정보 제공
+      provide_sw_version();
+      break;
+    default:
+      break;
+  }
+}
+
+//차량 sw 버전 정보 전송
+void provide_sw_version(void)
+{
+  write("call provide_sw_version");
+  //vum physical address : 0x757
+  sendFile(0x757,sw_info_file_dir,sw_info_file_name);
+}
+
+//통합 로그 제작 및 전송
+void provide_vehicle_log(void)
+{
+  //write("call provide_vehicle_log");
+  refresh_vehicle_data();
+  makeTotalLog();
+  //connectivity physical address : 0x763
+  sendFile(0x763,combined_log_dir,combined_log_name);
+}
+
+//통합 로그파일 생성
+void makeTotalLog(void)
+{
+  //combined_log.txt 로 저장 
+  //기록 : ecu데이터+고장 개수/ 고장 로그 이어붙인거
+
+  int i;
+  char buffer[256];
+  dword buffer_size = 256;
+  
+  dword ddc_log_fd;
+  dword combined_log_fd;
+  
+  char seperater[50] = "=====================================\n";
+  char linefeed[10] = "\n\n";
+  char seperaterPart1[50] = "Part1. Vehicle Data\n";
+  char seperaterPart2[50] = "Part2. Failure Log\n";
+  
+  //통합 로그 파일 열기
+  setFilePath(combined_log_dir,1); //1: write, 0: read
+  combined_log_fd = openFileWrite(combined_log_name, 0);
+  if(combined_log_fd == 0)
+  {
+    write("VDC : combined_log.txt open failed");
+  }
+  
+  //part1. ecu데이터 + 고장 개수 
+  filePutString(seperaterPart1,256,combined_log_fd);
+  filePutString(seperater,256,combined_log_fd);
+  //차량 데이터들 로그에 쓰기
+  snprintf(buffer, buffer_size,"%s : %.1f\n",text_battery_level,vehicle_data.general_data.battery_level);
+  filePutString(buffer,256,combined_log_fd);
+  
+  snprintf(buffer, buffer_size,"%s : %.1f\n",text_battery_voltage,vehicle_data.general_data.battery_voltage);
+  filePutString(buffer,buffer_size,combined_log_fd);
+  //dtc기록 요약
+  snprintf(buffer, buffer_size,"%s : %d\n",text_dtc_count,vehicle_data.general_data.dtc_count);
+  filePutString(buffer,buffer_size,combined_log_fd);
+  for(i = 0; i < vehicle_data.general_data.dtc_count; i++)
+  {
+     snprintf(buffer, buffer_size,"   No.%d, DTC: %s, Time: %s\n",i+1
+                ,vehicle_data.general_data.dtc_list[i]
+                ,vehicle_data.general_data.dtc_time_list[i]);
+    filePutString(buffer,buffer_size,combined_log_fd);
+  }
+  
+  filePutString(seperater,256,combined_log_fd);
+  filePutString(linefeed,256,combined_log_fd);
+  
+  //part2. 고장 로그들
+  filePutString(seperaterPart2,256,combined_log_fd);
+  filePutString(seperater,256,combined_log_fd);
+  // 각 로그 파일 붙이기
+  for (i = 1; i <= vehicle_data.general_data.dtc_count; i++)
+  {
+    //로그 파일 열기
+    snprintf(DDC_log_file_name, 50 ,"log_%d.txt",i);
+    setFilePath(DDC_log_dir,0);
+    ddc_log_fd = openFileRead(DDC_log_file_name,0);
+    if(ddc_log_fd == 0)
+    {
+      write("VDC : ddc logfile open failed");
+    }
+    
+    //구분자와 로그 헤드 넣기
+    snprintf(buffer, buffer_size,"Failure Number: %d\n",i);
+    filePutString(buffer,buffer_size,combined_log_fd);
+    
+    //파일 내용 복사하기
+    while(fileGetString(buffer,buffer_size,ddc_log_fd) != 0)
+    {
+      //write("read ddc logfile : %s",buffer); //for debug
+      filePutString(buffer,buffer_size,combined_log_fd);
+    }
+    filePutString(linefeed,buffer_size,combined_log_fd);
+    filePutString(seperater,buffer_size,combined_log_fd);
+    
+    fileClose(ddc_log_fd);
+  }
+  fileClose(combined_log_fd);
+}
+
+///차량 데이터 최신화
+void refresh_vehicle_data(void)
+{
+  //general_data
+  vehicle_data.general_data.battery_level = @BCM::Battery;
+  vehicle_data.general_data.battery_voltage = @BCM::Battery_voltage;
+  vehicle_data.p_can_data.ignition_on = @SCU::IgnitionState;
+  
+  //p-can
+  
+  //c-can
+  
+  //b_can
+  
+  //e-can
+}
+
+// VUM에게 업데이트 가능 여부 알려주기
+on message msg_vum_vdc_check
+{
+  message msg_vdc_vum_status resp;
+  byte ret;
+  
+  refresh_vehicle_data();
+  resp.sig_vdc_vum_status = update_condition_check();
+  
+  output(resp);  
+}
+
+//업데이트 가능 상태인지 check, 가능하면 1, 불가능하면 0반환
+byte update_condition_check(void)
+{
+  if(vehicle_data.p_can_data.speed != 0 
+      || vehicle_data.p_can_data.gearPosition != 'p'
+      || vehicle_data.p_can_data.ignition_on == 1
+      || vehicle_data.general_data.battery_voltage < 11.5
+      || vehicle_data.general_data.battery_level < 30
+      || vehicle_data.general_data.dtc_count >= 1
+    )
+  {
+    return 0;
+  }
+  else
+  {
+    return 1;
+  }
+}
+
+on message D_CAN::msg_tcu_info {
+  vehicle_data.p_can_data.gearPosition = this.sig_gear_shift;
+  vehicle_data.p_can_data.speed = this.sig_speed;
+}

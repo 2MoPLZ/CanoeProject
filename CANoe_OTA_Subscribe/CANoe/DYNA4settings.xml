@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <selectedFolder path="..\RunPackageExports" />
+  <simulationControl useStopTime="True" />
+  <animationControl useAnimation="True" selected="DYNAanimation 9.1" userDefinedPath="" />
+  <animationConnection ip="127.0.0.1" data_port="20000" remote_port="20001" />
+</settings>

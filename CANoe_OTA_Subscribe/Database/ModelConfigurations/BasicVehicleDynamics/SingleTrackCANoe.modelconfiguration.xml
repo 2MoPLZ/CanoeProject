@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelConfiguration name="SingleTrackCANoe" version="7.0.0" description="M-Segment (EU) demo parameters for basic vehicle dynamics,&#xA;prepared for usage with CANoe,&#xA;including ADAS Control Unit with AEB and ACC,&#xA;matching VW Golf Sportsvan 2015 geometry">
+  <ModelName>SingleTrackCANoe.slx</ModelName>
+  <ModelDataReference>BasicVehicleDynamics/SingleTrack.modeldata</ModelDataReference>
+</ModelConfiguration>
